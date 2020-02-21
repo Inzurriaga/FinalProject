@@ -10,13 +10,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class MountainTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -30,7 +28,7 @@ class UserTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		em = emf.createEntityManager();
+		em = emf.createEntityManager();  
 	}
 
 	@AfterEach
@@ -39,10 +37,11 @@ class UserTest {
 	}
 
 	@Test
-	@DisplayName("Map SQL User table to User class")
-	void test1() {
-		User user = em.find(User.class, 1);
-		assertEquals("Gabe", user.getUsername());
+	void test() {
+		Mountain mt = em.find(Mountain.class, 1);
+		assertEquals("pikes peak", mt.getName());
+		
+		
 	}
 
 }
