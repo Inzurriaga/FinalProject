@@ -1,22 +1,29 @@
 package com.skilldistillery.mountains.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class State {
-	
-	private int ID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	private int id;
 	
 	private String abbr;
 	
 	private String name;
 
-	public int getID() {
-		return ID;
+	
+
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getAbbr() {
