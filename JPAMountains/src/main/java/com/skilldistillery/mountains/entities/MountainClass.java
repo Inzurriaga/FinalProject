@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ClassType {
+public class MountainClass {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
