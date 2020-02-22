@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ClassTypeTest {
+class MountainClassTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 
@@ -40,7 +40,7 @@ class ClassTypeTest {
 	@Test
 	@DisplayName("Map SQL class_type table to ClassType class")
 	void test() {
-		ClassType classtype = em.find(ClassType.class, 1);
+		MountainClass classtype = em.find(MountainClass.class, 1);
 		assertEquals("easy hiking", classtype.getDescription());
 	}
 
