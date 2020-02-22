@@ -1,7 +1,7 @@
 package com.skilldistillery.mountains.services;
 
-import com.skilldistillery.mountains.entities.UserInfo;
+import com.skilldistillery.mountains.entities.State;
 
 public interface StateService {
-	public UserInfo findById(Integer id) ;
+	public State findById(Integer id) ;
 }
