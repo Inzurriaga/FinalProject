@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mountains.entities.Mountain;
-import com.skilldistillery.mountains.entities.UserInfo;
 import com.skilldistillery.mountains.services.MountainService;
 
 @RestController
