@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.services;
 
-public interface EventService {
+import com.skilldistillery.mountains.entities.Event;
 
+public interface EventService {
+	public Event getEventById(int id);
 }
