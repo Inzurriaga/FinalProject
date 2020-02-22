@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `mountain_class` ;
 
 CREATE TABLE IF NOT EXISTS `mountain_class` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `class` VARCHAR(45) NOT NULL,
+  `class_type` VARCHAR(45) NOT NULL,
   `description` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -258,7 +258,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mountaindb`;
-INSERT INTO `mountain_class` (`id`, `class`, `description`) VALUES (1, '1', 'easy hiking');
+INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (1, '1', 'easy hiking');
 
 COMMIT;
 
