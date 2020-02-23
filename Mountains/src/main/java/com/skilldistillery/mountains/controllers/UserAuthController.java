@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import com.skilldistillery.mountains.entities.User;
 import com.skilldistillery.mountains.services.UserAuthService;
 
 @RestController
+@CrossOrigin({"*", "http://localhost:4300"})
 public class UserAuthController {
 	
 	@Autowired
