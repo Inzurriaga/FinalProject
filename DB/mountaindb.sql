@@ -239,6 +239,7 @@ COMMIT;
 START TRANSACTION;
 USE `mountaindb`;
 INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (1, 'CO', 'Colorado');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (2, 'AZ', 'Arizona');
 
 COMMIT;
 
@@ -268,7 +269,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mountaindb`;
-INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (1, 'pikes peak', -105.358887, 39.113014, 14115, 1, 1);
+INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (1, 'pikes peak', -105.9472356, 39.113014, 14115, 1, 1);
+INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (2, 'Byers peak', -105.9472368, 39.8644308, 12804, 1, 1);
+INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (3, 'Stanley Mountain', -105.8227868, 39.7858202, 13300, 1, 1);
+INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (4, 'Parry Peaks', -105.8380427, 39.8380427, 13391, 1, 1);
 
 COMMIT;
 
@@ -279,6 +283,16 @@ COMMIT;
 START TRANSACTION;
 USE `mountaindb`;
 INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (1, 'going on a climb', '2020-01-02 00:00:01.000000', 0, 1, 1);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (2, 'Intermediate hike, 7.7 miles', '2020-04-05 10:08:00.000000', 0, 1, 3);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (3, 'Winter hiking event', '2020-03-04 08:00:00.000000', 0, 1, 2);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (4, 'Hiking with dogs', '2020-03-01 09:00:00.000000', 0, 1, 1);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (5, 'hiking with friends', '2020-04-05 10:08:00.000000', 0, 1, 2);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (6, 'hiking with beer', '2020-04-05 10:08:00.000000', 0, 1, 1);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (7, 'hiking and yoga', '2020-04-05 10:08:00.000000', 0, 1, 3);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (8, 'hiking with Gabe', '2020-04-05 10:08:00.000000', 0, 1, 1);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (9, 'hiking with kai', '2020-04-05 10:08:00.000000', 0, 1, 2);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (10, 'hike the continental divide', '2020-04-05 10:08:00.000000', 0, 1, 2);
+INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (11, 'nature hike', '2020-04-05 10:08:00.000000', 0, 1, 2);
 
 COMMIT;
 
