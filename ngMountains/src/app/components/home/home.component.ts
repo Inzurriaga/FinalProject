@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-home',
@@ -15,18 +16,15 @@ export class HomeComponent implements OnInit {
     enable:true
   }
 
-  constructor(private authSrv: AuthService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.checkCredentials();
   }
-  createUser(){
-    console.log(this.user);
-    
-    this.authSrv.register(this.user).subscribe(
-      data=> console.log(data),
 
-      error=>console.log(error)
-      
-    );
+  checkCredentials = () => {
+    if(localStorage.getItem("credentials")) {
+      this.router.navigateByUrl("user")
+    }
   }
 }
