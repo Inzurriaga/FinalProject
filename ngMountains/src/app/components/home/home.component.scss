@@ -1,0 +1,49 @@
+#home {
+  min-height: 100vh;
+  position: relative;
+}
+
+header {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  nav {
+    margin: 25px;
+    a {
+      all: unset;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin: 20px;
+      transition: 0.2s;
+      &:hover {
+        color: #7BC289;
+      }
+    }
+    div {
+      display: inline-block;
+      height: 13px;
+      border-left: solid 2px #757575;
+    }
+  }
+}
+
+section {
+  min-height: 100vh;
+}
+
+.welcome {
+  background-color: #DEF8F7;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #7BC289;
+  height: 100px;
+  width: 100%;
+}

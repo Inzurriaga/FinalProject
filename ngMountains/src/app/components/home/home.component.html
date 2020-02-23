@@ -1,10 +1,23 @@
-<section>
-    <form>
-        <input type="text" name="username" [(ngModel)]="user.username">
-        <input type="text" name="password" [(ngModel)]="user.password">
-        <button (click)="createUser()">Create</button>
+<section id="home">
+  <header>
+    <div>
+      logo image here
+    </div>
+    <nav>
+      <a [routerLink]="['/login']">Login</a>
+      <div></div>
+      <a [routerLink]="['/signup']">Sign Up</a>
+    </nav>
+  </header>
+  <main>
+    <section class="welcome">
 
-    </form>
+    </section>
+    <section>
 
+    </section>
+  </main>
+  <footer>
 
+  </footer>
 </section>
