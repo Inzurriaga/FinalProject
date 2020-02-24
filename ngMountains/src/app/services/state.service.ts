@@ -11,7 +11,7 @@ export class StateService {
   constructor(private http: HttpClient, private authSrv: AuthService) { } 
   
   
-  index(){
+  index(): any{
     let credentials = this.authSrv.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
