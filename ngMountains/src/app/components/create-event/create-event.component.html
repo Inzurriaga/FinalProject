@@ -1,0 +1,24 @@
+<section>
+<select [(ngModel)]="mountain">
+    <option *ngFor="let mountain of mountains" [value]="mountain.name">{{mountain.name}}</option>
+</select>
+
+
+</section>
+
+
+<section>
+    <select [(ngModel)]="state">
+        <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
+    </select>
+    
+    
+    </section>
+
+    <section>
+        <select [(ngModel)]="mountainClass">
+            <option *ngFor="let mountainClass of mountainClasses" [value]="mountainClass.classType">{{mountainClass.classType}}</option>
+        </select>
+        
+        
+        </section>

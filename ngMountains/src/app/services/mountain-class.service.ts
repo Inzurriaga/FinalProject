@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class MountainClassService {
 
-  private url = "http://localhost:8090/api/mountainclass"
+  private url = "http://localhost:8090/api/mountainClass"
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 
@@ -19,6 +19,6 @@ export class MountainClassService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get(this.url, httpOptions).pipe();
+    return this.http.get<any>(this.url, httpOptions).pipe();
   }
 }
