@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mountains.entities.State;
-import com.skilldistillery.mountains.entities.UserInfo;
 import com.skilldistillery.mountains.services.StateService;
 
 @RestController
@@ -29,6 +30,9 @@ public class StateController {
 		}
 		return state;
 	}
-
+	@GetMapping(path="state")
+	public List<State> getAllStates(HttpServletResponse rsp){
+		return svc.findAll();
+	}
 
 }

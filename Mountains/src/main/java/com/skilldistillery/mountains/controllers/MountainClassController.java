@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,11 @@ public class MountainClassController {
 	@GetMapping("mountainClass/{id}")
 	public MountainClass getMountainClassById(@PathVariable Integer id) {
 		return srv.getMountainClassById(id);
+	}
+	
+	@GetMapping("mountainClass")
+	public List<MountainClass> getMountainClassList() {
+		return srv.getMountainClassList();
 	}
 	
 }
