@@ -1,5 +1,6 @@
 package com.skilldistillery.mountains.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class EventServiceImpl implements EventService {
 			return eventOpt.get();
 		}
 		return null;
+	}
+
+	@Override
+	public List<Event> getAll() {
+		return repo.findAll();
 	}
 
 }

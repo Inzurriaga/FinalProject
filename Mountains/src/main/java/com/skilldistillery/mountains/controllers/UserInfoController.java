@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,16 @@ public class UserInfoController {
 		return userInfo;
 	}
 
-
+	@GetMapping(path="userinfo")
+	public List<UserInfo> getAllUsers(HttpServletResponse rsp){
+		List<UserInfo> users=svc.findAll();
+		if(users!=null) {
+			rsp.setStatus(404);
+		}
+		else {
+			rsp.setStatus(201);
+		}
+		return users;
+	}
+	
 }

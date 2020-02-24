@@ -1,6 +1,6 @@
 package com.skilldistillery.mountains.services;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.skilldistillery.mountains.entities.Event;
 
@@ -8,4 +8,5 @@ import com.skilldistillery.mountains.entities.Event;
 
 public interface EventService {
 	public Event getEventById(int id);
+	public List<Event> getAll();
 }
