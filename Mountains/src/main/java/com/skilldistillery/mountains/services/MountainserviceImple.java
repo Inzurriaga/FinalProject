@@ -1,5 +1,6 @@
 package com.skilldistillery.mountains.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class MountainserviceImple implements MountainService {
 			return op.get();
 		}
 		return null;
+	}
+
+	@Override
+	public List<Mountain> showAllMountains() {
+		return repo.findAll();
 	}
 
 }
