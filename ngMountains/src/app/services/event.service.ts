@@ -9,7 +9,7 @@ import { url } from 'inspector';
 })
 export class EventService {
 
-private url= "http://localhost:8090"
+private url= "http://localhost:8090/api/event";
 
   constructor(private http: HttpClient) { }
 

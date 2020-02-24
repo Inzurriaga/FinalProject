@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { ComponentsComponent } from './components/components.component';
 import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { EventsComponent } from './components/events/events.component';
     LoginComponent,
     SignUpComponent,
     UserProfileComponent,
-    ComponentsComponent,
     EventsComponent
   ],
   imports: [
