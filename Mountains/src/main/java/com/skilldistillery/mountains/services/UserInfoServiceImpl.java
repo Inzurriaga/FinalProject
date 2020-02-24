@@ -1,5 +1,6 @@
 package com.skilldistillery.mountains.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 			return op.get();
 		}
 		return null;
+	}
+
+	@Override
+	public List<UserInfo> findAll() {
+	
+		return repo.findAll();
 	}
 
 }
