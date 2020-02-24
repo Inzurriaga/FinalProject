@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,8 @@ public class MountainController {
 		return mountain;
 	}
 
-
+	@GetMapping(path="mountain")
+	public List<Mountain> allMountains(){
+		return svc.showAllMountains();
+	}
 }
