@@ -5,7 +5,7 @@
  <main>
    <section>
      <article *ngFor= "let event of events">
-        <p>{{ event.description }}</p>
+        <a [routerLink]= "['/events', event.id]"><p>{{ event.description }}</p></a>
      </article>
    </section>
  </main>
