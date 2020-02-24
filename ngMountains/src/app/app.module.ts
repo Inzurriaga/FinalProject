@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ComponentsComponent } from './components/components.component';
+import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     HomeComponent,
     LoginComponent,
     SignUpComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ComponentsComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
