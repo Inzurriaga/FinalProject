@@ -19,6 +19,6 @@ export class StateService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get(this.url,httpOptions).pipe();
+    return this.http.get<any>(this.url,httpOptions).pipe();
   }
 }
