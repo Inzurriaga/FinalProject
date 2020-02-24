@@ -1,5 +1,6 @@
 package com.skilldistillery.mountains.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class StateserviceImple implements StateService {
 			return op.get();
 		}
 		return null;
+	}
+
+	@Override
+	public List<State> findAll() {
+		return repo.findAll();
 	}
 
 }
