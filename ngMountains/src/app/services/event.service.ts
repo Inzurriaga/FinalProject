@@ -40,6 +40,8 @@ private url= "http://localhost:8090/api/event";
   }
 
   addUser= (id: number, user: User) => {
+    console.log(id);
+    console.log(user)
     let credentials = this.authSrv.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
