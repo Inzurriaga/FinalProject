@@ -62,5 +62,7 @@ class MountainTest {
 		assertEquals("easy hiking", mt.getMountainClass().getDescription());
 		
 	}
+	
+	
 
 }

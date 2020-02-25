@@ -51,5 +51,11 @@ class EventTest {
 
 		
 	}
+	@Test
+	void test3() {
+		Event event = em.find(Event.class, 1);
+		assertEquals("hello",event.getHost().getUsername());
+	
+	}
 
 }

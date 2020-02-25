@@ -1,6 +1,7 @@
 package com.skilldistillery.mountains.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,27 +14,29 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 public class Event {
 	//Field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String description;
-	
+
 	private Boolean completed;
-	
+
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="host_id")
 	private User host;
 	
+	
 	@ManyToMany
-	@JoinTable(name="user_event",joinColumns=@JoinColumn(name="event_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List <User> users;
+	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_info_id"))
+	private List<User> users;
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
@@ -45,22 +48,6 @@ public class Event {
 	
 	
 	//Method
-//
-//	public User getHost() {
-//		return host;
-//	}
-//
-//	public void setHost(User host) {
-//		this.host = host;
-//	}
-//
-//	public List<User> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<User> users) {
-//		this.users = users;
-//	}
 
 	public Mountain getMountain() {
 		return mountain;
@@ -68,6 +55,22 @@ public class Event {
 
 	public void setMountain(Mountain mountain) {
 		this.mountain = mountain;
+	}
+
+
+	public void addUser(User user) {
+		if (users == null) {
+			users = new ArrayList<User>();
+		}
+		if (!users.contains(user)) {
+			users.add(user);
+		}
+	}
+
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+		}
 	}
 
 	public int getId() {
@@ -108,6 +111,7 @@ public class Event {
 				+ eventDate + "]";
 	}
 
+
 	public User getHost() {
 		return host;
 	}
@@ -124,4 +128,5 @@ public class Event {
 		this.users = users;
 	}
 	
+
 }
