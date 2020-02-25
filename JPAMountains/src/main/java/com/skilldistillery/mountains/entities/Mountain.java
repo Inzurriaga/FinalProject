@@ -31,10 +31,6 @@ public class Mountain {
 	private MountainClass mountainClass;
 
 
-
-
-
-
 	@OneToMany(mappedBy="mountain")
 	private List<Event> events;
 	
