@@ -56,5 +56,11 @@ class MountainTest {
 		assertEquals("Colorado", mt.getState().getName());
 		
 	}
+	@Test 
+	void test4(){
+		Mountain mt = em.find(Mountain.class, 1);
+		assertEquals("easy hiking", mt.getMountainClass().getDescription());
+		
+	}
 
 }
