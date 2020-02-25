@@ -52,6 +52,11 @@ public class User {
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	
+	
+	@ManyToMany(mappedBy="users")
+	private List<Event> events;
+	
+	
 
 	public User() {
 		super();
@@ -168,6 +173,14 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
 				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
 				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 }

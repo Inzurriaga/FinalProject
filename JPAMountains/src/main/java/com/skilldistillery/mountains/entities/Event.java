@@ -29,13 +29,13 @@ public class Event {
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="user_id")
-//	private User host;
-//	
-//	@ManyToMany
-//	@JoinTable(name="user_id",joinColumns=@JoinColumn(name="event_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
-//	private List <User> users;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User host;
+	
+	@ManyToMany
+	@JoinTable(name="user_event",joinColumns=@JoinColumn(name="event_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List <User> users;
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
@@ -128,5 +128,19 @@ public class Event {
 		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
 				+ eventDate + "]";
 	}
+	public User getHost() {
+		return host;
+	}
 
+	public void setHost(User host) {
+		this.host = host;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 }

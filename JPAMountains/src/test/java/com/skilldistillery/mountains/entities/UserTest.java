@@ -44,5 +44,11 @@ class UserTest {
 		User user = em.find(User.class, 1);
 		assertEquals("Gabe", user.getUsername());
 	}
+	
+	@Test
+	void test2() {
+		User user = em.find(User.class, 1);
+		assertEquals("",user.getEvents().size())
+	}
 
 }
