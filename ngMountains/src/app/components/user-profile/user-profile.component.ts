@@ -1,3 +1,5 @@
+import { User } from './../../models/user';
+import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private authSrv:AuthService, private router: Router) { }
+  user: User = new User();
+
+  constructor(private authSrv:AuthService, private userSrv: UserService,private router: Router) { }
 
   ngOnInit(): void {
+    this.getUserDetails();
+  }
+
+  getUserDetails = () => {
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.userSrv.show(userName).subscribe(
+      data => {
+        console.log(data)
+        this.user = data
+      },
+      err => console.log(err)
+    );
   }
 
   logOut = () => {
