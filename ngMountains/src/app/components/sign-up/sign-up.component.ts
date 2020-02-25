@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,12 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignUpComponent implements OnInit {
 
-  user = {
-    username: "",
-    password: "",
-    role: "standard",
-    enable: true
-  }
+  user = new User();
 
   constructor(private authSrv: AuthService, private router: Router) { }
 
@@ -22,6 +18,7 @@ export class SignUpComponent implements OnInit {
   }
 
   createAccount = () => {
+    console.log(this.user)
     this.authSrv.register(this.user).subscribe(
       data => {
         console.log(data);
