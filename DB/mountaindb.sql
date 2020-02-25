@@ -16,23 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `mountaindb` DEFAULT CHARACTER SET utf8 ;
 USE `mountaindb` ;
 
 -- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(200) NOT NULL,
-  `role` VARCHAR(45) NOT NULL,
-  `enable` TINYINT NOT NULL,
-  `create_date` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `state`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `state` ;
@@ -46,25 +29,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_info`
+-- Table `user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_info` ;
+DROP TABLE IF EXISTS `user` ;
 
-CREATE TABLE IF NOT EXISTS `user_info` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NULL,
   `description` TEXT NULL,
   `image_url` TEXT NULL,
-  `user_id` INT NOT NULL,
   `state_id` INT NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
+  `role` VARCHAR(45) NOT NULL,
+  `enabled` TINYINT NOT NULL,
+  `create_date` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_info_user_idx` (`user_id` ASC),
   INDEX `fk_user_info_state1_idx` (`state_id` ASC),
-  CONSTRAINT `fk_user_info_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_info_state1`
     FOREIGN KEY (`state_id`)
     REFERENCES `state` (`id`)
@@ -132,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   INDEX `fk_event_mountain1_idx` (`mountain_id` ASC),
   CONSTRAINT `fk_event_user_info1`
     FOREIGN KEY (`host_id`)
-    REFERENCES `user_info` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_mountain1`
@@ -183,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `user_event` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_has_user_info_user_info1`
     FOREIGN KEY (`user_info_id`)
-    REFERENCES `user_info` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -207,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `user_mountain` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mountain_has_user_info_user_info1`
     FOREIGN KEY (`user_info_id`)
-    REFERENCES `user_info` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -224,16 +205,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enable`, `create_date`) VALUES (1, 'Gabe', 'gabe', 'standard', 1, '2020-01-20 00:00:01.000000');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `state`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -245,11 +216,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `user_info`
+-- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mountaindb`;
-INSERT INTO `user_info` (`id`, `email`, `description`, `image_url`, `user_id`, `state_id`) VALUES (1, 'gabe@localhost.com', 'badguy', 'gabe', 1, 1);
+INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (1, 'gabe@localhost.com', 'badguy', 'gabe', 1, 'hello', 'hello', 'standard', 1, '2000-01-02 10:00:00.000000');
 
 COMMIT;
 
