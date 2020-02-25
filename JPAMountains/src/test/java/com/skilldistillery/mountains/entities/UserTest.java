@@ -42,13 +42,21 @@ class UserTest {
 	@DisplayName("Map SQL User table to User class")
 	void test1() {
 		User user = em.find(User.class, 1);
-		assertEquals("Gabe", user.getUsername());
+		assertEquals("", user.getUsername());
 	}
 	
+//	@Test
+//	void test2() {
+//		User user = em.find(User.class, 1);
+//		assertEquals("",user.getEvents().size());
+//	}
+	
 	@Test
-	void test2() {
+	void test3(){
 		User user = em.find(User.class, 1);
-		assertEquals("",user.getEvents().size());
-	}
 
+		assertEquals(11,user.getHostEvents().size());
+		
+
+}
 }

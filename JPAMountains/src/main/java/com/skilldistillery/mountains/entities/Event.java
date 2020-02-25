@@ -12,8 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
 import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Event {
@@ -33,6 +33,12 @@ public class Event {
 	@JoinColumn(name="host_id")
 	private User host;
 	
+
+	
+	@ManyToMany
+	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_info_id"))
+	private List<User> users;
+
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
@@ -71,9 +77,6 @@ public class Event {
 		this.mountain = mountain;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_info_id"))
-	private List<User> users;
 
 	public void addUser(User user) {
 		if (users == null) {
@@ -122,7 +125,14 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
+				+ eventDate + "]";
+	}
+
+
 	public User getHost() {
 		return host;
 	}
@@ -138,10 +148,5 @@ public class Event {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
-				+ eventDate + "]";
-	}
+
 }
