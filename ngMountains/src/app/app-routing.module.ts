@@ -10,6 +10,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent},

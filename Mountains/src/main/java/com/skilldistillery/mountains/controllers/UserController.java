@@ -1,7 +1,5 @@
 package com.skilldistillery.mountains.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mountains.entities.UserInfo;
-import com.skilldistillery.mountains.services.UserInfoService;
+import com.skilldistillery.mountains.entities.User;
+import com.skilldistillery.mountains.services.UserService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({"*", "http://localhost:4300"})
-public class UserInfoController {
-	
+public class UserController {
 	@Autowired
-	private UserInfoService svc;
+	private UserService svc;
 	
-	@GetMapping(path="userinfo/{id}")
-	public UserInfo getUserInfo(@PathVariable Integer id, HttpServletResponse rsp) {
-		UserInfo userInfo= svc.findById(id);
-		if (userInfo == null) {
+	@GetMapping(path="user/{username}")
+	public User getUserInfo(@PathVariable String username, HttpServletResponse rsp) {
+		User user = svc.getUserByUsername(username);
+		if (user == null) {
 			rsp.setStatus(404);
 		} else {
 			rsp.setStatus(201);
 		}
-		return userInfo;
+		return user;
 	}
 
 }

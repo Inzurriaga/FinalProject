@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -19,13 +22,17 @@ public class User {
 
 	private String username;
 
+	@JsonIgnore
 	private String password;
 
 	private String role;
 
 	private boolean enable;
+	
+	@OneToOne(mappedBy = "user")
+	private UserInfo userInfo;
 
-	@Column(name = " create_date")
+	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
 
@@ -89,6 +96,14 @@ public class User {
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	@Override
