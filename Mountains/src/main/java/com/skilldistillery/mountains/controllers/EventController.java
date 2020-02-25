@@ -35,6 +35,7 @@ public class EventController {
 	
 	@PostMapping("event/{id}")
 	public Event addUserToEvent(@RequestBody User user, @PathVariable Integer id) {
+		System.out.println("hello world how are you doing");
 		return srv.addUserToEvent(id, user);
 
 	}

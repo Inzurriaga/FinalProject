@@ -30,7 +30,7 @@ public class Event {
 	private LocalDateTime eventDate;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="host_id")
 	private User host;
 	
 	
@@ -41,25 +41,27 @@ public class Event {
 	//Constructor
 	
 	
+	public Event() {
+		super();
+	}
 	
 	
+	
+	public Event(int id, String description, Boolean completed, LocalDateTime eventDate, User host, Mountain mountain,
+			List<User> users) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.completed = completed;
+		this.eventDate = eventDate;
+		this.host = host;
+		this.mountain = mountain;
+		this.users = users;
+	}
+
+
+
 	//Method
-//
-//	public User getHost() {
-//		return host;
-//	}
-//
-//	public void setHost(User host) {
-//		this.host = host;
-//	}
-//
-//	public List<User> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<User> users) {
-//		this.users = users;
-//	}
 
 	public Mountain getMountain() {
 		return mountain;
@@ -120,11 +122,7 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
-				+ eventDate + "]";
-	}
+	
 	public User getHost() {
 		return host;
 	}
@@ -139,5 +137,11 @@ public class Event {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
+				+ eventDate + "]";
 	}
 }

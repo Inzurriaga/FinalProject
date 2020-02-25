@@ -28,16 +28,18 @@ export class EventComponent implements OnInit {
       err=> console.log(err)
     )
   }
+
   joinEvent() {
   let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-  let user;
   this.userSrv.show(userName).subscribe(
     data => {
-      user = data;
+      this.eventSrv.addUser(this.event.id, data).subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      )
     },
     err => console.log(err)
   )
-  this.eventSrv.addUser(this.event.id, user)
   }
 
 }

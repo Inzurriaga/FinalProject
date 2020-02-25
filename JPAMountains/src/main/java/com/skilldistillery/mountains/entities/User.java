@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -52,7 +54,7 @@ public class User {
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Event> events;
 	
