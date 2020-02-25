@@ -1,13 +1,14 @@
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserInfoService {
+export class UserService {
 
-  private url = "http://localhost:8090"
+  private url = "http://localhost:8090/api/user"
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 
@@ -19,6 +20,6 @@ export class UserInfoService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get(this.url+"/"+userName, httpOptions).pipe();
+    return this.http.get<User>(this.url+"/"+userName, httpOptions).pipe();
   }
 }

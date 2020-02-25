@@ -1,3 +1,4 @@
+import { State } from './../models/state';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
@@ -8,17 +9,10 @@ import { AuthService } from './auth.service';
 export class StateService {
   private url= "http://localhost:8090/api/state";
 
-  constructor(private http: HttpClient, private authSrv: AuthService) { } 
-  
-  
+  constructor(private http: HttpClient, private authSrv: AuthService) { }
+
+
   index(): any{
-    let credentials = this.authSrv.getCredentials();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest'
-      })
-    };
-    return this.http.get<any>(this.url,httpOptions).pipe();
+    return this.http.get<State[]>(this.url).pipe();
   }
 }

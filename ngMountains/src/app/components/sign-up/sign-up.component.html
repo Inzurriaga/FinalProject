@@ -1,7 +1,13 @@
 <section>
   <form>
-    <input type="text" name="username" [(ngModel)]="user.username">
-    <input type="text" name="password" [(ngModel)]="user.password">
+    <input type="text" name="username" [(ngModel)]="user.username" placeholder="username">
+    <input type="text" name="password" [(ngModel)]="user.password" placeholder="password">
+    <input type="text" name="description" [(ngModel)]="user.description" placeholder="description">
+    <input type="text" name="email" [(ngModel)]="user.email" placeholder="email">
+    <input type="text" name="imageUrl" [(ngModel)]="user.imageUrl" placeholder="imageurl">
+    <select name="state.id" [(ngModel)]="user.state.id">
+      <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
+    </select>
     <button (click)="createAccount()">sign up</button>
 </form>
 </section>

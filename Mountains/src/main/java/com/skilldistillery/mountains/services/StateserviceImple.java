@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mountains.entities.State;
-import com.skilldistillery.mountains.entities.UserInfo;
 import com.skilldistillery.mountains.repositories.StateRepository;
 
 @Service
