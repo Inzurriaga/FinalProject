@@ -1,16 +1,21 @@
 package com.skilldistillery.mountains.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Event {
-	
+	//Field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,6 +26,49 @@ public class Event {
 	
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
+	
+//	@ManyToOne
+//	@JoinColumn(name="user_id")
+//	private User host;
+//	
+//	@ManyToMany
+//	@JoinTable(name="user_id",joinColumns=@JoinColumn(name="event_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
+//	private List <User> users;
+	
+	@ManyToOne
+	@JoinColumn(name="mountain_id")
+	private Mountain mountain;
+	
+	//Constructor
+	
+	
+	
+	
+	//Method
+//
+//	public User getHost() {
+//		return host;
+//	}
+//
+//	public void setHost(User host) {
+//		this.host = host;
+//	}
+//
+//	public List<User> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(List<User> users) {
+//		this.users = users;
+//	}
+
+	public Mountain getMountain() {
+		return mountain;
+	}
+
+	public void setMountain(Mountain mountain) {
+		this.mountain = mountain;
+	}
 
 	public int getId() {
 		return id;
