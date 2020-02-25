@@ -1,10 +1,17 @@
 package com.skilldistillery.mountains.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Mountain {
@@ -20,10 +27,48 @@ public class Mountain {
 	private double latitude;
 
 	private int height;
+	
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	@Column(name = "mountain_class_id")
+	private int mountainClassId;
+
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+
+	@OneToMany(mappedBy="mountain")
+	private List<Event> events;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="state_id")
+	private State state;
+
+	
+	
+	
+	public State getState() {
+		return state;
+	}
+
+
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+
 
 	public Mountain() {
 		super();
 	}
+	
+
 
 	public Mountain(int id, String name, double longitude, double latitude, int height, int stateId,
 			int mountainClassId) {
@@ -33,15 +78,11 @@ public class Mountain {
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.height = height;
-		this.stateId = stateId;
 		this.mountainClassId = mountainClassId;
 	}
 
-	@Column(name = "state_id")
-	private int stateId;
+	
 
-	@Column(name = "mountain_class_id")
-	private int mountainClassId;
 
 	public int getId() {
 		return id;
@@ -83,14 +124,7 @@ public class Mountain {
 		this.height = height;
 	}
 
-	public int getStateId() {
-		return stateId;
-	}
-
-	public void setStateId(int stateId) {
-		this.stateId = stateId;
-	}
-
+	
 	public int getMountainClassId() {
 		return mountainClassId;
 	}
@@ -99,10 +133,6 @@ public class Mountain {
 		this.mountainClassId = mountainClassId;
 	}
 
-	@Override
-	public String toString() {
-		return "Mountain [id=" + id + ", name=" + name + ", longitude=" + longitude + ", latitude=" + latitude
-				+ ", height=" + height + ", stateId=" + stateId + ", mountainClassId=" + mountainClassId + "]";
-	}
+	
 
 }

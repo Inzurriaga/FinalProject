@@ -1,6 +1,6 @@
 package com.skilldistillery.mountains.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,6 +41,19 @@ class MountainTest {
 		Mountain mt = em.find(Mountain.class, 1);
 		assertEquals("pikes peak", mt.getName());
 		
+	}
+	
+	@Test
+
+	void test2() {
+		Mountain mt = em.find(Mountain.class, 1);
+		assertEquals(4, mt.getEvents().size());
+		
+	}
+	@Test
+	void test3() {
+		Mountain mt = em.find(Mountain.class, 1);
+		assertEquals("Colorado", mt.getState().getName());
 		
 	}
 
