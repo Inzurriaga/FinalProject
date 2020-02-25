@@ -1,3 +1,5 @@
+import { State } from './../../models/state';
+import { StateService } from 'src/app/services/state.service';
 import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,10 +13,21 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignUpComponent implements OnInit {
 
   user = new User();
+  states: State[] = [];
 
-  constructor(private authSrv: AuthService, private router: Router) { }
+  constructor(private authSrv: AuthService, private stateSrv: StateService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getStates();
+  }
+
+  getStates = () => {
+    this.stateSrv.index().subscribe(
+      data => {
+        this.states = data;
+      },
+      err => console.log(err)
+    )
   }
 
   createAccount = () => {

@@ -28,7 +28,7 @@ public class User {
 
 	private String role;
 
-	private boolean enable;
+	private boolean enabled;
 	
 	private String email;
 	
@@ -57,14 +57,14 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String role, boolean enable, String email,
+	public User(int id, String username, String password, String role, boolean enabled, String email,
 			String description, String imageUrl, State state, LocalDateTime createDate, List<Mountain> mountains) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.role = role;
-		this.enable = enable;
+		this.enabled = enabled;
 		this.email = email;
 		this.description = description;
 		this.imageUrl = imageUrl;
@@ -107,12 +107,12 @@ public class User {
 		this.role = role;
 	}
 
-	public boolean isEnable() {
-		return enable;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
+	public void setEnabled(boolean enable) {
+		this.enabled = enable;
 	}
 
 	public LocalDateTime getCreateDate() {
@@ -166,7 +166,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
-				+ enable + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
+				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
 				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
 	}
 

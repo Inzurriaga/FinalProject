@@ -29,10 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .authorizeRequests()
+        .antMatchers(HttpMethod.GET, "/api/state").permitAll()
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
-        .anyRequest().permitAll()               // All other requests are allowed without authorization.
+        .anyRequest().permitAll()           // All other requests are allowed without authorization.
         .and()
         .httpBasic();                           // Use HTTP Basic Authentication
 
@@ -43,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        String userQuery = "SELECT username, password, enable FROM User WHERE username=?";
+        String userQuery = "SELECT username, password, enabled FROM User WHERE username=?";
         String authQuery = "SELECT username, role FROM User WHERE username=?";
         auth
         .jdbcAuthentication()

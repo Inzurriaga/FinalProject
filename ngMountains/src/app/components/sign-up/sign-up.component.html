@@ -5,6 +5,9 @@
     <input type="text" name="description" [(ngModel)]="user.description" placeholder="description">
     <input type="text" name="email" [(ngModel)]="user.email" placeholder="email">
     <input type="text" name="imageUrl" [(ngModel)]="user.imageUrl" placeholder="imageurl">
+    <select name="state.id" [(ngModel)]="user.state.id">
+      <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
+    </select>
     <button (click)="createAccount()">sign up</button>
 </form>
 </section>
