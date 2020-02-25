@@ -1,6 +1,6 @@
 <section>
   <header>
-      <h1>Profile </h1>
+      <h1>{{ user.username }}</h1>
       <button (click)="logOut()">logout</button>
       <a [routerLink]="['/events']" >Events</a><br>
       <a [routerLink]="['/createEvent']" >Create Event</a>

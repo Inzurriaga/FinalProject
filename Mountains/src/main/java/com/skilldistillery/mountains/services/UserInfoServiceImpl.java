@@ -24,10 +24,4 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return null;
 	}
 
-	@Override
-	public List<UserInfo> findAll() {
-	
-		return repo.findAll();
-	}
-
 }
