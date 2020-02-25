@@ -55,7 +55,7 @@ public class User {
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	
-	
+
 	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Event> events;
