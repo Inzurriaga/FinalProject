@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { HostEventComponent } from './components/host-event/host-event.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FormsModule } from '@angular/forms';
     UserProfileComponent,
     EventsComponent,
     CreateEventComponent,
-    EventComponent
+    EventComponent,
+    EditEventComponent,
+    HostEventComponent
   ],
   imports: [
     BrowserModule,
