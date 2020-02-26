@@ -1,0 +1,17 @@
+
+<section>
+  <main>
+    <header>
+      <h1>This is working</h1>
+    </header>
+
+    <form>
+      <input type="text" name="description" placeholder="description" [(ngModel)]="mountainEvent.description"/><br />
+      <input type="text" name="eventDate" placeholder="event date" [(ngModel)]="mountainEvent.eventDate" /><br />
+      <input type="number" name="mountain" placeholder="mountain" [(ngModel)]="mountainEvent.mountain.id" /><br />
+      <input type="number" name="completed" placeholder="completed" [(ngModel)]="mountainEvent.completed"/><br />
+      <input type="submit" name="submit" value="Add" (click) = "onSubmit()">
+    </form>
+  </main>
+
+</section>

@@ -1,3 +1,4 @@
+import { MountainEvent } from 'src/app/models/mountain-event';
 import { User } from './../models/user';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
@@ -40,8 +41,6 @@ private url= "http://localhost:8090/api/event";
   }
 
   addUser= (id: number, user: User) => {
-    console.log(id);
-    console.log(user)
     let credentials = this.authSrv.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -52,6 +51,17 @@ private url= "http://localhost:8090/api/event";
 
     return this.http.post<any>(this.url+"/"+id, user, httpOptions).pipe()
 
+  }
+
+  updateEvent= (id: number, mountainEvent: MountainEvent) => {
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put<any>(this.url+"/"+id, mountainEvent, httpOptions).pipe()
   }
 
   searchByUser=(username:string)=>{
