@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -54,9 +55,15 @@ public class User {
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	
+
 	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Event> events;
+	
+	
+	
+	@OneToMany(mappedBy="host")
+	private List<Event> hostEvents;
 	
 	
 
@@ -170,19 +177,28 @@ public class User {
 		this.mountains = mountains;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
-				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
-				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
-	}
-
 	public List<Event> getEvents() {
 		return events;
 	}
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	public List<Event> getHostEvents() {
+		return hostEvents;
+	}
+
+	public void setHostEvents(List<Event> hostEvents) {
+		this.hostEvents = hostEvents;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
+				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
+				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
 	}
 
 }

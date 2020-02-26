@@ -11,4 +11,5 @@ public interface EventService {
 	public Event getEventById(int id);
 	public List<Event> getAll();
 	public Event addUserToEvent(int id, User user);
+	public Event createEvent(Event event);
 }

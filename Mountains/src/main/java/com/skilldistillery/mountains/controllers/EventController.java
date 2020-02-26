@@ -39,4 +39,9 @@ public class EventController {
 		return srv.addUserToEvent(id, user);
 
 	}
+	@PostMapping("event")
+	public Event createEvent(@RequestBody Event event) {
+		System.out.println(event);
+		return srv.createEvent(event);
+	}
 }
