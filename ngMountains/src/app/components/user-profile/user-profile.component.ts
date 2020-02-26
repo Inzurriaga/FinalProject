@@ -16,7 +16,11 @@ export class UserProfileComponent implements OnInit {
   constructor(private authSrv:AuthService, private userSrv: UserService,private router: Router) { }
 
   ngOnInit(): void {
-    this.getUserDetails();
+    if(this.authSrv.checkLogin()) {
+      this.getUserDetails();
+    } else {
+      this.router.navigateByUrl("home");
+    }
   }
 
   getUserDetails = () => {

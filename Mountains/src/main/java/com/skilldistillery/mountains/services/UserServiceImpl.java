@@ -28,4 +28,20 @@ public class UserServiceImpl implements UserService {
 		return repo.findAll();
 	}
 
+	@Override
+	public User updateUser(String username, User user) {
+		Optional<User> userOpt = repo.findByUsername(username);
+		if(userOpt.isPresent()) {
+			User managedUser = userOpt.get();
+			managedUser.setDescription(user.getDescription());
+			managedUser.setState(user.getState());
+			managedUser.setEmail(user.getEmail());
+			repo.saveAndFlush(managedUser);
+			return managedUser;
+		}
+		return user;
+	}
+	
+	
+
 }
