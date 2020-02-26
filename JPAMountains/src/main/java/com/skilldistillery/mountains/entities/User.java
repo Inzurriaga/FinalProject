@@ -50,7 +50,7 @@ public class User {
 	
 	@ManyToMany
 	@JoinTable(name = "user_mountain",
-			joinColumns=@JoinColumn(name="user_info_id"),
+			joinColumns=@JoinColumn(name="user_id"),
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	

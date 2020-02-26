@@ -72,7 +72,7 @@ public class Event {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_info_id"))
+	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
 
 	public void addUser(User user) {
