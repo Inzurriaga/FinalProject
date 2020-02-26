@@ -153,9 +153,9 @@ DROP TABLE IF EXISTS `user_event` ;
 
 CREATE TABLE IF NOT EXISTS `user_event` (
   `event_id` INT NOT NULL,
-  `user_info_id` INT NOT NULL,
-  PRIMARY KEY (`event_id`, `user_info_id`),
-  INDEX `fk_event_has_user_info_user_info1_idx` (`user_info_id` ASC),
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`event_id`, `user_id`),
+  INDEX `fk_event_has_user_info_user_info1_idx` (`user_id` ASC),
   INDEX `fk_event_has_user_info_event1_idx` (`event_id` ASC),
   CONSTRAINT `fk_event_has_user_info_event1`
     FOREIGN KEY (`event_id`)
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `user_event` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_has_user_info_user_info1`
-    FOREIGN KEY (`user_info_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -177,9 +177,9 @@ DROP TABLE IF EXISTS `user_mountain` ;
 
 CREATE TABLE IF NOT EXISTS `user_mountain` (
   `mountain_id` INT NOT NULL,
-  `user_info_id` INT NOT NULL,
-  PRIMARY KEY (`mountain_id`, `user_info_id`),
-  INDEX `fk_mountain_has_user_info_user_info1_idx` (`user_info_id` ASC),
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`mountain_id`, `user_id`),
+  INDEX `fk_mountain_has_user_info_user_info1_idx` (`user_id` ASC),
   INDEX `fk_mountain_has_user_info_mountain1_idx` (`mountain_id` ASC),
   CONSTRAINT `fk_mountain_has_user_info_mountain1`
     FOREIGN KEY (`mountain_id`)
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `user_mountain` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mountain_has_user_info_user_info1`
-    FOREIGN KEY (`user_info_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -221,6 +221,7 @@ COMMIT;
 START TRANSACTION;
 USE `mountaindb`;
 INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (1, 'gabe@localhost.com', 'badguy', 'gabe', 1, 'hello', 'hello', 'standard', 1, '2000-01-02 10:00:00.000000');
+INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (2, 'sonic@sonic.com', 'im a fast boy', 'https://vignette.wikia.nocookie.net/sonic/images/2/2d/TSR_Sonic.png/revision/latest/top-crop/width/360/height/360?cb=20191020043348', 1, 'sonic', '$2a$10$3RlwbJNyQtN3ysz3IKmBOOzOGEYHFBuqf5t.nPm3.K54jXMPpPmP6', 'standard', 1, '2000-01-02 10:00:00.000000');
 
 COMMIT;
 
@@ -264,6 +265,18 @@ INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, 
 INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (9, 'hiking with kai', '2020-04-05 10:08:00.000000', 0, 1, 2);
 INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (10, 'hike the continental divide', '2020-04-05 10:08:00.000000', 0, 1, 2);
 INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (11, 'nature hike', '2020-04-05 10:08:00.000000', 0, 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mountaindb`;
+INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (1, 2);
+INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (2, 2);
+INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (3, 2);
 
 COMMIT;
 
