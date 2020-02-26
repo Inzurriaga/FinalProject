@@ -44,14 +44,14 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event createEvent(Event event) {
-		event=repo.saveAndFlush(event);
+		event = repo.saveAndFlush(event);
 		return event;
 	}
 
 	@Override
 	public List<Event> findByuserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findByUser_Username(username);
+
 	}
 
 }
