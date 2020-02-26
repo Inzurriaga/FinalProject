@@ -12,8 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -51,6 +54,17 @@ public class User {
 			joinColumns=@JoinColumn(name="user_info_id"),
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
+	
+
+	@JsonIgnore
+	@ManyToMany(mappedBy="users")
+	private List<Event> events;
+	
+	
+	
+	@OneToMany(mappedBy="host")
+	private List<Event> hostEvents;
+	
 	
 
 	public User() {
@@ -168,6 +182,22 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
 				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
 				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public List<Event> getHostEvents() {
+		return hostEvents;
+	}
+
+	public void setHostEvents(List<Event> hostEvents) {
+		this.hostEvents = hostEvents;
 	}
 
 }

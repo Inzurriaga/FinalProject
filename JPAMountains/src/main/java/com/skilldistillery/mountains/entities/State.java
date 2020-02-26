@@ -1,9 +1,11 @@
 package com.skilldistillery.mountains.entities;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class State {
@@ -15,6 +17,13 @@ public class State {
 	private String abbr;
 	
 	private String name;
+
+	
+	
+	
+	
+
+	
 
 	
 
