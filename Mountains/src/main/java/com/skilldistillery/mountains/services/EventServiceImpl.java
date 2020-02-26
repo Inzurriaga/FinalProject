@@ -49,6 +49,11 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
+	public List<Event> findByuserName(String username) {
+		return repo.findByUsers_Username(username);
+
+	}
+
 	public Event updateEvent(int id, Event event) {
 		Optional<Event> eventOpt = repo.findById(id);
 		if (eventOpt.isPresent()) {
