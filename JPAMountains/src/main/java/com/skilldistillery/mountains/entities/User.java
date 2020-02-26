@@ -177,13 +177,6 @@ public class User {
 		this.mountains = mountains;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
-				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
-				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
-	}
-
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -198,6 +191,14 @@ public class User {
 
 	public void setHostEvents(List<Event> hostEvents) {
 		this.hostEvents = hostEvents;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
+				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
+				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
 	}
 
 }

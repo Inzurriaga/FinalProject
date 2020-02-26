@@ -1,5 +1,50 @@
 <section>
-  <form>
+  <header>
+    <h1>hello</h1>
+  </header>
+  <mat-horizontal-stepper>
+    <!-- first part of the form -->
+    <mat-step label="Step 1">
+      <ng-template matStepLabel>Account Info</ng-template>
+      <mat-form-field>
+        <mat-label>UserName</mat-label>
+        <input type="text" matInput placeholder="Mount123" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="mount@mount.com" >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Mount123">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <!-- second part of the form -->
+    <mat-step label="Step 2">
+      <ng-template matStepLabel>User Info</ng-template>
+        <mat-label>Image</mat-label>
+        <input mat-button type="file" (change)="image($event.target.files)">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Mount123"></textarea>
+      </mat-form-field>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </mat-step>
+    <!-- third part of the form -->
+    <mat-step label="Step 3">
+      <ng-template matStepLabel>Done</ng-template>
+      Content 2
+      <button mat-button matStepperPrevious>Back</button>
+    </mat-step>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>
+  <!-- <form>
     <input type="text" name="username" [(ngModel)]="user.username" placeholder="username">
     <input type="text" name="password" [(ngModel)]="user.password" placeholder="password">
     <input type="text" name="description" [(ngModel)]="user.description" placeholder="description">
@@ -9,5 +54,6 @@
       <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
     </select>
     <button (click)="createAccount()">sign up</button>
-</form>
+</form> -->
 </section>
+
