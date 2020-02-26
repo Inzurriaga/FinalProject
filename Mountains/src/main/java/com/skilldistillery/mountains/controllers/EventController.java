@@ -49,6 +49,10 @@ public class EventController {
 		System.out.println(event);
 		return srv.createEvent(event);
 	}
+
+	@GetMapping("event/user/{username}")
+	public List<Event> findSingleUserEvents(@PathVariable String username){
+		return srv.findByuserName(username);
 	
 	
 	@PutMapping("event/{id}")

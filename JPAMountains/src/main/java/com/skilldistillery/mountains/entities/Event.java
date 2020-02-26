@@ -40,6 +40,10 @@ public class Event {
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
+	
+	@ManyToMany
+	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users;
 	//Constructor
 	
 	
@@ -72,10 +76,6 @@ public class Event {
 	public void setMountain(Mountain mountain) {
 		this.mountain = mountain;
 	}
-
-	@ManyToMany
-	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<User> users;
 
 
 	public void addUser(User user) {

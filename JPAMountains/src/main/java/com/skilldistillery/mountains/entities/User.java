@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -61,8 +62,7 @@ public class User {
 	private List<Event> events;
 	
 	
-	
-	@OneToMany(mappedBy="host")
+	 @OneToMany(mappedBy="host")
 	private List<Event> hostEvents;
 	
 	

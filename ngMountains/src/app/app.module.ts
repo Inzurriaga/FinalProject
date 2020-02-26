@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { HostEventComponent } from './components/host-event/host-event.component';
+import { AttendingComponent } from './components/attending/attending.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HostEventComponent } from './components/host-event/host-event.component
     CreateEventComponent,
     EventComponent,
     EditEventComponent,
-    HostEventComponent
+    HostEventComponent,
+    AttendingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { HostEventComponent } from './components/host-event/host-event.component
     MatInputModule,
     MatIconModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
