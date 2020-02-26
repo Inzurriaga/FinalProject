@@ -48,4 +48,10 @@ public class EventServiceImpl implements EventService {
 		return event;
 	}
 
+	@Override
+	public List<Event> findByuserName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
