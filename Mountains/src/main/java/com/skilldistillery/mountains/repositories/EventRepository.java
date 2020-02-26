@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.skilldistillery.mountains.entities.Event;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
-	List<Event> findByUser_Username(String username);
+	List<Event> findByUsers_Username(String username);
 }

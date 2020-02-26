@@ -50,7 +50,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public List<Event> findByuserName(String username) {
-		return repo.findByUser_Username(username);
+		return repo.findByUsers_Username(username);
 
 	}
 

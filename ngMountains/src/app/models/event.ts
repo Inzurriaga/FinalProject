@@ -16,6 +16,5 @@ export class Event {
         this.description=description;
         this.completed=completed;
         this.eventDate=eventDate;
-
     }
 }

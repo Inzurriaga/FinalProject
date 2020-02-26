@@ -53,5 +53,16 @@ private url= "http://localhost:8090/api/event";
     return this.http.post<any>(this.url+"/"+id, user, httpOptions).pipe()
 
   }
+
+  searchByUser=(username:string)=>{
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Event>(this.url+"/user/" + username,httpOptions).pipe()
+  }
  }
 
