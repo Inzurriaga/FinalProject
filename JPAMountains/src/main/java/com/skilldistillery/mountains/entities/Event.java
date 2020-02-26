@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Event {
@@ -30,6 +32,7 @@ public class Event {
 	private LocalDateTime eventDate;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="host_id")
 	private User host;
 	
