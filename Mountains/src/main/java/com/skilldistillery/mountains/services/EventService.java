@@ -13,4 +13,5 @@ public interface EventService {
 	public Event addUserToEvent(int id, User user);
 	public Event createEvent(Event event);
 	public List<Event> findByuserName(String username);
+	Event updateEvent(int id, Event event);
 }
