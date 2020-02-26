@@ -1,14 +1,35 @@
-<section>
-  <header>
-      <h1>{{ user.username }}</h1>
-      <button (click)="logOut()">logout</button>
-      <a [routerLink]="['/events']" >Events</a><br>
-      <a [routerLink]="['/createEvent']" >Create Event</a>
-      
-
-  </header>
+<section id="user">
   <main>
+      <header>
+        <button mat-button>Setting</button>
+        <button mat-button (click)="logOut()">Logout</button>
+      </header>
+      <section class="user-info">
+          <div class="image-container">
+            <div>
+              <img [src]="user.imageUrl" />
+            </div>
+          </div>
+          <div class="user-info-text">
+            <div class="user-name">
+              <h1>{{ user.username }} &nbsp;&nbsp;<span></span>&nbsp;&nbsp; {{ user.state.name }}</h1>
+            </div>
+            <div class="user-text">
+              <p>{{ user.description }}</p>
+            </div>
+          </div>
+      </section>
+      <nav>
+        <a mat-button [routerLink]="['/events']" >Events</a>
+        <a mat-button >Atteding</a>
+        <a mat-button [routerLink]="['/createEvent']" >Create Event</a>
+        <a mat-button >Hosting</a>
+      </nav>
+      <section class="user-mountains">
+        <article>
 
+        </article>
+      </section>
   </main>
   <footer>
 

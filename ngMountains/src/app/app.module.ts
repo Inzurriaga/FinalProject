@@ -12,6 +12,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { EventsComponent } from './components/events/events.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventComponent } from './components/event/event.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EventComponent } from './components/event/event.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
