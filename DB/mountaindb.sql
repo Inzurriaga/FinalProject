@@ -343,6 +343,35 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `chat_room`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mountaindb`;
+INSERT INTO `chat_room` (`id`, `event_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mountaindb`;
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (1, 1, 2, 'hey dude wheres the mountain @??');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (2, 1, 1, 'I thought you knew where it was...?');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (3, 1, 2, 'far out!');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (4, 1, 1, 'amethyst fluff');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (5, 1, 2, 'lots of things to be said');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (6, 1, 1, 'wherever you go, there you are');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (7, 1, 2, 'cannibus scuba team is here');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (8, 1, 1, 'isnt it too cold to scuba dive?');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (9, 1, 2, 'not for gabe,  hes wearing shorts to the ice dive');
+INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (10, 1, 1, 'lalalala');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user_event`
 -- -----------------------------------------------------
 START TRANSACTION;
