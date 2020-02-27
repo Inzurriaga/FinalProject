@@ -1,3 +1,4 @@
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventComponent } from './components/event/event.component';
 import { EventsComponent } from './components/events/events.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'createEvent',component: CreateEventComponent},
   { path: 'events/:id', component: EventComponent},
   { path: 'host/:id', component: EditEventComponent },
-  { path: 'attending', component: AttendingComponent}
+  { path: 'attending', component: AttendingComponent},
+  { path: 'chatroom', component: ChatroomComponent }
 ];
 
 @NgModule({
