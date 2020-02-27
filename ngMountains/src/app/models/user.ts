@@ -11,8 +11,9 @@ export class User {
   imageUrl: string;
   state: State;
 
-  constructor(id?: number, username?: string, password?: string, role: string = "standard", enabled: boolean = true, createDate?: string, email?: string, description?: string, imageUrl?: string, state: State = new State()) {
+  constructor(id?: number, username?: string, password?: string, role: string = "standard", enabled: boolean = true, createDate?: string, email?: string, description: string = "", imageUrl?: string, state: State = new State()) {
     this.id = id;
+    this.password = password;
     this.username = username;
     this.role = role;
     this.createDate = createDate;

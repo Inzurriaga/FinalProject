@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { FilestackModule } from '@filestack/angular';
+import { MatSelectModule } from '@angular/material/select';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { HostEventComponent } from './components/host-event/host-event.component';
 import { AttendingComponent } from './components/attending/attending.component';
@@ -32,6 +35,7 @@ import { AttendingComponent } from './components/attending/attending.component';
     EventsComponent,
     CreateEventComponent,
     EventComponent,
+    UpdateUserComponent,
     EditEventComponent,
     HostEventComponent,
     AttendingComponent
@@ -46,7 +50,9 @@ import { AttendingComponent } from './components/attending/attending.component';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    FilestackModule,
+    MatSelectModule
   ],
 
   providers: [],

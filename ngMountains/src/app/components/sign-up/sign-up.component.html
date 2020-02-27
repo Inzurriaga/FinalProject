@@ -1,59 +1,92 @@
-<section>
+<section id="sign-up">
   <header>
-    <h1>hello</h1>
+    <a [routerLink]="['/home']">
+      <h1>hello</h1>
+    </a>
   </header>
-  <mat-horizontal-stepper>
-    <!-- first part of the form -->
-    <mat-step label="Step 1">
-      <ng-template matStepLabel>Account Info</ng-template>
-      <mat-form-field>
-        <mat-label>UserName</mat-label>
-        <input type="text" matInput placeholder="Mount123" />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input type="text" matInput placeholder="mount@mount.com" >
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="Mount123">
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-    <!-- second part of the form -->
-    <mat-step label="Step 2">
-      <ng-template matStepLabel>User Info</ng-template>
-        <mat-label>Image</mat-label>
-        <input mat-button type="file" (change)="image($event.target.files)">
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Mount123"></textarea>
-      </mat-form-field>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <!-- third part of the form -->
-    <mat-step label="Step 3">
-      <ng-template matStepLabel>Done</ng-template>
-      Content 2
-      <button mat-button matStepperPrevious>Back</button>
-    </mat-step>
-    <ng-template matStepperIcon="edit">
-      <mat-icon>done</mat-icon>
-    </ng-template>
-  </mat-horizontal-stepper>
-  <!-- <form>
-    <input type="text" name="username" [(ngModel)]="user.username" placeholder="username">
-    <input type="text" name="password" [(ngModel)]="user.password" placeholder="password">
-    <input type="text" name="description" [(ngModel)]="user.description" placeholder="description">
-    <input type="text" name="email" [(ngModel)]="user.email" placeholder="email">
-    <input type="text" name="imageUrl" [(ngModel)]="user.imageUrl" placeholder="imageurl">
-    <select name="state.id" [(ngModel)]="user.state.id">
-      <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
-    </select>
-    <button (click)="createAccount()">sign up</button>
-</form> -->
+  <section class="main-section">
+    <mat-horizontal-stepper #stepper>
+      <!-- first part of the form -->
+      <mat-step label="Step 1">
+        <ng-template matStepLabel>Sign Up</ng-template>
+        <section class="sign-up-section">
+          <article class="form-section">
+              <h2>Sign Up</h2>
+              <div>
+                <mat-form-field class="full-width">
+                  <mat-label>Username *</mat-label>
+                  <input type="text" name="username" matInput placeholder="Mount123" [(ngModel)]="user.username"/>
+                </mat-form-field>
+                <label *ngIf="usernameError">
+                  Username is <strong>Required</strong>
+                </label>
+                <label *ngIf="usernameAvaible">
+                  Username not <strong>Available</strong>
+                </label>
+              </div>
+              <div>
+                <mat-form-field class="full-width">
+                  <mat-label>Email *</mat-label>
+                  <input type="text" name="email" matInput placeholder="mount@mount.com" [(ngModel)]="user.email"/>
+                </mat-form-field>
+                <label *ngIf="emailError">
+                  Email is <strong>Required</strong>
+                </label>
+              </div>
+              <div>
+                <mat-form-field class="full-width">
+                  <mat-label>Password *</mat-label>
+                  <input type="password" name="password" matInput placeholder="Mount123" [(ngModel)]="user.password"/>
+                </mat-form-field>
+                <label *ngIf="passwordError">
+                  Password is <strong>Required</strong>
+                </label>
+              </div>
+              <button mat-button (click)="checkUsername(stepper)">Continue</button>
+          </article>
+          <p>* required</p>
+          <span></span>
+          <p>Already a member? <a [routerLink]="['/login']">Log in</a></p>
+        </section>
+      </mat-step>
+      <!-- second part of the form -->
+      <mat-step label="Step 2">
+        <section class="about-you-section">
+          <article class="form-section">
+            <h2>About You</h2>
+            <ng-template matStepLabel>About You</ng-template>
+            <div>
+              <ng-picker-overlay
+                [apikey]="key"
+                (uploadSuccess)="onUploadSuccess($event)"
+                >
+                <button mat-button class="image-btn">Add Image</button>
+              </ng-picker-overlay>
+              <p>{{ user.imageUrl }} </p>
+            </div>
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>State</mat-label>
+                <mat-select name="state.id" [(ngModel)]="user.state.id">
+                  <mat-option *ngFor="let state of states" [value]="state.id">{{ state.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="textarea">
+              <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Mount123" [(ngModel)]="user.description" maxlength="300"></textarea>
+              </mat-form-field>
+              <p>{{ user.description.length }}/300</p>
+            </div>
+            <button mat-button (click)="createAccount()">Create</button>
+          </article>
+        </section>
+      </mat-step>
+      <ng-template matStepperIcon="edit">
+        <mat-icon>done</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
+  </section>
 </section>
 

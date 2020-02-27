@@ -7,5 +7,14 @@ body {
   box-sizing: border-box;
 }
 
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #7BC289 !important;
+}
+
+.fsp-modal {
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
