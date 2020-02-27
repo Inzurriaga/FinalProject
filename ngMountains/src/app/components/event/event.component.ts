@@ -12,9 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EventComponent implements OnInit {
 
-  event = {
-    id: 1
-  };
+  event;
 
   constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService) { }
 
@@ -22,9 +20,12 @@ export class EventComponent implements OnInit {
     let id= this.currentRoute.snapshot.paramMap.get("id");
     this.getEventDetails(id);
   }
+
   getEventDetails(id) {
     this.eventSrv.show(id).subscribe(
-      data=> this.event = data,
+      data=> {
+        console.log(data);
+        this.event = data},
       err=> console.log(err)
     )
   }
@@ -40,6 +41,32 @@ export class EventComponent implements OnInit {
     },
     err => console.log(err)
   )
+  }
+
+
+
+  unjoinEvent(){
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.userSrv.show(userName).subscribe(
+      data=>{
+        this.eventSrv.deleteUser(this.event.id,data).subscribe(
+          data=> console.log(data),
+          err=>console.log(err)
+        )
+      },
+      err=>console.log(err)
+    )
+  }
+
+  joined(){
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    let joined = this.event.users.reduce((acc, user) => {
+      if(user.username === userName) {
+        acc = true;
+        return acc;
+      }
+    }, false)
+    return joined;
   }
 
 }
