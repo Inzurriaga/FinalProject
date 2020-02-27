@@ -131,7 +131,14 @@ DROP TABLE IF EXISTS `chat_room` ;
 
 CREATE TABLE IF NOT EXISTS `chat_room` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_chat_room_event1_idx` (`event_id` ASC),
+  CONSTRAINT `fk_chat_room_event1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -142,7 +149,22 @@ DROP TABLE IF EXISTS `message` ;
 
 CREATE TABLE IF NOT EXISTS `message` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `chat_room_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `message` TEXT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_message_chat_room1_idx` (`chat_room_id` ASC),
+  INDEX `fk_message_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_message_chat_room1`
+    FOREIGN KEY (`chat_room_id`)
+    REFERENCES `chat_room` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_message_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -209,8 +231,56 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mountaindb`;
-INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (1, 'CO', 'Colorado');
-INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (2, 'AZ', 'Arizona');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (1, 'AL', 'Alabama');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (2, 'AK', 'Alaska');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (3, 'AZ', 'Arizona');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (4, 'AR', 'Arkansas');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (5, 'CA', 'California');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (6, 'CO', 'Colorado');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (7, 'CT', 'Conneticut');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (8, 'DE', 'Delaware');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (9, 'FL', 'Florida');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (10, 'GA', 'Georgia');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (11, 'HI', 'Hawaii');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (12, 'ID', 'Idaho');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (13, 'IL', 'Illinois');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (14, 'IN', 'Indiana');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (15, 'IA', 'Iowa');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (16, 'KS', 'Kansas');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (17, 'KY', 'Kentucky');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (18, 'LA', 'Louisiana');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (19, 'ME', 'Maine');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (20, 'MD', 'Maryland');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (21, 'MA', 'Massachusetts');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (22, 'MI', 'Michigan');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (23, 'MN', 'Minnesota');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (24, 'MS', 'Mississippi');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (25, 'MO', 'Missouri');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (26, 'MT', 'Montana');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (27, 'NE', 'Nebraska');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (28, 'NV', 'Nevada');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (29, 'NH', 'New Hampshire');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (30, 'NJ', 'New Jersey');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (31, 'NM', 'New Mexico');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (32, 'NY', 'New York');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (33, 'NC', 'North Carolina');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (34, 'ND', 'North Dakota');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (35, 'OH', 'Ohio');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (36, 'OK', 'Oklahoma');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (37, 'OR', 'Oregon');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (38, 'PA', 'Pennsylvania');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (39, 'RI', 'Rhode Island');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (40, 'SC', 'South Carolina');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (41, 'SD', 'South Dakota');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (42, 'TN', 'Tennessee');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (43, 'TX', 'Texas');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (44, 'UT', 'Utah');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (45, 'VT', 'Vermont');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (46, 'VA', 'Virginia');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (47, 'WA', 'Washington');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (48, 'WV', 'West Virginia');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (49, 'WI', 'Wisconsin');
+INSERT INTO `state` (`id`, `abbr`, `name`) VALUES (50, 'WY', 'Wyoming');
 
 COMMIT;
 
@@ -231,7 +301,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mountaindb`;
-INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (1, '1', 'easy hiking');
+INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (1, 'A', 'Up to 8 miles round trip or 1200’ elevation gain (or both).  Prior hiking experience is usually not necessary.');
+INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (2, 'B', 'Up to 12 miles round trip or 2500’ elevation gain (or both).  Moderate to strenuous physical activity.  Some prior experience is beneficial.');
+INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (3, 'C', 'Up to 15 miles round trip or 3500’ elevation gain (or both).  Very strenuous physical activity.   Prior experience and training is beneficial.');
+INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (4, 'D', 'Over 15 miles round trip or 3500’ elevation gain (or both).  Very strenuous physical activity often including exposure or requiring the use of technical skills and equipment.  Knowledge based on prior experience and training is highly beneficial.');
 
 COMMIT;
 
