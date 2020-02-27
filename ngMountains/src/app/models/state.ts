@@ -9,7 +9,7 @@ export class State {
 
     //Constructor
 
-    constructor(id?:number, abbr?:string,name?:string){
+    constructor(id:number = 1, abbr?:string,name?:string){
         this.id=id;
         this.abbr=abbr;
         this.name=name;

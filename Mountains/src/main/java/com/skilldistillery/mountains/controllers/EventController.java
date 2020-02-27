@@ -33,7 +33,7 @@ public class EventController {
 		return srv.getEventById(id);
 	}
 	
-	@GetMapping(path="event")
+	@GetMapping("event")
 	public List<Event> getAllEvents(){
 		return srv.getAll();
 	}
@@ -53,6 +53,7 @@ public class EventController {
 	@GetMapping("event/user/{username}")
 	public List<Event> findSingleUserEvents(@PathVariable String username){
 		return srv.findByuserName(username);
+	}
 	
 	
 	@PutMapping("event/{id}")
