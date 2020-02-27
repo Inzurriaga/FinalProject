@@ -14,13 +14,14 @@ import com.skilldistillery.mountains.services.ChatRoomService;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4300" })
 public class ChatRoomController {
+	
 	@Autowired
 	private ChatRoomService srv;
 
 	@GetMapping("chatroom/{id}")
 	public ChatRoom retriveMessages(@PathVariable Integer id) {
-
-		return null;
+			
+		return srv.getChatRoom(id);
 	}
 
 }
