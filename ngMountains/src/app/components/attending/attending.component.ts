@@ -12,7 +12,10 @@ export class AttendingComponent implements OnInit {
 
   events;
 
-  constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private authSrv: AuthService) { }
+  constructor(private currentRoute: ActivatedRoute, 
+                  private eventSrv: EventService, 
+                  private authSrv: AuthService,
+                  private userSrv: UserService) { }
 
   ngOnInit(): void{
     this.eventSrv.searchByUser("sonic").subscribe(
@@ -25,6 +28,19 @@ export class AttendingComponent implements OnInit {
         
       }
       
+    )
+  }
+
+  unjoinEvent(id){
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.userSrv.show(userName).subscribe(
+      data=>{
+        this.eventSrv.deleteUser(id, data).subscribe(
+          data=> console.log(data),
+          err=>console.log(err)
+        )
+      },
+      err=>console.log(err)
     )
   }
 

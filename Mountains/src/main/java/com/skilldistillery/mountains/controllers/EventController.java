@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.mountains.entities.Event;
 import com.skilldistillery.mountains.entities.User;
 import com.skilldistillery.mountains.services.EventService;
+import com.skilldistillery.mountains.services.UserService;
 
 @RestController
 @RequestMapping("api")
@@ -27,6 +29,9 @@ public class EventController {
 	
 	@Autowired
 	private EventService srv;
+	
+	@Autowired
+	private UserService uSrv;
 	
 	@GetMapping("event/{id}")
 	public Event getEventById(@PathVariable Integer id) {
@@ -44,6 +49,20 @@ public class EventController {
 		return srv.addUserToEvent(id, user);
 
 	}
+	
+	@DeleteMapping("event/{id}/{username}")
+	public Event removeUserFromEvent(
+//			@RequestBody User user,
+			Principal principal,
+			@PathVariable Integer id
+			) {
+		String username = principal.getName();
+		User user = uSrv.getUserByUsername(username);
+		return srv.unjoinEvent(id, user);
+	}
+	
+	
+	
 	@PostMapping("event")
 	public Event createEvent(@RequestBody Event event) {
 		System.out.println(event);
