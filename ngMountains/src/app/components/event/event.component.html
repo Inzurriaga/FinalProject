@@ -1,3 +1,10 @@
 <section>
-  <button (click)= "joinEvent()">Join Event</button>
+<p *ngIf="!joined()">
+  <button   (click)= "joinEvent()">Join Event</button>
+
+</p>
+<p *ngIf="joined()">
+  <button   (click)= "unjoinEvent()">Unjoin Event</button>
+</p>
+
 </section>

@@ -8,7 +8,7 @@ import com.skilldistillery.mountains.entities.Message;
 
 @Controller
 public class MessageController {
-	
+
 	@MessageMapping("/message")
 	@SendTo("/server/message")
 	public Message message(Message message) throws Exception {

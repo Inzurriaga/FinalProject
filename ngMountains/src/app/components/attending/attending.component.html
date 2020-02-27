@@ -1,6 +1,12 @@
 <section>
-    <p *ngFor="let event of events">
-{{event.description}}
+      
+        
+        <p *ngFor="let event of events">
+            <a [routerLink]= "['/events', event.id]">
+       
+    {{event.description}}
+</a>
+<button (click)= "unjoinEvent(event.id)">Unjoin Event</button>
     </p>
 
 </section>

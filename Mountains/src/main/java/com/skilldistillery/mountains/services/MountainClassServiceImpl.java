@@ -11,14 +11,14 @@ import com.skilldistillery.mountains.repositories.MountainClassRepository;
 
 @Service
 public class MountainClassServiceImpl implements MountainClassService {
-	
+
 	@Autowired
 	private MountainClassRepository repo;
 
 	@Override
 	public MountainClass getMountainClassById(int id) {
 		Optional<MountainClass> eventOpt = repo.findById(id);
-		if(eventOpt.isPresent()) {
+		if (eventOpt.isPresent()) {
 			return eventOpt.get();
 		}
 		return null;
@@ -28,5 +28,5 @@ public class MountainClassServiceImpl implements MountainClassService {
 	public List<MountainClass> getMountainClassList() {
 		return repo.findAll();
 	}
-	
+
 }

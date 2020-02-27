@@ -67,4 +67,17 @@ public class EventServiceImpl implements EventService {
 		}
 		return event;
 	}
+
+	@Override
+	public Event unjoinEvent(int id, User user) {
+		Optional<Event> eventOpt = repo.findById(id);
+		if (eventOpt.isPresent()) {
+			Event event = eventOpt.get();
+			event.removeUser(user);
+			repo.saveAndFlush(event);
+			return event;
+		}
+		else	return null;
+
+	}
 }

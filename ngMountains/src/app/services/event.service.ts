@@ -53,6 +53,17 @@ private url= "http://localhost:8090/api/event";
 
   }
 
+  deleteUser(id: number, user: User) {
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.delete<any>(this.url + "/" + id+"/"+user.username, httpOptions).pipe()
+  }
+
   updateEvent= (id: number, mountainEvent: MountainEvent) => {
     let credentials = this.authSrv.getCredentials();
     const httpOptions = {
