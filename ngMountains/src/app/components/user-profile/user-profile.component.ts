@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
   user: User = new User();
+  editModal = false;
 
   constructor(private authSrv:AuthService, private userSrv: UserService,private router: Router) { }
 
@@ -32,6 +33,10 @@ export class UserProfileComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  editUser = () => {
+    this.editModal = true;
   }
 
   logOut = () => {

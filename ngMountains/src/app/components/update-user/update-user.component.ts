@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-update-user',
@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateUserComponent implements OnInit {
 
+  @Input() user;
+
+  @Input() open = false;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.user)
+  }
+
+
+  close = () => {
+    this.open = false;
+  }
+
+  ngOnDestroy(): void {
+    console.log("good bye")
   }
 
 }
