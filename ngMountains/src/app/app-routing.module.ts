@@ -1,3 +1,4 @@
+import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventComponent } from './components/event/event.component';
 import { EventsComponent } from './components/events/events.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -7,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { AttendingComponent } from './components/attending/attending.component';
 
 
 const routes: Routes = [
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'user', component: UserProfileComponent},
   { path: 'events', component: EventsComponent},
   { path: 'createEvent',component: CreateEventComponent},
-  { path: 'events/:id', component: EventComponent}
+  { path: 'events/:id', component: EventComponent},
+  { path: 'host/:id', component: EditEventComponent },
+  { path: 'attending', component: AttendingComponent}
 ];
 
 @NgModule({

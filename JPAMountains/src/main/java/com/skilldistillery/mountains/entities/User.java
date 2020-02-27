@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -51,7 +52,7 @@ public class User {
 	
 	@ManyToMany
 	@JoinTable(name = "user_mountain",
-			joinColumns=@JoinColumn(name="user_info_id"),
+			joinColumns=@JoinColumn(name="user_id"),
 		    inverseJoinColumns=@JoinColumn(name="mountain_id"))
 	private List<Mountain> mountains;
 	
@@ -61,8 +62,7 @@ public class User {
 	private List<Event> events;
 	
 	
-	
-	@OneToMany(mappedBy="host")
+	 @OneToMany(mappedBy="host")
 	private List<Event> hostEvents;
 	
 	

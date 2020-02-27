@@ -21,6 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { FilestackModule } from '@filestack/angular';
 import { MatSelectModule } from '@angular/material/select';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { HostEventComponent } from './components/host-event/host-event.component';
+import { AttendingComponent } from './components/attending/attending.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { MatSelectModule } from '@angular/material/select';
     EventsComponent,
     CreateEventComponent,
     EventComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    EditEventComponent,
+    HostEventComponent,
+    AttendingComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
     FilestackModule,
     MatSelectModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
