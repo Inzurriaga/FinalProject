@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { FilestackModule } from '@filestack/angular';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     UserProfileComponent,
     EventsComponent,
     CreateEventComponent,
-    EventComponent
+    EventComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { FormsModule } from '@angular/forms';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    FilestackModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

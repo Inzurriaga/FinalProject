@@ -46,6 +46,15 @@ export class AuthService {
     );
   }
 
+  availability(user) {
+    return this.http.post(this.baseUrl + 'availability', user).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('AuthService.availability(): error registering user.');
+      })
+    )
+  }
+
   logout() {
     localStorage.removeItem('credentials');
   }

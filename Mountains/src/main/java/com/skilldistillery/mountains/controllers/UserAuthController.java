@@ -31,6 +31,11 @@ public class UserAuthController {
 	    user = srv.register(user);
 	    return user;
 	}
+	
+	@PostMapping("/availability")
+	public boolean availability(@RequestBody User user) {
+		return srv.availability(user.getUsername());
+	}
 
 	@GetMapping("/authenticate")
 	public Principal authenticate(Principal principal) {

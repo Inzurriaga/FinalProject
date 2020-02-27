@@ -4,4 +4,5 @@ import com.skilldistillery.mountains.entities.User;
 
 public interface UserAuthService {
 	public User register(User user);
+	public boolean availability(String username);
 }

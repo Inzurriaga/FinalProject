@@ -1,7 +1,28 @@
-<section>
-  <form>
-    <input type="text" name="username" [(ngModel)]="username">
-    <input type="text" name="password" [(ngModel)]="password">
-    <button (click)="login()">login</button>
-</form>
+<section id="sign-up">
+  <header>
+    <a [routerLink]="['/home']">
+      <h1>hello</h1>
+    </a>
+  </header>
+  <section class="main-section">
+        <section class="log-in-section">
+          <article class="form-section">
+              <h2>Login</h2>
+              <div>
+                <mat-form-field class="full-width">
+                  <mat-label>Username</mat-label>
+                  <input type="text" name="username" matInput placeholder="Mount123" [(ngModel)]="username"/>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="full-width">
+                  <mat-label>Password</mat-label>
+                  <input type="password" name="password" matInput placeholder="Mount123" [(ngModel)]="password"/>
+                </mat-form-field>
+              </div>
+          </article>
+          <button mat-button (click)="login()">login</button>
+          <p>Not a member? <a [routerLink]="['/signup']">Sign up</a></p>
+        </section>
+  </section>
 </section>
