@@ -40,7 +40,7 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
     EditEventComponent,
     HostEventComponent,
     AttendingComponent,
-    ChatroomComponent
+    ChatroomComponent,
   ],
   imports: [
     BrowserModule,
