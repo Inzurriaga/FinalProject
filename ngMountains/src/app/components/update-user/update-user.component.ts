@@ -1,4 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { State } from './../../models/state';
+import { User } from './../../models/user';
+import { UserService } from './../../services/user.service';
+import { StateService } from './../../services/state.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-update-user',
@@ -7,23 +11,42 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 })
 export class UpdateUserComponent implements OnInit {
 
-  @Input() user;
+  @Input() updateUser: User;
 
-  @Input() open = false;
+  @Input() open: boolean;
 
-  constructor() { }
+  @Input() closeEditUserModal;
+
+  states: State[];
+
+  key = "abc";
+
+  constructor(private stateSrv: StateService, private userSrv: UserService) { }
 
   ngOnInit(): void {
-    console.log(this.user)
+    this.getStates();
   }
 
-
-  close = () => {
-    this.open = false;
+  getStates = () => {
+    this.stateSrv.index().subscribe(
+      data => {
+        this.states = data;
+      },
+      err => console.log(err)
+    )
   }
 
-  ngOnDestroy(): void {
-    console.log("good bye")
+  onUploadSuccess(e) {
+    this.updateUser.imageUrl = e.filesUploaded[0].url;
+  }
+
+  updateUserInfo = () => {
+    this.userSrv.update(this.updateUser).subscribe(
+      data => {
+        this.closeEditUserModal(data)
+      },
+      err => console.log(err)
+    )
   }
 
 }

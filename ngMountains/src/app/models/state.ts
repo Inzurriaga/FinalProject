@@ -1,15 +1,13 @@
 export class State {
-
     //Field
-     id: number;
+    id: number;
 
     abbr: string;
 
     name: string;
 
     //Constructor
-
-    constructor(id:number = 1, abbr?:string,name?:string){
+    constructor(id: number = 1, abbr?: string,name?: string){
         this.id=id;
         this.abbr=abbr;
         this.name=name;

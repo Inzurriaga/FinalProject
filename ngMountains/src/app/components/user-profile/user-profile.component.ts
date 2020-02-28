@@ -2,7 +2,7 @@ import { User } from './../../models/user';
 import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  user: User = new User();
+  user = new User();
+
+  updateUser: User;
+
   editModal = false;
 
   constructor(private authSrv:AuthService, private userSrv: UserService,private router: Router) { }
@@ -35,8 +38,14 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  editUser = () => {
+  openEditUserModal = () => {
+    this.updateUser = Object.assign({}, this.user)
     this.editModal = true;
+  }
+
+  closeEditUserModal = () => {
+    this.getUserDetails();
+    this.editModal = false;
   }
 
   logOut = () => {

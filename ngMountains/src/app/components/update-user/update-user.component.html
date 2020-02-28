@@ -1,31 +1,31 @@
 <section *ngIf="open">
-  <article class="form-section">
-    <button (click)="close()">exit</button>
+  <article class="update-user-section">
+    <span (click)="closeEditUserModal()" class="fsp-picker__close-button fsp-icon--close-modal"></span>
     <ng-template matStepLabel>About You</ng-template>
-    <div>
-      <!-- <ng-picker-overlay
+    <div class="image">
+      <ng-picker-overlay
         [apikey]="key"
         (uploadSuccess)="onUploadSuccess($event)"
         >
         <button mat-button class="image-btn">Add Image</button>
-      </ng-picker-overlay> -->
-      <!-- <p>{{ user.imageUrl }} </p> -->
+      </ng-picker-overlay>
+      <p>{{ updateUser.imageUrl }} </p>
     </div>
-    <div>
+    <div class="state">
       <mat-form-field class="full-width">
         <mat-label>State</mat-label>
-        <!-- <mat-select name="state.id" [(ngModel)]="user.state.id"> -->
-          <!-- <mat-option *ngFor="let state of states" [value]="state.id">{{ state.name }}</mat-option> -->
-        <!-- </mat-select> -->
+        <mat-select name="state.id" [(ngModel)]="updateUser.state.id">
+          <mat-option *ngFor="let state of states" [value]="state.id">{{ state.name }}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="textarea">
       <mat-form-field class="full-width">
         <mat-label>Description</mat-label>
-        <!-- <textarea matInput placeholder="Mount123" [(ngModel)]="user.description" maxlength="300"></textarea> -->
+        <textarea matInput placeholder="Mount123" [(ngModel)]="updateUser.description" maxlength="300"></textarea>
       </mat-form-field>
-      <!-- <p>{{ user.description.length }}/300</p> -->
+      <p>{{ updateUser.description.length }}/300</p>
     </div>
-    <!-- <button mat-button (click)="createAccount()">Create</button> -->
+    <button mat-button (click)="updateUserInfo()" class="update-btn">Update</button>
   </article>
 </section>

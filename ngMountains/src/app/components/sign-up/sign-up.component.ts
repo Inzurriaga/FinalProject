@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit {
 
   user = new User();
   imagePath = "";
-  key = "AcrxuwyumQuCbXAPhKmP2z"
+  key = "abc"
   states: State[] = [];
   usernameError = false;
   emailError = false;

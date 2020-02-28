@@ -22,4 +22,15 @@ export class UserService {
     };
     return this.http.get<User>(this.url+"/"+userName, httpOptions).pipe();
   }
+
+  update = (user: User) => {
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put<User>(this.url+"/"+user.username, user, httpOptions).pipe();
+  }
 }

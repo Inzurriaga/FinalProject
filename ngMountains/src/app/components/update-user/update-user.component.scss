@@ -8,3 +8,65 @@ section {
   width: 100vw;
   background-color: rgba(47,53,62,.86);
 }
+
+.update-user-section {
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  height: 500px;
+  width: 750px;
+  border-radius: 5px;
+  h2 {
+    font-size: 4em;
+    text-align: center;
+    color: #000000;
+  }
+  .full-width {
+      font-size: 1.5em;
+      width: 100%;
+  }
+  .state {
+    width: 80%;
+  }
+  .image {
+    width: 80%;
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    button {
+      border-radius: 5px;
+      color: #ffffff;
+      background-color: #7BC289;
+    }
+  }
+  .update-btn {
+    border-radius: 5px;
+    position: absolute;
+    color: #ffffff;
+    font-size: 2em;
+    width: 60%;
+    padding: 10px;
+    bottom: -20px;
+    background-color: #7BC289;
+  }
+  .image-btn {
+    font-size: 1em;
+  }
+  .textarea {
+    width: 80%;
+    textarea {
+      resize: none;
+      height: 140px;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 0;
+    }
+  }
+}
+
