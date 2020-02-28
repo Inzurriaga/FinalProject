@@ -1,7 +1,7 @@
 <section id="user">
   <main>
       <header>
-        <button mat-button>Setting</button>
+        <button mat-button (click)="openEditUserModal()">Setting</button>
         <button mat-button (click)="logOut()">Logout</button>
       </header>
       <section class="user-info">
@@ -31,6 +31,7 @@
         </article>
       </section>
   </main>
+  <app-update-user [updateUser]="updateUser" [open]="editModal" [closeEditUserModal]="closeEditUserModal"></app-update-user>
   <footer>
 
   </footer>
