@@ -41,7 +41,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     EditEventComponent,
     HostEventComponent,
     AttendingComponent,
-    ChatroomComponent
+    ChatroomComponent,
   ],
   imports: [
     BrowserModule,

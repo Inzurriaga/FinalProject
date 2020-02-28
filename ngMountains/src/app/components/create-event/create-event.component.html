@@ -1,24 +1,50 @@
 <section>
-<select [(ngModel)]="mountain">
-    <option *ngFor="let mountain of mountains" [value]="mountain.name">{{mountain.name}}</option>
+<select [(ngModel)]="mountain.id">
+  Mountain <option *ngFor="let mountain of mountains" [value]="mountain.id">{{mountain.name}}</option>
 </select>
-
-
 </section>
+
 
 
 <section>
     <select [(ngModel)]="state">
-        <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
+      state  <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
     </select>
-    
-    
-    </section>
+</section>
 
-    <section>
-        <select [(ngModel)]="mountainClass">
-            <option *ngFor="let mountainClass of mountainClasses" [value]="mountainClass.classType">{{mountainClass.classType}}</option>
-        </select>
-        
-        
-        </section>
+<section>
+    <select [(ngModel)]="mountainClass">
+        <option *ngFor="let mountainClass of mountainClasses" [value]="mountainClass.classType">
+       M class:     {{mountainClass.classType}}</option>
+    </select>
+
+
+</section>
+
+<section>
+  longtid  <input type="number" [(ngModel)]="mountain.longitude" />
+
+</section>
+
+<section>
+  latitude:  <input type="number" [(ngModel)]="mountain.latitude" />
+
+</section>
+
+<section>
+   height: <input type="number" [(ngModel)]="mountain.height" />
+
+</section>
+
+<section>
+   event des: <input type="text" [(ngModel)]="event.description" />
+
+</section>
+
+
+
+<section>
+   Date: <input type="date" [(ngModel)]="event.eventDate" />
+</section>
+
+<button (click)="createEvent(event)">Submit</button>

@@ -5,7 +5,7 @@ export class Mountain {
 id: number;
 name: string;
 longitude: number;
-lattitude: number;
+latitude: number;
 height: number;
 state: State;
 
@@ -17,7 +17,7 @@ constructor(id?:number, name?:string, longitude?:number, lattitude?:number, heig
   this.id= id;
   this.name= name;
   this.longitude= longitude;
-  this.lattitude= lattitude;
+  this.latitude= lattitude;
   this.height= height;
   this.state= state;
 }
