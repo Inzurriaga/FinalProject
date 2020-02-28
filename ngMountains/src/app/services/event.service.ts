@@ -5,11 +5,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { Mountain } from '../models/mountain';
+import { State } from '../models/state';
+import { MountainClass } from '../models/mountain-class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
+
+  
 
 private url= "http://localhost:8090/api/event";
 
@@ -84,6 +89,18 @@ private url= "http://localhost:8090/api/event";
       })
     };
     return this.http.get<Event>(this.url+"/user/" + username,httpOptions).pipe()
+  }
+
+  createEvent(event:MountainEvent){
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.post<MountainEvent>(this.url, event ,httpOptions).pipe()
   }
  }
 
