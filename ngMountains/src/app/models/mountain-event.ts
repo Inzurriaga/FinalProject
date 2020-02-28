@@ -16,7 +16,7 @@ export class MountainEvent {
 
 
     //Constructor
-    constructor(id?:number,description?:string,completed:boolean =false,eventDate?:Date,mountain:Mountain = new Mountain()){
+    constructor(id?:number,description:string = "",completed:boolean =false,eventDate?:Date,mountain:Mountain = new Mountain()){
         this.id=id;
         this.description=description;
         this.completed=completed;
