@@ -24,7 +24,9 @@ export class EditEventComponent implements OnInit {
   constructor(private eventSrv: EventService) { }
 
   ngOnInit(): void {
-
+    this.eventSrv.show(1).subscribe(
+      data => this.editEvent = data
+    )
   }
 
   // getState = () => {
@@ -38,9 +40,10 @@ export class EditEventComponent implements OnInit {
   // }
 
   onSubmit =() => {
+    console.log(this.editEvent)
 this.eventSrv.updateEvent(1, this.editEvent).subscribe(
   data => {
-    this.closeEditEventModal(data)
+    console.log(data)
   },
   err =>console.log(err)
   )
