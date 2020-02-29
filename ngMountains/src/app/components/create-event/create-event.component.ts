@@ -23,9 +23,9 @@ export class CreateEventComponent implements OnInit {
 
   mountain = new Mountain();
 
-  state: State;
+  state = new State();
 
-  mountainClass: MountainClass;
+  mountainClass = new MountainClass();
 
   event = new MountainEvent();
 
@@ -74,6 +74,7 @@ export class CreateEventComponent implements OnInit {
     )
   }
   createEvent(event){
+    this.mountain.mountainClass = this.mountainClass;
     event.mountain = this.mountain;
     console.log("hello world")
     console.log(event)

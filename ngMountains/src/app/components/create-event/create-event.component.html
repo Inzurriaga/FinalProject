@@ -1,21 +1,30 @@
-<section>
+<!-- <section>
 <select [(ngModel)]="mountain.id">
   Mountain <option *ngFor="let mountain of mountains" [value]="mountain.id">{{mountain.name}}</option>
 </select>
-</section>
+</section> -->
 
 
-
+<!--create a mountain-->
 <section>
-    <select [(ngModel)]="state">
-      state  <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
+    mountain name: <input type="text" [(ngModel)]="mountain.name" />
+  
+  </section>
+
+  <section>
+    state:
+    <select [(ngModel)]="mountain.state.id">
+          <option *ngFor="let state of states" [value]="state.id">
+          {{state.name}}</option>
     </select>
-</section>
+
+
 
 <section>
-    <select [(ngModel)]="mountainClass">
-        <option *ngFor="let mountainClass of mountainClasses" [value]="mountainClass.classType">
-       M class:     {{mountainClass.classType}}</option>
+    mountain class:  
+    <select [(ngModel)]="mountainClass.id">
+    <option *ngFor="let mountainClass of mountainClasses" [value]="mountainClass.id">
+      {{mountainClass.classType}}</option>
     </select>
 
 
@@ -35,7 +44,7 @@
    height: <input type="number" [(ngModel)]="mountain.height" />
 
 </section>
-
+<!--create a mountain-->
 <section>
    event des: <input type="text" [(ngModel)]="event.description" />
 
