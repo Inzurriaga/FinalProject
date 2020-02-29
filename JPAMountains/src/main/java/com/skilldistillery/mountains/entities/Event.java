@@ -38,7 +38,7 @@ public class Event {
 	@JoinColumn(name="host_id")
 	private User host;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
