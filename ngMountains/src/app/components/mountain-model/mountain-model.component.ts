@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three-orbitcontrols-ts';
 
@@ -10,6 +10,7 @@ import { OrbitControls } from 'three-orbitcontrols-ts';
 export class MountainModelComponent implements OnInit, AfterViewInit {
   @ViewChild('rendererContainer') rendererContainer: ElementRef;
 
+  @Input() mountain;
   renderer = new THREE.WebGLRenderer({ alpha: true });
   scene = null;
   camera = null;
@@ -28,6 +29,8 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("hello im in the mountain model")
+    console.log(this.mountain)
     this.long2tile(	-9.419951, 13);
     this.lat2tile(	52.970490, 13);
     this.initThreeJs();

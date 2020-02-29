@@ -3,3 +3,13 @@ header {
   padding: 30px 0 30px 0;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }
+
+.mountain-info {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+.mountain-detail {
+  width: 50%;
+}
