@@ -1,9 +1,11 @@
 package com.skilldistillery.mountains.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,14 +31,14 @@ public class Event {
 	private Boolean completed;
 
 	@Column(name = "event_date")
-	private LocalDateTime eventDate;
+	private LocalDate eventDate;
 	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="host_id")
 	private User host;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
@@ -53,7 +55,7 @@ public class Event {
 	
 	
 	
-	public Event(int id, String description, Boolean completed, LocalDateTime eventDate, User host, Mountain mountain,
+	public Event(int id, String description, Boolean completed, LocalDate eventDate, User host, Mountain mountain,
 			List<User> users) {
 		super();
 		this.id = id;
@@ -117,11 +119,11 @@ public class Event {
 		this.completed = completed;
 	}
 
-	public LocalDateTime getEventDate() {
+	public LocalDate getEventDate() {
 		return eventDate;
 	}
 
-	public void setEventDate(LocalDateTime eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
 	}
 

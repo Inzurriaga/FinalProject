@@ -25,7 +25,7 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { HostEventComponent } from './components/host-event/host-event.component';
 import { AttendingComponent } from './components/attending/attending.component';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
-import { MountainModelComponent } from './components/mountain-model/mountain-model.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { MountainModelComponent } from './components/mountain-model/mountain-mod
     HostEventComponent,
     AttendingComponent,
     ChatroomComponent,
-    MountainModelComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +55,8 @@ import { MountainModelComponent } from './components/mountain-model/mountain-mod
     MatInputModule,
     MatIconModule,
     FilestackModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
 
   providers: [],
