@@ -22,6 +22,9 @@ public class Message {
 	@JsonIgnore
 	@JoinColumn(name = "chat_room_id")
 	private ChatRoom chatroom;
+	
+	@ManyToOne
+	private User user;
 
 	public int getId() {
 		return id;
