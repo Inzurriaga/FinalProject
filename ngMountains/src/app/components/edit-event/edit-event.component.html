@@ -1,17 +1,51 @@
+<section id="edit-event">
+  <header>
+    <a [routerLink]="['/home']"></a><br>
 
-<section>
-  <main>
-    <header>
-      <h1>This is working</h1>
-    </header>
+    <h2>Edit Event</h2>
+  </header>
 
-    <form>
-      <input type="text" name="description" placeholder="description" [(ngModel)]="mountainEvent.description"/><br />
-      <input type="text" name="eventDate" placeholder="event date" [(ngModel)]="mountainEvent.eventDate" /><br />
-      <input type="number" name="mountain" placeholder="mountain" [(ngModel)]="mountainEvent.mountain.id" /><br />
-      <input type="number" name="completed" placeholder="completed" [(ngModel)]="mountainEvent.completed"/><br />
-      <input type="submit" name="submit" value="Add" (click) = "onSubmit()">
-    </form>
-  </main>
+  <article class="edit-event-section">
 
+<section class="edit-event-sect">
+    <span (click)="closeEditEventModal()" class="fsp-picker__close-button fsp-icon--close-modal"></span>
+
+    <div class="textarea">
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" [(ngModel)]="editEvent.description" maxlength="300"></textarea>
+      </mat-form-field>
+      <p>{{ editEvent.description.length }}/300</p>
+    </div>
+
+    <div class="date">
+      <mat-form-field class="full-width">
+        <mat-label>Event Date</mat-label>
+        <input type="datetime" matInput placeholder="Date" [(ngModel)]="editEvent.eventDate" /><br />
+      </mat-form-field>
+      <p>{{ editEvent.eventDate }}</p>
+    </div>
+<!--
+    <div class="mountain">
+      <mat-form-field class="full-width">
+        <mat-label>Mountain</mat-label>
+        <mat-select name="mountain.id" [(ngModel)]="editEvent.mountain.id">
+          <mat-option *ngFor="let mountain of mountains" [value]="mountain.id">{{ mountain.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{ editEvent.mountain }}/300</p>
+    </div>
+
+    <div class="completed">
+      <mat-form-field class= "full-width">
+        <mat-label>completed</mat-label>
+        <mat-checkbox placeholder="completed" [(ngModel)]="editEvent.completed" ></mat-checkbox><br />
+      </mat-form-field>
+      <p>{{ editEvent.completed }}/300</p>
+    </div> -->
+
+  <button mat-button (click)="onSubmit()" class="edit-event-btn">Update</button>
 </section>
+</article>
+</section>
+

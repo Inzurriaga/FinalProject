@@ -4,7 +4,7 @@ import { MountainClass } from './mountain-class';
 export class Mountain {
 //field
 id: number;
-name:String;
+name: string;
 longitude: number;
 latitude: number;
 height: number;
@@ -17,6 +17,7 @@ mountainClass:MountainClass;
 
 constructor(id?:number, longitude?:number, lattitude?:number, height?:number,name?:string,state:State = new State(),mountainClass?:MountainClass) {
   this.id= id;
+  this.name= name;
   this.longitude= longitude;
   this.latitude= lattitude;
   this.height= height;
