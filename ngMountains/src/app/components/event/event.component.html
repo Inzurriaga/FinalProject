@@ -1,10 +1,19 @@
 <section>
-<p *ngIf="!joined()">
-  <button   (click)= "joinEvent()">Join Event</button>
+  <header>
 
-</p>
-<p *ngIf="joined()">
-  <button   (click)= "unjoinEvent()">Unjoin Event</button>
-</p>
+  </header>
+  <section class="mountain-info">
+    <app-mountain-model></app-mountain-model>
+    <article>
+      <div>
+        <p>{{ event.mountain.name }}</p>
+        <button   (click)= "joinEvent()" *ngIf="!joined()">Join Event</button>
+
+        <button   (click)= "unjoinEvent()" *ngIf="joined()">Unjoin Event</button>
+      </div>
+    </article>
+  </section>
+  <section class="Event-description">
+  </section>
 
 </section>

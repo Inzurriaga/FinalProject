@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EventComponent implements OnInit {
 
-  event;
+  event = new Event();
 
   constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService) { }
 
