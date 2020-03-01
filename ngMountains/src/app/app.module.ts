@@ -1,3 +1,4 @@
+import { MountainModelComponent } from './components/mountain-model/mountain-model.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -41,7 +42,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     EditEventComponent,
     HostEventComponent,
     AttendingComponent,
-    ChatroomComponent
+    ChatroomComponent,
+    MountainModelComponent
   ],
   imports: [
     BrowserModule,

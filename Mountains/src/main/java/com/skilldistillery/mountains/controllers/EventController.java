@@ -24,59 +24,58 @@ import com.skilldistillery.mountains.services.UserService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4300"})
+@CrossOrigin({ "*", "http://localhost:4300" })
 public class EventController {
-	
+
 	@Autowired
 	private EventService srv;
-	
+
 	@Autowired
 	private UserService uSrv;
-	
+
 	@GetMapping("event/{id}")
 	public Event getEventById(@PathVariable Integer id) {
 		return srv.getEventById(id);
 	}
-	
+
 	@GetMapping("event")
-	public List<Event> getAllEvents(){
+	public List<Event> getAllEvents() {
 		return srv.getAll();
 	}
-	
+
 	@PostMapping("event/{id}")
 	public Event addUserToEvent(@RequestBody User user, @PathVariable Integer id) {
 		System.out.println("hello world how are you doing");
 		return srv.addUserToEvent(id, user);
 
 	}
-	
+
 	@DeleteMapping("event/{id}/{username}")
 	public Event removeUserFromEvent(
 //			@RequestBody User user,
-			Principal principal,
-			@PathVariable Integer id
-			) {
+			Principal principal, @PathVariable Integer id) {
 		String username = principal.getName();
 		User user = uSrv.getUserByUsername(username);
 		return srv.unjoinEvent(id, user);
 	}
-	
-	
-	
+
 	@PostMapping("event")
-	public Event createEvent(@RequestBody Event event) {
-		System.out.println(event);
+	public Event createEvent(Principal principal, @RequestBody Event event) {
+
+		String username = principal.getName();
+		User user=uSrv.getUserByUsername(username);
+		event.setHost(user);
 		return srv.createEvent(event);
 	}
 
 	@GetMapping("event/user/{username}")
-	public List<Event> findSingleUserEvents(@PathVariable String username){
+	public List<Event> findSingleUserEvents(@PathVariable String username) {
 		return srv.findByuserName(username);
 	}
-	
-	
+
 	@PutMapping("event/{id}")
-	public Event update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody Event event, Principal principal) {
+	public Event update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody Event event,
+			Principal principal) {
 		try {
 			event = srv.updateEvent(id, event);
 			if (event == null) {
