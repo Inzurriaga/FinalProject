@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -64,15 +63,28 @@ public class User {
 	
 	 @OneToMany(mappedBy="host")
 	private List<Event> hostEvents;
+	 
+	 @JsonIgnore
+	@OneToMany(mappedBy = "message")
+	private List<Message> messages;
 	
 	
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
 
 	public User() {
 		super();
 	}
 
 	public User(int id, String username, String password, String role, boolean enabled, String email,
-			String description, String imageUrl, State state, LocalDateTime createDate, List<Mountain> mountains) {
+			String description, String imageUrl, State state, LocalDateTime createDate, List<Mountain> mountains,
+			List<Event> events, List<Event> hostEvents, List<Message> messages) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -85,9 +97,10 @@ public class User {
 		this.state = state;
 		this.createDate = createDate;
 		this.mountains = mountains;
+		this.events = events;
+		this.hostEvents = hostEvents;
+		this.messages = messages;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -196,9 +209,10 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
 				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
-				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
+				+ state + ", createDate=" + createDate + ", mountains=" + mountains + ", events=" + events
+				+ ", hostEvents=" + hostEvents + ", messages=" + messages + "]";
 	}
 
 }

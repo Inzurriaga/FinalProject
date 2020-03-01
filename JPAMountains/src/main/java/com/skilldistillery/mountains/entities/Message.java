@@ -19,9 +19,13 @@ public class Message {
 	private String message;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "chat_room_id")
+	@JsonIgnore
 	private ChatRoom chatroom;
+	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	private User user;
 
 	public int getId() {
 		return id;
@@ -39,9 +43,26 @@ public class Message {
 		this.message = message;
 	}
 
+	
+	public ChatRoom getChatroom() {
+		return chatroom;
+	}
+
+	public void setChatroom(ChatRoom chatroom) {
+		this.chatroom = chatroom;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", message=" + message + "]";
+		return "Message [id=" + id + ", message=" + message + ", chatroom=" + chatroom + ", user=" + user + "]";
 	}
 
 }

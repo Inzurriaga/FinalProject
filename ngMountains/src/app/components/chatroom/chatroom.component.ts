@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
@@ -32,7 +33,13 @@ stompClient;
   }
 
   sendMessage() {
-    this.stompClient.send('/client/message', {}, JSON.stringify({"message": "hello world"}))
+    this.stompClient.send('/client/message', {}, JSON.stringify({
+      message: "hello world",
+      user: new User(2),
+      chatroom: {
+        id: 1
+      }
+    }))
   }
 
   ngOnDestroy(): void {

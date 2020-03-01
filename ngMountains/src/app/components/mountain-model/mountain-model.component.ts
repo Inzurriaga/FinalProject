@@ -31,8 +31,8 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     console.log("hello im in the mountain model")
     console.log(this.mountain)
-    this.long2tile(	-9.419951, 13);
-    this.lat2tile(	52.970490, 13);
+    this.long2tile(	-106.8182, 12);
+    this.lat2tile( 	39.1863, 12);
     this.initThreeJs();
     this.retrieveRGB();
   }
@@ -54,7 +54,7 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
       this.RGBImage = new Image();
       this.RGBImage.crossOrigin='anonymous';
       this.RGBImage.onload = this.retrieveRGBData;
-      this.RGBImage.src = `https://api.mapbox.com/v4/mapbox.terrain-rgb/13/${this.long}/${this.lat}.pngraw?access_token=${this.key}`;
+      this.RGBImage.src = `https://api.mapbox.com/v4/mapbox.terrain-rgb/12/${this.long}/${this.lat}.pngraw?access_token=${this.key}`;
   }
 
   retrieveRGBData = () => {
@@ -78,7 +78,7 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
     let geometry = new THREE.PlaneBufferGeometry(255, 255, 255, 255);
     let material;
     loader.load(
-      `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/13/${this.long}/${this.lat}?access_token=${this.key}`,
+      `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/12/${this.long}/${this.lat}?access_token=${this.key}`,
       ( texture ) => {
         material = new THREE.MeshBasicMaterial( {
           map: texture
@@ -99,7 +99,7 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
 
   addEvelation = () => {
     for(let i = 0; i < 65536; i++) {
-      this.mesh.geometry.getAttribute("position").array[(i * 3) + 2] = ((-10000 + ((this.RGBData[i * 4] * 256 * 256 + this.RGBData[(i * 4) + 1] * 256 + this.RGBData[(i * 4) + 2])* 0.1))/25)
+      this.mesh.geometry.getAttribute("position").array[(i * 3) + 2] = ((-10000 + ((this.RGBData[i * 4] * 256 * 256 + this.RGBData[(i * 4) + 1] * 256 + this.RGBData[(i * 4) + 2])* 0.1))/70)
     }
 
   }
