@@ -64,6 +64,7 @@ public class User {
 	 @OneToMany(mappedBy="host")
 	private List<Event> hostEvents;
 	 
+	 @JsonIgnore
 	@OneToMany(mappedBy = "message")
 	private List<Message> messages;
 	
@@ -208,9 +209,10 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enable="
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
 				+ enabled + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + ", state="
-				+ state + ", createDate=" + createDate + ", mountains=" + mountains + "]";
+				+ state + ", createDate=" + createDate + ", mountains=" + mountains + ", events=" + events
+				+ ", hostEvents=" + hostEvents + ", messages=" + messages + "]";
 	}
 
 }
