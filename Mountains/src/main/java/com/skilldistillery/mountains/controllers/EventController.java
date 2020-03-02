@@ -88,4 +88,14 @@ public class EventController {
 		}
 		return event;
 	}
+	
+	
+	@DeleteMapping("event/{id}")
+	public void deleteEvent(@PathVariable int id,HttpServletResponse res) {
+		System.out.println("hello im getting deleted");
+		if(srv.delete(id)) {
+			res.setStatus(202);
+		}
+		else res.setStatus(400);
+	}
 }

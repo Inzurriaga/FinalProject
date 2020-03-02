@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.entities;
 
+
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,10 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Mountain {
@@ -33,15 +38,17 @@ public class Mountain {
 	private MountainClass mountainClass;
 
 
-	@OneToMany(mappedBy="mountain")
-	@JsonIgnore
-	private List<Event> events;
+	@OneToOne(mappedBy="mountain")
+	private Event event;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="state_id")
 	private State state;
-
+	
+	
+	@ManyToMany(mappedBy="mountains")
+	private List<User> users;
 	
 	
 	
@@ -51,7 +58,7 @@ public class Mountain {
 	}
 	
 	public Mountain(int id, String name, double longitude, double latitude, int height, MountainClass mountainClass,
-			List<Event> events, State state) {
+			Event event, State state) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,7 +66,7 @@ public class Mountain {
 		this.latitude = latitude;
 		this.height = height;
 		this.mountainClass = mountainClass;
-		this.events = events;
+		this.event = event;
 		this.state = state;
 	}
 
@@ -151,15 +158,15 @@ public class Mountain {
 
 
 
-	public List<Event> getEvents() {
-		return events;
+	public Event getEvent() {
+		return event;
 	}
 
 
 
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
+	public void setEvents(Event event) {
+		this.event = event;
 	}
 
 
@@ -175,7 +182,20 @@ public class Mountain {
 	public void setState(State state) {
 		this.state = state;
 	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
 	
 	
+	}
 	
-}
+
