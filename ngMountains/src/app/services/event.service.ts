@@ -102,5 +102,15 @@ private url= "http://localhost:8090/api/event";
 
     return this.http.post<MountainEvent>(this.url, event ,httpOptions).pipe()
   }
+  deleteEvent(id:number){
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.delete(this.url+"/"+id, httpOptions).pipe();
+  }
  }
 

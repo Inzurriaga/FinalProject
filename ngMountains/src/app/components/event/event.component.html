@@ -31,7 +31,7 @@
     <button   mat-button (click)= "openEditEventModal()" *ngIf="host()" class="join-btn">Edit Event</button>
     <button   mat-button (click)= "openChatModal()" *ngIf="joined() || host()" class="chat-btn">ChatRoom</button>
     <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="complete-btn">Complete Event</button>
-    <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="leave-btn">Delete Event</button>
+    <button   mat-button (click)= "deleteEvent()" *ngIf="host()" class="leave-btn">Delete Event</button>
   </nav>
   <section class="event-info">
     <article class="event-description">

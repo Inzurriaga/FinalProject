@@ -30,51 +30,59 @@ export class EventComponent implements OnInit {
 
   getEventDetails(id) {
     this.eventSrv.show(id).subscribe(
-      data=> {
+      data => {
         console.log(data)
         this.mountainEvent = data
         this.MountainEventLoaded = true;
       },
-      err=> console.log(err)
+      err => console.log(err)
     )
   }
 
   joinEvent() {
-  let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-  this.userSrv.show(userName).subscribe(
-    data => {
-      this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
-        data => {
-          console.log(data)
-          this.getEventDetails(this.eventId)
-        },
-        err => console.log(err)
-      )
-    },
-    err => console.log(err)
-  )
-  }
-
-  unjoinEvent(){
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.userSrv.show(userName).subscribe(
-      data=>{
-        this.eventSrv.deleteUser(this.mountainEvent.id,data).subscribe(
-          data=> {
+      data => {
+        this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
+          data => {
             console.log(data)
             this.getEventDetails(this.eventId)
           },
-          err=>console.log(err)
+          err => console.log(err)
         )
       },
-      err=>console.log(err)
+      err => console.log(err)
     )
   }
 
-  joined(){
+  unjoinEvent() {
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.userSrv.show(userName).subscribe(
+      data => {
+        this.eventSrv.deleteUser(this.mountainEvent.id, data).subscribe(
+          data => {
+            console.log(data)
+            this.getEventDetails(this.eventId)
+          },
+          err => console.log(err)
+        )
+      },
+      err => console.log(err)
+    )
+  }
+
+  deleteEvent() {
+    console.log("delte me")
+    this.eventSrv.deleteEvent(this.eventId).subscribe(
+      data => console.log(data),
+      err => console.log(err)
+    );
+  }
+
+  joined() {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     let joined = this.mountainEvent.users.reduce((acc, user) => {
-      if(user.username === userName) {
+      if (user.username === userName) {
         acc = true;
         return acc;
       }
@@ -84,7 +92,7 @@ export class EventComponent implements OnInit {
 
   host() {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-    if(this.mountainEvent.host.username = userName) {
+    if (this.mountainEvent.host.username = userName) {
       return true
     }
     return false;
@@ -112,5 +120,8 @@ export class EventComponent implements OnInit {
     this.authSrv.logout();
     this.router.navigateByUrl("home");
   }
+
+
+  
 
 }
