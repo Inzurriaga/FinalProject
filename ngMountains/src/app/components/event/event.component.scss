@@ -1,7 +1,24 @@
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  padding: 30px 0 30px 0;
+  padding: 10px 0 10px 0;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  div {
+    display: flex;
+    align-items: center;
+    a {
+      color: #757575;
+      font-size: 2em;
+    }
+  }
+  .sign-out {
+    margin-right: 50px;
+    button {
+      font-size: 2em;
+    }
+  }
 }
 
 .mountain-info {
@@ -26,7 +43,10 @@ header {
   }
 }
 
-.event-description {
+.event-info {
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
   h2 {
     line-height: normal;
     font-size: 4em;
@@ -35,6 +55,12 @@ header {
   p {
     line-height: normal;
     font-size: 2em;
+  }
+  .event-description {
+    width: 45%;
+  }
+  .event-meta {
+    width: 45%;
   }
 }
 
@@ -68,6 +94,43 @@ nav {
     background-color: #00a2c7;
   }
   .edit-btn {
+    color: #ffffff;
+    font-size: 2em;
+    padding: 10px;
+    background-color: #00a2c7;
+  }
+}
 
+.host-info {
+  div {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  }
+  p {
+    font-size: 4em;
+    margin-left: 20px;
+  }
+
+}
+
+.map {
+  margin-top: 50px;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 500px;
+}
+
+.members {
+  margin-top: 50px;
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
   }
 }

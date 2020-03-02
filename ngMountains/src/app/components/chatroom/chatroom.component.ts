@@ -1,5 +1,5 @@
 import { User } from './../../models/user';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import * as Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 
@@ -9,7 +9,10 @@ import SockJS from 'sockjs-client';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit, OnDestroy {
-stompClient;
+
+  stompClient;
+
+  @Input() closeChatModal;
 
   constructor() { }
 

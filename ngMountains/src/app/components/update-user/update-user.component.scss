@@ -19,11 +19,6 @@ section {
   height: 500px;
   width: 750px;
   border-radius: 5px;
-  h2 {
-    font-size: 4em;
-    text-align: center;
-    color: #000000;
-  }
   .full-width {
       font-size: 1.5em;
       width: 100%;
@@ -67,6 +62,26 @@ section {
       font-size: 1.2em;
       margin: 0;
     }
+  }
+}
+
+.close-btn {
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10050;
+  cursor: pointer;
+  display: block;
+  width: 22px;
+  height: 22px;
+  outline: 0;
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  opacity: .5;
+  transition: all .2s ease-out;
+  background-image: url(../../../assets/icon-close.svg);
+  &:hover {
+    opacity: 1;
   }
 }
 

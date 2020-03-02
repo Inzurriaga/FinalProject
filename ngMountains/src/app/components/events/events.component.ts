@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 
@@ -9,7 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 export class EventsComponent implements OnInit {
   events= [];
 
-  constructor(private eventSrv: EventService) {
+  constructor(private eventSrv: EventService, private authSrv: AuthService, private router: Router) {
 
    }
 
@@ -23,6 +25,11 @@ export class EventsComponent implements OnInit {
       err => console.log(err)
 
     )
+  }
+
+  logOut = () => {
+    this.authSrv.logout();
+    this.router.navigateByUrl("home");
   }
 
 }

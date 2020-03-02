@@ -1,12 +1,24 @@
 <section>
-      
-        
-        <p *ngFor="let event of events">
-            <a [routerLink]= "['/events', event.id]">
-       
-    {{event.description}}
-</a>
-<button (click)= "unjoinEvent(event.id)">Unjoin Event</button>
-    </p>
+  <header>
+    <div>
+      <a [routerLink]="['/home']">
+        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+      </a>
+      <a mat-button [routerLink]="['/user']" >Home</a>
+      <a mat-button [routerLink]="['/events']" >Events</a>
+    </div>
+    <div class="sign-out">
+      <button mat-button (click)="logOut()">Logout</button>
+    </div>
+  </header>
+  <section>
+    <p *ngFor="let event of events">
+        <a [routerLink]= "['/events', event.id]">
 
+  {{event.description}}
+  </a>
+  <button (click)= "unjoinEvent(event.id)">Unjoin Event</button>
+  </p>
+
+  </section>
 </section>

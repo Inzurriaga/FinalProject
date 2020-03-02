@@ -3,7 +3,7 @@ import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { EventService } from 'src/app/services/event.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,8 +16,11 @@ export class EventComponent implements OnInit {
   mountainEvent = new MountainEvent();
   MountainEventLoaded = false;
   eventId;
+  updateEvent: MountainEvent;
+  editModal = false;
+  chatModal = false;
 
-  constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService) { }
+  constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.eventId = this.currentRoute.snapshot.paramMap.get("id");
@@ -52,8 +55,6 @@ export class EventComponent implements OnInit {
   )
   }
 
-
-
   unjoinEvent(){
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.userSrv.show(userName).subscribe(
@@ -87,6 +88,29 @@ export class EventComponent implements OnInit {
       return true
     }
     return false;
+  }
+
+  openEditEventModal = () => {
+    this.updateEvent = Object.assign({}, this.mountainEvent)
+    this.editModal = true;
+  }
+
+  closeEditUserModal = () => {
+    this.getEventDetails(this.eventId);
+    this.editModal = false;
+  }
+
+  openChatModal = () => {
+    this.chatModal = true;
+  }
+
+  closeChatModal = () => {
+    this.chatModal = false;
+  }
+
+  logOut = () => {
+    this.authSrv.logout();
+    this.router.navigateByUrl("home");
   }
 
 }

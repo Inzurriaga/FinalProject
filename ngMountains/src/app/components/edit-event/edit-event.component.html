@@ -1,51 +1,22 @@
-<section id="edit-event">
-  <header>
-    <a [routerLink]="['/home']"></a><br>
-
-    <h2>Edit Event</h2>
-  </header>
-
+<section *ngIf="open">
   <article class="edit-event-section">
-
-<section class="edit-event-sect">
-    <span (click)="closeEditEventModal()" class="fsp-picker__close-button fsp-icon--close-modal"></span>
-
-    <div class="textarea">
-      <mat-form-field class="full-width">
-        <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Description" [(ngModel)]="editEvent.description" maxlength="300"></textarea>
-      </mat-form-field>
-      <p>{{ editEvent.description.length }}/300</p>
-    </div>
-
-    <div class="date">
-      <mat-form-field class="full-width">
-        <mat-label>Event Date</mat-label>
-        <input type="datetime" matInput placeholder="Date" [(ngModel)]="editEvent.eventDate" /><br />
-      </mat-form-field>
-      <p>{{ editEvent.eventDate }}</p>
-    </div>
-<!--
-    <div class="mountain">
-      <mat-form-field class="full-width">
-        <mat-label>Mountain</mat-label>
-        <mat-select name="mountain.id" [(ngModel)]="editEvent.mountain.id">
-          <mat-option *ngFor="let mountain of mountains" [value]="mountain.id">{{ mountain.name }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p>{{ editEvent.mountain }}/300</p>
-    </div>
-
-    <div class="completed">
-      <mat-form-field class= "full-width">
-        <mat-label>completed</mat-label>
-        <mat-checkbox placeholder="completed" [(ngModel)]="editEvent.completed" ></mat-checkbox><br />
-      </mat-form-field>
-      <p>{{ editEvent.completed }}/300</p>
-    </div> -->
-
-  <button mat-button (click)="onSubmit()" class="edit-event-btn">Update</button>
-</section>
-</article>
+    <span (click)="closeEditEventModal()" class="close-btn"></span>
+      <div class="date">
+        <mat-form-field class="full-width">
+          <mat-label>Choose a date *</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="mountainEvent.eventDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="textarea">
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" [(ngModel)]="mountainEvent.description" maxlength="300"></textarea>
+        </mat-form-field>
+        <p>{{ mountainEvent.description.length }}/300</p>
+      </div>
+      <button mat-button (click)="onSubmit()" class="update-btn">Update</button>
+  </article>
 </section>
 

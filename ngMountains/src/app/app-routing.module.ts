@@ -1,6 +1,3 @@
-import { MountainModelComponent } from './components/mountain-model/mountain-model.component';
-import { ChatroomComponent } from './components/chatroom/chatroom.component';
-import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventComponent } from './components/event/event.component';
 import { EventsComponent } from './components/events/events.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -22,10 +19,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent},
   { path: 'createEvent',component: CreateEventComponent},
   { path: 'events/:id', component: EventComponent},
-  { path: 'host/:id', component: EditEventComponent },
   { path: 'attending', component: AttendingComponent},
-  { path: 'chatroom', component: ChatroomComponent },
-  { path: '3d', component: MountainModelComponent }
 ];
 
 @NgModule({

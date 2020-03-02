@@ -60,7 +60,6 @@ public class EventServiceImpl implements EventService {
 			Event managedEvent = eventOpt.get();
 			managedEvent.setDescription(event.getDescription());
 			managedEvent.setEventDate(event.getEventDate());
-			managedEvent.setMountain(event.getMountain());
 			managedEvent.setCompleted(event.getCompleted());
 			repo.saveAndFlush(managedEvent);
 			return managedEvent;

@@ -29,6 +29,7 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 
 @NgModule({
@@ -63,7 +64,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q'
+    }
+    )
   ],
 
   providers: [],

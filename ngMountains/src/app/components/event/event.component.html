@@ -1,6 +1,15 @@
 <section>
   <header>
-
+    <div>
+      <a [routerLink]="['/home']">
+        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+      </a>
+      <a mat-button [routerLink]="['/user']" >Home</a>
+      <a mat-button [routerLink]="['/events']" >Events</a>
+    </div>
+    <div class="sign-out">
+      <button mat-button (click)="logOut()">Logout</button>
+    </div>
   </header>
   <section class="mountain-info">
     <div *ngIf="MountainEventLoaded">
@@ -19,22 +28,43 @@
   <nav>
     <button   mat-button (click)= "joinEvent()" *ngIf="!joined() && !host()" class="join-btn">Join Event</button>
     <button   mat-button (click)= "unjoinEvent()" *ngIf="joined() && !host()" class="leave-btn">Unjoin Event</button>
-    <button   mat-button (click)= "joinEvent()" *ngIf="host()" class="join-btn">Edit Event</button>
-    <button   mat-button (click)= "joinEvent()" *ngIf="joined() || host()" class="chat-btn">ChatRoom</button>
+    <button   mat-button (click)= "openEditEventModal()" *ngIf="host()" class="join-btn">Edit Event</button>
+    <button   mat-button (click)= "openChatModal()" *ngIf="joined() || host()" class="chat-btn">ChatRoom</button>
     <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="complete-btn">Complete Event</button>
     <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="leave-btn">Delete Event</button>
   </nav>
-  <section class="event-description">
-    <article>
+  <section class="event-info">
+    <article class="event-description">
       <h2>Description</h2>
       <p>
 
         {{ mountainEvent.description }}
       </p>
+      <mgl-map
+        *ngIf="MountainEventLoaded"
+        class="map"
+        [style]="'mapbox://styles/mapbox/streets-v9'"
+        [zoom]="[11]"
+        [center]="[mountainEvent.mountain.longitude, mountainEvent.mountain.latitude]"
+      >
+      </mgl-map>
     </article>
-    <article>
-
+    <article class="event-meta">
+      <div class="host-info">
+        <h2>Host</h2>
+        <div>
+          <img [src]="mountainEvent.host.imageUrl" alt="host image"/>
+          <p>{{ mountainEvent.host.username }}</p>
+        </div>
+      </div>
+      <div class="members">
+        <h2>Members ({{ mountainEvent.users.length }})</h2>
+        <div>
+          <img *ngFor="let user of mountainEvent.users" [src]="user.imageUrl">
+        </div>
+      </div>
     </article>
   </section>
-
+  <app-edit-event [mountainEvent]="updateEvent" [open]="editModal" [closeEditEventModal]="closeEditUserModal"></app-edit-event>
+  <app-chatroom *ngIf="chatModal" [closeChatModal]="closeChatModal"></app-chatroom>
 </section>

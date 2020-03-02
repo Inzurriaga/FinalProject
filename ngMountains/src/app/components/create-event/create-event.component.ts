@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MountainService } from 'src/app/services/mountain.service';
 import { StateService } from 'src/app/services/state.service';
@@ -29,7 +30,7 @@ export class CreateEventComponent implements OnInit {
   longRange = false;
 
   // constructor
-  constructor(private stateSrv: StateService, private mountainClassSrv: MountainClassService,private eventSrv:EventService, private router: Router) { }
+  constructor(private stateSrv: StateService, private mountainClassSrv: MountainClassService,private eventSrv:EventService, private router: Router, private authSrv: AuthService) { }
 
 
   //method
@@ -124,5 +125,10 @@ export class CreateEventComponent implements OnInit {
         }
       )
     }
+  }
+
+  logOut = () => {
+    this.authSrv.logout();
+    this.router.navigateByUrl("home");
   }
 }
