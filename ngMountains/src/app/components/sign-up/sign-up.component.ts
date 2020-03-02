@@ -55,7 +55,6 @@ export class SignUpComponent implements OnInit {
       this.passwordError = true;
     }
     if(!this.user.email) {
-      console.log("hellow rlakdf sdf;laksjf ;")
       this.emailError = true;
     }
   }

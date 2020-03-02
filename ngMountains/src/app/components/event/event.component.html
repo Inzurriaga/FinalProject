@@ -3,17 +3,28 @@
 
   </header>
   <section class="mountain-info">
-    <app-mountain-model></app-mountain-model>
+    <div *ngIf="MountainEventLoaded">
+      <app-mountain-model [mountain]="mountainEvent.mountain"></app-mountain-model>
+    </div>
     <article class="mountain-detail">
       <div>
         <h2>{{ mountainEvent.mountain.name }}</h2>
-        <button   (click)= "joinEvent()" *ngIf="!joined()">Join Event</button>
-
-        <button   (click)= "unjoinEvent()" *ngIf="joined()">Unjoin Event</button>
+        <h3>Latitude: {{ mountainEvent.mountain.latitude }}</h3>
+        <h3>Longitude: {{ mountainEvent.mountain.longitude }}</h3>
+        <h3>Height: {{ mountainEvent.mountain.height }}</h3>
+        <h3>Class {{ mountainEvent.mountain.mountainClass.classType }}</h3>
       </div>
     </article>
   </section>
-  <section class="Event-description">
+  <nav>
+    <button   mat-button (click)= "joinEvent()" *ngIf="!joined() && !host()" class="join-btn">Join Event</button>
+    <button   mat-button (click)= "unjoinEvent()" *ngIf="joined() && !host()" class="leave-btn">Unjoin Event</button>
+    <button   mat-button (click)= "joinEvent()" *ngIf="host()" class="join-btn">Edit Event</button>
+    <button   mat-button (click)= "joinEvent()" *ngIf="joined() || host()" class="chat-btn">ChatRoom</button>
+    <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="complete-btn">Complete Event</button>
+    <button   mat-button (click)= "unjoinEvent()" *ngIf="host()" class="leave-btn">Delete Event</button>
+  </nav>
+  <section class="event-description">
     <article>
       <h2>Description</h2>
       <p>

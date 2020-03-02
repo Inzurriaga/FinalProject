@@ -26,7 +26,10 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { HostEventComponent } from './components/host-event/host-event.component';
 import { AttendingComponent } from './components/attending/attending.component';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     FilestackModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 
   providers: [],

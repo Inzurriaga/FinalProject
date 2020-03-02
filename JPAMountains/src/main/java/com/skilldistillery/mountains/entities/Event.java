@@ -34,7 +34,6 @@ public class Event {
 	private LocalDate eventDate;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name="host_id")
 	private User host;
 	
