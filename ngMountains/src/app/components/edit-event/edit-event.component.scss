@@ -8,14 +8,9 @@ section {
   width: 100vw;
   background-color: rgba(47,53,62,.86);
 }
-h2 {
-  font-size: 4em;
-  text-align: center;
-  color: #000000;
-}
 
 .edit-event-section {
-  background-color: rgb(131, 65, 151);
+  background-color: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,16 +19,11 @@ h2 {
   height: 500px;
   width: 750px;
   border-radius: 5px;
-
   .full-width {
       font-size: 1.5em;
       width: 100%;
   }
-  .date {
-    width: 80%;
-  }
-
-  .edit-event-btn {
+  .update-btn {
     border-radius: 5px;
     position: absolute;
     color: #ffffff;
@@ -43,7 +33,9 @@ h2 {
     bottom: -20px;
     background-color: #7BC289;
   }
-
+  .image-btn {
+    font-size: 1em;
+  }
   .textarea {
     width: 80%;
     textarea {
@@ -53,6 +45,25 @@ h2 {
     p {
       font-size: 1.2em;
       margin: 0;
+    }
   }
-}
+  .close-btn {
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10050;
+    cursor: pointer;
+    display: block;
+    width: 22px;
+    height: 22px;
+    outline: 0;
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    opacity: .5;
+    transition: all .2s ease-out;
+    background-image: url(../../../assets/icon-close.svg);
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

@@ -2,7 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { EventService } from 'src/app/services/event.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-attending',
   templateUrl: './attending.component.html',
@@ -12,10 +12,11 @@ export class AttendingComponent implements OnInit {
 
   events;
 
-  constructor(private currentRoute: ActivatedRoute, 
-                  private eventSrv: EventService, 
+  constructor(private currentRoute: ActivatedRoute,
+                  private eventSrv: EventService,
                   private authSrv: AuthService,
-                  private userSrv: UserService) { }
+                  private userSrv: UserService,
+                  private router: Router) { }
 
   ngOnInit(): void{
     this.eventSrv.searchByUser("sonic").subscribe(
@@ -25,9 +26,9 @@ export class AttendingComponent implements OnInit {
       },
       err=>{
         console.log(err);
-        
+
       }
-      
+
     )
   }
 
@@ -44,6 +45,8 @@ export class AttendingComponent implements OnInit {
     )
   }
 
-  
-
+  logOut = () => {
+    this.authSrv.logout();
+    this.router.navigateByUrl("home");
+  }
 }

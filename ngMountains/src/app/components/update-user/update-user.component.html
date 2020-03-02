@@ -1,7 +1,6 @@
 <section *ngIf="open">
   <article class="update-user-section">
-    <span (click)="closeEditUserModal()" class="fsp-picker__close-button fsp-icon--close-modal"></span>
-    <ng-template matStepLabel>About You</ng-template>
+    <span (click)="closeEditUserModal()" class="close-btn"></span>
     <div class="image">
       <ng-picker-overlay
         [apikey]="key"

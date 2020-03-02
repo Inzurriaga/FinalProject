@@ -13,39 +13,24 @@ import { State } from 'src/app/models/state';
 })
 export class EditEventComponent implements OnInit {
 
-  editEvent = new MountainEvent();
+  @Input() mountainEvent: MountainEvent;
+
   @Input() open: boolean;
+
   @Input() closeEditEventModal;
-
-  mountainEvent= new MountainEvent();
-
-  key= "abc";
 
   constructor(private eventSrv: EventService) { }
 
-  ngOnInit(): void {
-    this.eventSrv.show(1).subscribe(
-      data => this.editEvent = data
-    )
-  }
-
-  // getState = () => {
-  //   this.stateSrv.index().suscribe(
-  //     data => {
-  //       this.states = data;
-  //     },
-  //     err => console.log(err)
-  //   )
-  //   console.log(this.mountains);
-  // }
+  ngOnInit(): void {}
 
   onSubmit =() => {
-    console.log(this.editEvent)
-this.eventSrv.updateEvent(1, this.editEvent).subscribe(
-  data => {
-    console.log(data)
-  },
-  err =>console.log(err)
-  )
+    console.log(this.mountainEvent)
+    this.eventSrv.updateEvent(this.mountainEvent.id, this.mountainEvent).subscribe(
+      data => {
+        this.closeEditEventModal()
+        console.log(data)
+      },
+      err =>console.log(err)
+    )
   }
 }

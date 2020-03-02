@@ -1,8 +1,15 @@
 <section id="create-event">
   <header>
-    <a [routerLink]="['/home']">
-      <h1>hello</h1>
-    </a>
+    <div>
+      <a [routerLink]="['/home']">
+        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+      </a>
+      <a mat-button [routerLink]="['/user']" >Home</a>
+      <a mat-button [routerLink]="['/events']" >Events</a>
+    </div>
+    <div class="sign-out">
+      <button mat-button (click)="logOut()">Logout</button>
+    </div>
   </header>
   <section class="main-section">
     <mat-horizontal-stepper #stepper>

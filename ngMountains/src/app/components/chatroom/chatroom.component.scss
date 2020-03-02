@@ -1,0 +1,39 @@
+section {
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(47,53,62,.86);
+}
+
+.chatroom {
+  height: 60%;
+  width: 60%;
+  background-color: #eee;
+  position: relative;
+  border-radius: 5px;
+}
+
+
+.close-btn {
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10050;
+  cursor: pointer;
+  display: block;
+  width: 22px;
+  height: 22px;
+  outline: 0;
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  opacity: .5;
+  transition: all .2s ease-out;
+  background-image: url(../../../assets/icon-close.svg);
+  &:hover {
+    opacity: 1;
+  }
+}

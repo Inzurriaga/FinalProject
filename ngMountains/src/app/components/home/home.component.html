@@ -1,13 +1,12 @@
 <section id="home">
   <header>
-    <div>
-      logo image here
-    </div>
-    <nav>
+      <a [routerLink]="['/home']">
+        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+      </a>
+    <div class="sign-in">
       <a [routerLink]="['/login']">Login</a>
-      <div></div>
       <a [routerLink]="['/signup']">Sign Up</a>
-    </nav>
+    </div>
   </header>
   <main>
     <section class="welcome">
