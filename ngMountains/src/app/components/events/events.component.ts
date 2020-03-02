@@ -1,3 +1,4 @@
+import { MountainEvent } from 'src/app/models/mountain-event';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventsComponent implements OnInit {
   events= [];
+  key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
 
   constructor(private eventSrv: EventService, private authSrv: AuthService, private router: Router) {
 
@@ -25,6 +27,12 @@ export class EventsComponent implements OnInit {
       err => console.log(err)
 
     )
+  }
+
+  createUrl(event: MountainEvent) {
+    let long = (Math.floor((event.mountain.longitude+180)/360*Math.pow(2,10)));
+    let lat = (Math.floor((1-Math.log(Math.tan(event.mountain.latitude*Math.PI/180) + 1/Math.cos(event.mountain.latitude*Math.PI/180))/Math.PI)/2 *Math.pow(2,10)));
+    return `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/10/${long}/${lat}?access_token=${this.key}`
   }
 
   logOut = () => {
