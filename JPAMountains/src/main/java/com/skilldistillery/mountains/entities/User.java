@@ -60,8 +60,8 @@ public class User {
 	@ManyToMany(mappedBy="users")
 	private List<Event> events;
 	
-	
-	 @OneToMany(mappedBy="host")
+	@JsonIgnore
+	@OneToMany(mappedBy="host")
 	private List<Event> hostEvents;
 	 
 	 @JsonIgnore

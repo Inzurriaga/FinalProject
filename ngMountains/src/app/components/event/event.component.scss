@@ -5,11 +5,69 @@ header {
 }
 
 .mountain-info {
+  background-color: #f6f7f8;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }
 
 .mountain-detail {
-  width: 50%;
+  margin-left: 50px;
+  width: 400px;
+  padding: 50px;
+  h2 {
+    font-size: 4em;
+    color: #000000;
+    margin-bottom: 50px;
+    line-height: normal;
+  }
+  h3 {
+    font-size: 2em;
+  }
+}
+
+.event-description {
+  h2 {
+    line-height: normal;
+    font-size: 4em;
+    color: #000000;
+  }
+  p {
+    line-height: normal;
+    font-size: 2em;
+  }
+}
+
+nav {
+  padding: 20px 0 20px 0;
+  top: 0px;
+  position: sticky;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  a {
+    padding: 10px;
+    font-size: 2em;
+  }
+  .join-btn, .complete-btn {
+      color: #ffffff;
+      font-size: 2em;
+      padding: 10px;
+      background-color: #7BC289;
+  }
+  .leave-btn, .delete-btn {
+    color: #ffffff;
+    font-size: 2em;
+    padding: 10px;
+    background-color: #ec3636;
+  }
+  .chat-btn {
+    color: #ffffff;
+    font-size: 2em;
+    padding: 10px;
+    background-color: #00a2c7;
+  }
+  .edit-btn {
+
+  }
 }

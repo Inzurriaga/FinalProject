@@ -16,16 +16,19 @@ export class MountainEvent {
 
     users: User[];
 
+    host: User;
+
 
 
     //Constructor
-    constructor(id?:number,description?:string,completed:boolean =false,eventDate?:Date,mountain:Mountain = new Mountain(), users: User[] = []){
+    constructor(id?:number,description:string = "",completed:boolean =false,eventDate?:Date,mountain:Mountain = new Mountain(), users: User[] = [], host: User = new User()){
         this.id=id;
         this.description=description;
         this.completed=completed;
         this.eventDate=eventDate;
         this.mountain= mountain;
         this.users = users;
+        this.host = host;
     }
 }
 

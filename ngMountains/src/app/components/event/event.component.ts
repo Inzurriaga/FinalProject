@@ -14,20 +14,24 @@ import { ActivatedRoute } from '@angular/router';
 export class EventComponent implements OnInit {
 
   mountainEvent = new MountainEvent();
+  MountainEventLoaded = false;
+  eventId;
 
   constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService) { }
 
   ngOnInit(): void {
-    let id= this.currentRoute.snapshot.paramMap.get("id");
+    this.eventId = this.currentRoute.snapshot.paramMap.get("id");
     console.log(this.mountainEvent)
-    this.getEventDetails(id);
+    this.getEventDetails(this.eventId);
   }
 
   getEventDetails(id) {
     this.eventSrv.show(id).subscribe(
       data=> {
-        console.log(data);
-        this.mountainEvent = data},
+        console.log(data)
+        this.mountainEvent = data
+        this.MountainEventLoaded = true;
+      },
       err=> console.log(err)
     )
   }
@@ -37,7 +41,10 @@ export class EventComponent implements OnInit {
   this.userSrv.show(userName).subscribe(
     data => {
       this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
-        data => console.log(data),
+        data => {
+          console.log(data)
+          this.getEventDetails(this.eventId)
+        },
         err => console.log(err)
       )
     },
@@ -52,7 +59,10 @@ export class EventComponent implements OnInit {
     this.userSrv.show(userName).subscribe(
       data=>{
         this.eventSrv.deleteUser(this.mountainEvent.id,data).subscribe(
-          data=> console.log(data),
+          data=> {
+            console.log(data)
+            this.getEventDetails(this.eventId)
+          },
           err=>console.log(err)
         )
       },
@@ -69,6 +79,14 @@ export class EventComponent implements OnInit {
       }
     }, false)
     return joined;
+  }
+
+  host() {
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    if(this.mountainEvent.host.username = userName) {
+      return true
+    }
+    return false;
   }
 
 }

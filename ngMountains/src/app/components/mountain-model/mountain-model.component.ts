@@ -1,3 +1,4 @@
+import { Mountain } from 'src/app/models/mountain';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three-orbitcontrols-ts';
@@ -10,13 +11,14 @@ import { OrbitControls } from 'three-orbitcontrols-ts';
 export class MountainModelComponent implements OnInit, AfterViewInit {
   @ViewChild('rendererContainer') rendererContainer: ElementRef;
 
-  @Input() mountain;
+  @Input() mountain: Mountain;
   renderer = new THREE.WebGLRenderer({ alpha: true });
   scene = null;
   camera = null;
   mesh = null;
   lat = null;
   long = null;
+  zoom = 12;
   RGBData = null;
   RGBImage = null;
   RGBctx = null;
@@ -29,10 +31,11 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("hello im in the mountain model")
     console.log(this.mountain)
-    this.long2tile(	-106.8182, 12);
-    this.lat2tile( 	39.1863, 12);
+    this.lat = this.mountain.latitude;
+    this.long = this.mountain.longitude;
+    this.long2tile(this.long, this.zoom);
+    this.lat2tile(this.lat, this.zoom);
     this.initThreeJs();
     this.retrieveRGB();
   }
@@ -54,7 +57,7 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
       this.RGBImage = new Image();
       this.RGBImage.crossOrigin='anonymous';
       this.RGBImage.onload = this.retrieveRGBData;
-      this.RGBImage.src = `https://api.mapbox.com/v4/mapbox.terrain-rgb/12/${this.long}/${this.lat}.pngraw?access_token=${this.key}`;
+      this.RGBImage.src = `https://api.mapbox.com/v4/mapbox.terrain-rgb/${this.zoom}/${this.long}/${this.lat}.pngraw?access_token=${this.key}`;
   }
 
   retrieveRGBData = () => {
@@ -67,9 +70,8 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   initThreeJs = () => {
     this.renderer.setClearColor( 0xffffff, 0);
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(50, 500/500, 1, 1000);
-    this.camera.position.z = 400;
-    this.orbitControls = new OrbitControls( this.camera, this.renderer.domElement );
+    this.camera = new THREE.PerspectiveCamera(50, 700/500, 1, 1000);
+    this.camera.position.z = 0;
 
   }
 
@@ -78,14 +80,15 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
     let geometry = new THREE.PlaneBufferGeometry(255, 255, 255, 255);
     let material;
     loader.load(
-      `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/12/${this.long}/${this.lat}?access_token=${this.key}`,
+      `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/${this.zoom}/${this.long}/${this.lat}?access_token=${this.key}`,
       ( texture ) => {
         material = new THREE.MeshBasicMaterial( {
           map: texture
         } );
         this.mesh = new THREE.Mesh(geometry, material);
-        this.mesh.rotation.x = -1
-        this.addEvelation();
+        this.mesh.rotation.x = -1;
+        this.mesh.position.z = -400;
+        this.mesh.position.y = this.addEvelation()/1.25;
         this.scene.add(this.mesh);
         this.renderer.render(this.scene, this.camera);
         this.animate()
@@ -98,21 +101,25 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   }
 
   addEvelation = () => {
+    let lowestPoint = ((-10000 + ((this.RGBData[0] * 256 * 256 + this.RGBData[1] * 256 + this.RGBData[2])* 0.1))/20);
     for(let i = 0; i < 65536; i++) {
-      this.mesh.geometry.getAttribute("position").array[(i * 3) + 2] = ((-10000 + ((this.RGBData[i * 4] * 256 * 256 + this.RGBData[(i * 4) + 1] * 256 + this.RGBData[(i * 4) + 2])* 0.1))/70)
+      let point = ((-10000 + ((this.RGBData[i * 4] * 256 * 256 + this.RGBData[(i * 4) + 1] * 256 + this.RGBData[(i * 4) + 2])* 0.1))/20)
+      if(lowestPoint > point) {
+        lowestPoint = point
+      }
+      this.mesh.geometry.getAttribute("position").array[(i * 3) + 2] = point;
     }
-
+    return -lowestPoint;
   }
 
   ngAfterViewInit() {
-    this.renderer.setSize(500, 500);
+    this.renderer.setSize(700, 500);
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
   }
 
   animate() {
     window.requestAnimationFrame(() => this.animate());
-    this.mesh.rotation.z += 0.002
-    this.orbitControls.update();
+    this.mesh.rotation.z += 0.005
     this.renderer.render(this.scene, this.camera);
   }
 }
