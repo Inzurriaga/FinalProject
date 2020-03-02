@@ -30,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q'
     }

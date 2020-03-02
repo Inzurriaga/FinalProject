@@ -10,10 +10,29 @@
       <button mat-button (click)="logOut()">Logout</button>
     </div>
  </header>
+
  <main>
    <section>
      <article *ngFor= "let event of events">
-        <a [routerLink]= "['/events', event.id]"><p>{{ event.description }}</p></a>
+        <a [routerLink]= "['/events', event.id]">
+
+          <!-- cards -->
+          <mat-card class="mountain-events">
+           <mat-card-header>
+           <mat-card-title>{{event.mountain.name}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="createUrl(event)" alt="Photo of mountain">
+          <mat-card-content>
+            <p>
+             {{ event.description }}
+             </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <!-- <button mat-button> More Info </button> -->
+              </mat-card-actions>
+              </mat-card>
+
+        </a>
      </article>
    </section>
  </main>
