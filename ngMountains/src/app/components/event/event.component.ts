@@ -20,7 +20,13 @@ export class EventComponent implements OnInit {
   editModal = false;
   chatModal = false;
 
-  constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService, private router: Router) { }
+  constructor(
+    private currentRoute: ActivatedRoute,
+    private eventSrv: EventService,
+    private userSrv: UserService,
+    private authSrv: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.eventId = this.currentRoute.snapshot.paramMap.get("id");
@@ -73,20 +79,31 @@ export class EventComponent implements OnInit {
 
   joined(){
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-    let joined = this.mountainEvent.users.reduce((acc, user) => {
-      if(user.username === userName) {
-        acc = true;
-        return acc;
+    // let joined = this.mountainEvent.users.reduce((acc, user) => {
+    //   if(user.username === userName) {
+    //     acc = true;
+    //     console.log('joined():  ' + acc);
+    //     return acc;
+    //   }
+    // }, false);
+    let joined = false;
+    for (let user of this.mountainEvent.users) {
+      if ( user.username === userName) {
+        joined = true;
+        break;
       }
-    }, false)
+    }
+    // console.log('joined():  ' + joined);
     return joined;
   }
 
   host() {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-    if(this.mountainEvent.host.username = userName) {
+    if(this.mountainEvent.host.username === userName) {
+      // console.log('host(): ' + true);
       return true
     }
+    // console.log('host(): ' + false);
     return false;
   }
 

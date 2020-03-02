@@ -21,5 +21,12 @@ header {
   }
 }
 .mountain-events {
-  max-width: 400px;
+  max-width: 600px;
+}
+
+main {
+  a {
+    all: unset;
+  }
+  padding: 0px 10% 0 10%;
 }

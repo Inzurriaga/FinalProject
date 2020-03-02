@@ -11,14 +11,35 @@
       <button mat-button (click)="logOut()">Logout</button>
     </div>
   </header>
-  <section>
-    <p *ngFor="let event of events">
-        <a [routerLink]= "['/events', event.id]">
+  <main>
+    <mat-grid-list cols="3">
 
-  {{event.description}}
-  </a>
-  <button (click)= "unjoinEvent(event.id)">Unjoin Event</button>
-  </p>
+      <mat-grid-tile *ngFor= "let event of events">
+         <a [routerLink]= "['/events', event.id]">
 
-  </section>
+           <!-- cards -->
+           <mat-card class="mountain-events">
+            <mat-card-header>
+            <mat-card-title>{{event.mountain.name}}</mat-card-title>
+
+           </mat-card-header>
+
+           <img mat-card-image [src]="mountUrl(event)" alt="Photo of mountain">
+           <mat-card-content>
+             <p>
+              {{ event.description.substring(0,30) }} ...
+              </p>
+             </mat-card-content>
+
+             <mat-card-actions>
+               </mat-card-actions>
+               </mat-card>
+
+              </a>
+      </mat-grid-tile>
+     </mat-grid-list>
+  </main>
+  <footer>
+
+  </footer>
 </section>
