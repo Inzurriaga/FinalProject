@@ -16,7 +16,7 @@ mountainClass:MountainClass;
 //constructor
 
 
-constructor(id?:number, longitude?:number, lattitude?:number, height?:number,name?:string,state:State = new State(),mountainClass:MountainClass = new MountainClass()) {
+constructor(id?:number, longitude:number = 0 , lattitude:number = 0, height?:number,name:string = "",state:State = new State(),mountainClass:MountainClass = new MountainClass()) {
   this.id= id;
   this.name= name;
   this.longitude= longitude;

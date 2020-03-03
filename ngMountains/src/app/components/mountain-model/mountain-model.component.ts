@@ -1,7 +1,6 @@
 import { Mountain } from 'src/app/models/mountain';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import * as THREE from 'three';
-import { OrbitControls } from 'three-orbitcontrols-ts';
 
 @Component({
   selector: 'app-mountain-model',

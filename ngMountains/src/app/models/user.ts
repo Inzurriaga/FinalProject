@@ -1,3 +1,4 @@
+import { Mountain } from './mountain';
 import { State } from './state';
 export class User {
   id: number;
@@ -10,8 +11,9 @@ export class User {
   description: string;
   imageUrl: string;
   state: State;
+  mountains: Mountain[];
 
-  constructor(id?: number, username: string = "", password?: string, role: string = "standard", enabled: boolean = true, createDate?: string, email?: string, description: string = "", imageUrl?: string, state: State = new State()) {
+  constructor(id?: number, username: string = "", password?: string, role: string = "standard", enabled: boolean = true, createDate?: string, email?: string, description: string = "", imageUrl?: string, state: State = new State(), mountains: Mountain[] = []) {
     this.id = id;
     this.password = password;
     this.username = username;
@@ -22,5 +24,6 @@ export class User {
     this.imageUrl = imageUrl;
     this.enabled = enabled;
     this.state = state;
+    this.mountains = mountains;
   }
 }

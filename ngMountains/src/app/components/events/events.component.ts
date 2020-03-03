@@ -26,7 +26,7 @@ export class EventsComponent implements OnInit {
   }
 
   getEventList() {
-    this.eventSrv.index().subscribe(
+    this.eventSrv.available().subscribe(
       events => this.events= events,
       err => console.log(err)
 

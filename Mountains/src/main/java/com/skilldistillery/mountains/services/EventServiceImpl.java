@@ -48,6 +48,11 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getAll() {
 		return repo.findAll();
 	}
+	
+	@Override
+	public List<Event> getAllAvailableEvent() {
+		return repo.findByCompleted(false);
+	}
 
 	public Event addUserToEvent(int id, User user) {
 		Optional<Event> eventOpt = repo.findById(id);
@@ -74,7 +79,13 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public List<Event> findByuserName(String username) {
-		return repo.findByUsers_Username(username);
+		return repo.findByUsers_UsernameAndCompleted(username, false);
+
+	}
+	
+	@Override
+	public List<Event> findByHost(String username) {
+		return repo.findByHost_UsernameAndCompleted(username, false);
 
 	}
 
