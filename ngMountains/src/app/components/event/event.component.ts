@@ -30,7 +30,6 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventId = this.currentRoute.snapshot.paramMap.get("id");
-    console.log(this.mountainEvent)
     this.getEventDetails(this.eventId);
   }
 
@@ -148,8 +147,4 @@ export class EventComponent implements OnInit {
     this.authSrv.logout();
     this.router.navigateByUrl("home");
   }
-
-
-  
-
 }

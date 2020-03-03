@@ -1,3 +1,7 @@
+import { Message } from './../../models/message';
+import { Chatroom } from './../../models/chatroom';
+import { AuthService } from './../../services/auth.service';
+import { ChatroomService } from './../../services/chatroom.service';
 import { User } from './../../models/user';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import * as Stomp from 'stompjs';
@@ -12,12 +16,35 @@ export class ChatroomComponent implements OnInit, OnDestroy {
 
   stompClient;
 
+  room: Chatroom;
+
+  messages: Message[];
+
+  message = "";
+
+  userName = "";
+
   @Input() closeChatModal;
 
-  constructor() { }
+  constructor(private chatroomSrv: ChatroomService, private authSrv: AuthService) { }
 
   ngOnInit(): void {
+    this.userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.retrieveRoomMessages();
     this.connect();
+  }
+
+  retrieveRoomMessages = () => {
+      this.chatroomSrv.chatroom(1).subscribe(
+        data => {
+          console.log(data)
+          this.room = data;
+          this.messages = data.messages.sort((a, b) => {return a.id - b.id});
+        },
+        err => {
+          console.log(err)
+        }
+      )
   }
 
   connect() {
