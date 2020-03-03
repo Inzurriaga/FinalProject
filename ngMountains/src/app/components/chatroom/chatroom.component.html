@@ -1,12 +1,21 @@
 <section>
   <section class="chatroom">
     <span (click)="closeChatModal()" class="close-btn"></span>
-    <div>
-
+    <div class="message-container">
+      <div *ngFor="let message of messages">
+        <div class="message" [ngClass]="message.user.username == userName ? 'user'  : ''">
+          <div>
+            <img [src]="message.user.imageUrl" />
+            <p>{{ message.message }}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <input >
-      <button (click)= "sendMessage()">Send Message</button>
+    <div class="message-input">
+      <mat-form-field class="full-width">
+        <input type="text" name="message" matInput [(ngModel)]="message"/>
+      </mat-form-field>
     </div>
+    <button mat-button (click)= "sendMessage()">Send Message</button>
   </section>
 </section>

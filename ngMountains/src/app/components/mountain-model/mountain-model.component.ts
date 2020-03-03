@@ -31,7 +31,6 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.mountain)
     this.lat = this.mountain.latitude;
     this.long = this.mountain.longitude;
     this.long2tile(this.long, this.zoom);
@@ -42,11 +41,9 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
 
   long2tile = (lon,zoom) => {
     this.long = (Math.floor((lon+180)/360*Math.pow(2,zoom)));
-    console.log(this.long)
   }
   lat2tile = (lat,zoom) => {
     this.lat = (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom)));
-    console.log(this.lat)
   }
 
   retrieveRGB = () => {

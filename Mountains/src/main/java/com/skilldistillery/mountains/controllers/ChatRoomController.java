@@ -20,7 +20,6 @@ public class ChatRoomController {
 
 	@GetMapping("chatroom/{id}")
 	public ChatRoom retriveMessages(@PathVariable Integer id) {
-			
 		return srv.getChatRoom(id);
 	}
 

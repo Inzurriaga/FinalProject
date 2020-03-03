@@ -1,16 +1,16 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Message } from './message';
+
 
 export class Chatroom {
 
   //field
   id: number;
-  message: Message;
+  messages: Message[];
   eventId: number;
 
-  constructor(id?: number, message?: Message, eventId?: number) {
-
-    this.message= message;
+  constructor(id?: number, messages?: Message[], eventId?: number) {
     this.id= id;
+    this.messages = messages;
     this.eventId= eventId;
   }
 }
