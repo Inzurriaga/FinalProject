@@ -22,7 +22,8 @@ export class HostEventComponent implements OnInit {
                   private router: Router) { }
 
   ngOnInit(): void{
-    this.eventSrv.searchByHost("sonic").subscribe(
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.eventSrv.searchByHost(userName).subscribe(
       data=> {
         console.log(data)
         this.events = data

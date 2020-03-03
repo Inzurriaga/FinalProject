@@ -21,7 +21,8 @@ export class AttendingComponent implements OnInit {
                   private router: Router) { }
 
   ngOnInit(): void{
-    this.eventSrv.searchByUser("sonic").subscribe(
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    this.eventSrv.searchByUser(userName).subscribe(
       data=> {
         console.log(data)
         this.events = data
