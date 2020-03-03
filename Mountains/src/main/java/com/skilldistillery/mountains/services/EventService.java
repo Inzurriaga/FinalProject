@@ -17,4 +17,6 @@ public interface EventService {
 	public Event unjoinEvent(int id, User user);
 	public Boolean delete(int id);
 	public Event complete(int id);
+	public List<Event> getAllAvailableEvent();
+	public List<Event> findByHost(String username);
 }

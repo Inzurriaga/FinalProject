@@ -42,6 +42,11 @@ public class EventController {
 	public List<Event> getAllEvents() {
 		return srv.getAll();
 	}
+	
+	@GetMapping("event/available")
+	public List<Event> getAllEventsAvailable() {
+		return srv.getAllAvailableEvent();
+	}
 
 	@PostMapping("event/{id}")
 	public Event addUserToEvent(@RequestBody User user, @PathVariable Integer id) {
@@ -61,7 +66,6 @@ public class EventController {
 
 	@PostMapping("event")
 	public Event createEvent(Principal principal, @RequestBody Event event) {
-
 		String username = principal.getName();
 		User user=uSrv.getUserByUsername(username);
 		event.setHost(user);
@@ -69,8 +73,13 @@ public class EventController {
 	}
 
 	@GetMapping("event/user/{username}")
-	public List<Event> findSingleUserEvents(@PathVariable String username) {
+	public List<Event> findUserEvents(@PathVariable String username) {
 		return srv.findByuserName(username);
+	}
+	
+	@GetMapping("event/host/{username}")
+	public List<Event> findHostEvents(@PathVariable String username) {
+		return srv.findByHost(username);
 	}
 
 	@PutMapping("event/{id}")

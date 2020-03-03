@@ -14,7 +14,7 @@ import { MountainClass } from '../models/mountain-class';
 })
 export class EventService {
 
-  
+
 
 private url= "http://localhost:8090/api/event";
 
@@ -30,6 +30,18 @@ private url= "http://localhost:8090/api/event";
     };
 
     return this.http.get<any>(this.url, httpOptions).pipe()
+  }
+
+  available = () => {
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.get<any>(this.url + "/available", httpOptions).pipe()
   }
 
   show= (id: number)=> {
@@ -89,6 +101,17 @@ private url= "http://localhost:8090/api/event";
       })
     };
     return this.http.get<Event>(this.url+"/user/" + username,httpOptions).pipe()
+  }
+
+  searchByHost=(username:string)=>{
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Event>(this.url+"/host/" + username,httpOptions).pipe()
   }
 
   createEvent(event:MountainEvent){

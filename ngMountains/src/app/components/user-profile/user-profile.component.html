@@ -28,12 +28,21 @@
         <a mat-button [routerLink]="['/events']" >Events</a>
         <a mat-button [routerLink]="['/attending']">Attending</a>
         <a mat-button [routerLink]="['/createEvent']" >Create Event</a>
-        <a mat-button [routerLink]="['/host', 1]"  >Hosting</a>
+        <a mat-button [routerLink]="['/host']"  >Hosting</a>
       </nav>
       <section class="user-mountains">
-        <article>
+        <mat-grid-list cols="2">
 
-        </article>
+          <mat-grid-tile *ngFor= "let mountain of user.mountains">
+              <!-- cards -->
+              <mat-card class="mountain-events">
+                <mat-card-header>
+                  <mat-card-title>{{mountain.name}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]="createUrl(mountain)" alt="Photo of mountain">
+              </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
       </section>
   </main>
   <app-update-user [updateUser]="updateUser" [open]="editModal" [closeEditUserModal]="closeEditUserModal"></app-update-user>

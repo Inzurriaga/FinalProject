@@ -1,3 +1,4 @@
+import { HostEventComponent } from './components/host-event/host-event.component';
 import { EventComponent } from './components/event/event.component';
 import { EventsComponent } from './components/events/events.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'createEvent',component: CreateEventComponent},
   { path: 'events/:id', component: EventComponent},
   { path: 'attending', component: AttendingComponent},
+  { path: 'host', component: HostEventComponent}
 ];
 
 @NgModule({
