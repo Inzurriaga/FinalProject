@@ -49,6 +49,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event createEvent(Event event) {
+		mRepo.saveAndFlush(event.getMountain());
 		event = repo.saveAndFlush(event);
 		return event;
 	}
@@ -90,8 +91,8 @@ public class EventServiceImpl implements EventService {
 		Optional<Event> eventOpt = repo.findById(id);
 		if (eventOpt.isPresent()) {	
 			Event event = eventOpt.get();
-			mRepo.delete(event.getMountain());
 			repo.delete(event);
+			mRepo.delete(event.getMountain());
 			return true;
 	}
 		return false;

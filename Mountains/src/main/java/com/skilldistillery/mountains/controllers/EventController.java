@@ -98,4 +98,8 @@ public class EventController {
 		}
 		else res.setStatus(400);
 	}
+	@PutMapping("event/complete")
+	public Event completeEvent(@RequestBody Event event,HttpServletResponse res) {
+		return srv.complete(event.getId());
+	}
 }

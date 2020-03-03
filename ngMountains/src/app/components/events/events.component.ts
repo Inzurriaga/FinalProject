@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-events',
@@ -13,9 +14,12 @@ export class EventsComponent implements OnInit {
   events= [];
   key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
 
-  constructor(private eventSrv: EventService, private authSrv: AuthService, private router: Router) {
-
-   }
+  constructor(
+    private eventSrv: EventService,
+    private authSrv: AuthService,
+    private router: Router,
+    private userSrv: UserService,
+    ) {}
 
   ngOnInit(): void {
     this.getEventList();
@@ -28,6 +32,8 @@ export class EventsComponent implements OnInit {
 
     )
   }
+
+
 
   createUrl(event: MountainEvent) {
     let long = (Math.floor((event.mountain.longitude+180)/360*Math.pow(2,10)));

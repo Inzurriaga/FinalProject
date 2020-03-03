@@ -38,6 +38,7 @@ public class Mountain {
 	private MountainClass mountainClass;
 
 
+	@JsonIgnore
 	@OneToOne(mappedBy="mountain")
 	private Event event;
 	
@@ -46,7 +47,7 @@ public class Mountain {
 	@JoinColumn(name="state_id")
 	private State state;
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy="mountains")
 	private List<User> users;
 	

@@ -112,5 +112,16 @@ private url= "http://localhost:8090/api/event";
     };
     return this.http.delete(this.url+"/"+id, httpOptions).pipe();
   }
+
+  completeEvent(event: MountainEvent){
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put(this.url+"/complete", event, httpOptions).pipe();
+  }
  }
 
