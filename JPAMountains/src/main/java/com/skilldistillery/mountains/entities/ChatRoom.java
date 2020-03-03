@@ -2,11 +2,17 @@ package com.skilldistillery.mountains.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class ChatRoom {
@@ -15,7 +21,10 @@ public class ChatRoom {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private int eventId;
+	@OneToOne
+	@JoinColumn(name = "event_id")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Event event;
 
 	@OneToMany(mappedBy = "chatroom")
 	private List<Message> messages;
@@ -28,12 +37,12 @@ public class ChatRoom {
 		this.id = id;
 	}
 
-	public int getEventId() {
-		return eventId;
+	public Event getEvent() {
+		return event;
 	}
 
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public List<Message> getMessages() {
@@ -46,7 +55,7 @@ public class ChatRoom {
 
 	@Override
 	public String toString() {
-		return "ChatRoom [id=" + id + ", eventId=" + eventId + ", messages=" + messages + "]";
+		return "ChatRoom [id=" + id + ", event=" + event + ", messages=" + messages + "]";
 	}
 
 }

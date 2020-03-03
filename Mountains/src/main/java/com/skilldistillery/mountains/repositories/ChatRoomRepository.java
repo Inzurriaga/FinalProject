@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.skilldistillery.mountains.entities.ChatRoom;
 
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Integer> {
-
+	public ChatRoom findByEvent_Id(Integer id);
 }

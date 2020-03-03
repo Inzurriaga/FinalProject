@@ -17,7 +17,6 @@ public class MessageController {
 	@MessageMapping("/message")
 	@SendTo("/server/message")
 	public Message createMessage(Message message) throws Exception {
-		System.out.println(message);
 		return svc.createMessage(message);
 	}
 	

@@ -66,5 +66,5 @@
     </article>
   </section>
   <app-edit-event [mountainEvent]="updateEvent" [open]="editModal" [closeEditEventModal]="closeEditUserModal"></app-edit-event>
-  <app-chatroom *ngIf="chatModal" [closeChatModal]="closeChatModal"></app-chatroom>
+  <app-chatroom *ngIf="chatModal" [closeChatModal]="closeChatModal" [eventId]="mountainEvent.id"></app-chatroom>
 </section>

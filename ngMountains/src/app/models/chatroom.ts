@@ -8,7 +8,7 @@ export class Chatroom {
   messages: Message[];
   eventId: number;
 
-  constructor(id?: number, messages?: Message[], eventId?: number) {
+  constructor(id: number = 0, messages?: Message[], eventId?: number) {
     this.id= id;
     this.messages = messages;
     this.eventId= eventId;

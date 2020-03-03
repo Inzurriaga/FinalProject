@@ -1,6 +1,7 @@
 package com.skilldistillery.mountains.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -67,19 +68,6 @@ public class User {
 	 @JsonIgnore
 	@OneToMany(mappedBy = "message")
 	private List<Message> messages;
-	 
-	 	
-		
-	
-	
-
-	public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
-	}
 
 	public User() {
 		super();
@@ -102,6 +90,25 @@ public class User {
 		this.mountains = mountains;
 		this.events = events;
 		this.hostEvents = hostEvents;
+		this.messages = messages;
+	}
+	
+	public void addMountain(Mountain mountain) {
+		if(this.mountains == null) {
+			this.mountains = new ArrayList<Mountain>();
+		}
+		
+		if(!this.mountains.contains(mountain)) {
+			this.mountains.add(mountain);
+			mountain.addUser(this);
+		}
+	}
+	
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 

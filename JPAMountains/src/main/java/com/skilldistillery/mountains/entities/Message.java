@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Message {
@@ -20,7 +21,7 @@ public class Message {
 
 	@ManyToOne
 	@JoinColumn(name = "chat_room_id")
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private ChatRoom chatroom;
 	
 	@ManyToOne
