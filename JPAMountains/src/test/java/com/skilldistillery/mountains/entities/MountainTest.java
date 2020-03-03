@@ -43,13 +43,9 @@ class MountainTest {
 		
 	}
 	
-	@Test
+	
 
-	void test2() {
-		Mountain mt = em.find(Mountain.class, 1);
-		assertEquals(4, mt.getEvents().size());
-		
-	}
+	
 	@Test
 	void test3() {
 		Mountain mt = em.find(Mountain.class, 1);

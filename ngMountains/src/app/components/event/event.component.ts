@@ -20,7 +20,13 @@ export class EventComponent implements OnInit {
   editModal = false;
   chatModal = false;
 
-  constructor(private currentRoute: ActivatedRoute, private eventSrv: EventService, private userSrv: UserService, private authSrv: AuthService, private router: Router) { }
+  constructor(
+    private currentRoute: ActivatedRoute,
+    private eventSrv: EventService,
+    private userSrv: UserService,
+    private authSrv: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.eventId = this.currentRoute.snapshot.paramMap.get("id");
@@ -29,60 +35,93 @@ export class EventComponent implements OnInit {
 
   getEventDetails(id) {
     this.eventSrv.show(id).subscribe(
-      data=> {
+      data => {
+        console.log(data)
         this.mountainEvent = data
         this.MountainEventLoaded = true;
       },
-      err=> console.log(err)
+      err => console.log(err)
     )
   }
 
   joinEvent() {
-  let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-  this.userSrv.show(userName).subscribe(
-    data => {
-      this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
-        data => {
-          this.getEventDetails(this.eventId)
-        },
-        err => console.log(err)
-      )
-    },
-    err => console.log(err)
-  )
-  }
-
-  unjoinEvent(){
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.userSrv.show(userName).subscribe(
-      data=>{
-        this.eventSrv.deleteUser(this.mountainEvent.id,data).subscribe(
-          data=> {
+      data => {
+        this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
+          data => {
+            console.log(data)
             this.getEventDetails(this.eventId)
           },
-          err=>console.log(err)
+          err => console.log(err)
         )
       },
-      err=>console.log(err)
+      err => console.log(err)
     )
   }
 
-  joined(){
+  unjoinEvent() {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-    let joined = this.mountainEvent.users.reduce((acc, user) => {
-      if(user.username === userName) {
-        acc = true;
-        return acc;
+    this.userSrv.show(userName).subscribe(
+      data => {
+        this.eventSrv.deleteUser(this.mountainEvent.id, data).subscribe(
+          data => {
+            console.log(data)
+            this.getEventDetails(this.eventId)
+          },
+          err => console.log(err)
+        )
+      },
+      err => console.log(err)
+    )
+  }
+
+  deleteEvent() {
+    console.log("delte me")
+    this.eventSrv.deleteEvent(this.eventId).subscribe(
+      data => {
+        console.log(data)
+        this.router.navigateByUrl("user");
+      },
+      err => console.log(err)
+    );
+  }
+
+  completeEvent(){
+    this.eventSrv.completeEvent(this.mountainEvent).subscribe(
+      data =>{
+        this.router.navigateByUrl("user")
+      },
+      err => console.log(err)
+    )
+  }
+
+  joined() {
+    let userName = atob(this.authSrv.getCredentials()).split(":")[0];
+    // let joined = this.mountainEvent.users.reduce((acc, user) => {
+    //   if(user.username === userName) {
+    //     acc = true;
+    //     console.log('joined():  ' + acc);
+    //     return acc;
+    //   }
+    // }, false);
+    let joined = false;
+    for (let user of this.mountainEvent.users) {
+      if ( user.username === userName) {
+        joined = true;
+        break;
       }
-    }, false)
+    }
+    // console.log('joined():  ' + joined);
     return joined;
   }
 
   host() {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
-    if(this.mountainEvent.host.username = userName) {
+    if(this.mountainEvent.host.username === userName) {
       return true
     }
+    // console.log('host(): ' + false);
     return false;
   }
 
@@ -108,5 +147,4 @@ export class EventComponent implements OnInit {
     this.authSrv.logout();
     this.router.navigateByUrl("home");
   }
-
 }

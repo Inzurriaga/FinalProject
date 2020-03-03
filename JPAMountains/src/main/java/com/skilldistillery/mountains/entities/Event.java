@@ -1,11 +1,9 @@
 package com.skilldistillery.mountains.entities;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import javax.persistence.OneToOne;
 
 @Entity
 public class Event {
-	//Field
+	// Field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -32,28 +28,24 @@ public class Event {
 
 	@Column(name = "event_date")
 	private LocalDate eventDate;
-	
+
 	@ManyToOne
-	@JoinColumn(name="host_id")
+	@JoinColumn(name = "host_id")
 	private User host;
-	
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="mountain_id")
+
+	@OneToOne
+	@JoinColumn(name = "mountain_id")
 	private Mountain mountain;
-	
-	
+
 	@ManyToMany
 	@JoinTable(name = "user_event", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
-	//Constructor
-	
-	
+	// Constructor
+
 	public Event() {
 		super();
 	}
-	
-	
-	
+
 	public Event(int id, String description, Boolean completed, LocalDate eventDate, User host, Mountain mountain,
 			List<User> users) {
 		super();
@@ -66,9 +58,7 @@ public class Event {
 		this.users = users;
 	}
 
-
-
-	//Method
+	// Method
 
 	public Mountain getMountain() {
 		return mountain;
@@ -77,7 +67,6 @@ public class Event {
 	public void setMountain(Mountain mountain) {
 		this.mountain = mountain;
 	}
-
 
 	public void addUser(User user) {
 		if (users == null) {
@@ -126,13 +115,11 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", description=" + description + ", completed=" + completed + ", eventDate="
 				+ eventDate + "]";
 	}
-
 
 	public User getHost() {
 		return host;
