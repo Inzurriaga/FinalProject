@@ -1,7 +1,7 @@
 <section>
   <section class="chatroom">
     <span (click)="closeChatModal()" class="close-btn"></span>
-    <div class="message-container">
+    <div class="message-container" #scroll>
       <div *ngFor="let message of messages">
         <div class="message" [ngClass]="message.user.username == userName ? 'user'  : ''">
           <div>

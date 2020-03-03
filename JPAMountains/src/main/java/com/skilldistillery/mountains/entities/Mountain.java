@@ -2,6 +2,7 @@ package com.skilldistillery.mountains.entities;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
 @Entity
@@ -47,7 +50,7 @@ public class Mountain {
 	@JoinColumn(name="state_id")
 	private State state;
 	
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany(mappedBy="mountains")
 	private List<User> users;
 	
@@ -69,6 +72,17 @@ public class Mountain {
 		this.mountainClass = mountainClass;
 		this.event = event;
 		this.state = state;
+	}
+	
+	public void addUser(User user) {
+		if(this.users == null) {
+			this.users = new ArrayList<User>();
+		}
+		
+		if(!this.users.contains(user)) {
+			this.users.add(user);
+			user.addMountain(this);
+		}
 	}
 
 

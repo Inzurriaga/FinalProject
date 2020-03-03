@@ -6,11 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.mountains.entities.ChatRoom;
 import com.skilldistillery.mountains.entities.Event;
+import com.skilldistillery.mountains.entities.Message;
 import com.skilldistillery.mountains.entities.Mountain;
 import com.skilldistillery.mountains.entities.User;
+import com.skilldistillery.mountains.repositories.ChatRoomRepository;
 import com.skilldistillery.mountains.repositories.EventRepository;
+import com.skilldistillery.mountains.repositories.MessageRepository;
 import com.skilldistillery.mountains.repositories.MountainRepository;
+import com.skilldistillery.mountains.repositories.UserRepository;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -20,6 +25,15 @@ public class EventServiceImpl implements EventService {
 	
 	@Autowired
 	private MountainRepository mRepo;
+	
+	@Autowired
+	private ChatRoomRepository chatRepo;
+	
+	@Autowired
+	private MessageRepository mesRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public Event getEventById(int id) {
@@ -49,8 +63,12 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event createEvent(Event event) {
-		mRepo.saveAndFlush(event.getMountain());
-		event = repo.saveAndFlush(event);
+		mRepo.save(event.getMountain());
+		repo.save(event);
+		System.out.println(event);
+		ChatRoom chat = new ChatRoom();
+		chat.setEvent(event);
+		chatRepo.saveAndFlush(chat);
 		return event;
 	}
 
@@ -91,6 +109,11 @@ public class EventServiceImpl implements EventService {
 		Optional<Event> eventOpt = repo.findById(id);
 		if (eventOpt.isPresent()) {	
 			Event event = eventOpt.get();
+			ChatRoom chat = chatRepo.findByEvent_Id(event.getId());
+			for(Message message : chat.getMessages()) {
+				mesRepo.delete(message);
+			}
+			chatRepo.delete(chat);
 			repo.delete(event);
 			mRepo.delete(event.getMountain());
 			return true;
@@ -107,8 +130,11 @@ public class EventServiceImpl implements EventService {
 			event.setCompleted(true);
 			List<User> users = event.getUsers();
 			users.add(event.getHost());
-			Mountain mountain = event.getMountain();
-			mountain.setUsers(users);
+			for(User user : users) {
+				user.addMountain(event.getMountain());
+				userRepo.saveAndFlush(user);
+			}
+			repo.save(event);
 		}
 		return event;
 	}

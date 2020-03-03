@@ -67,3 +67,50 @@ section {
     }
   }
 }
+
+.message-container {
+  padding: 0 10px 0 10px;
+  overflow: scroll;
+  height: 80%;
+  width: 90%;
+}
+
+.message {
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+}
+
+.user {
+  display: flex;
+  justify-content: flex-end;
+  div {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.message-input {
+  width: 100%;
+  padding: 0 10px 20px 10px;
+  box-sizing: border-box;
+}
+
+.full-width {
+  width: 100%;
+  font-size: 2em;
+
+}
+
+button {
+  border-radius: 5px;
+    position: absolute;
+    color: #ffffff;
+    font-size: 2em;
+    width: 60%;
+    padding: 10px;
+    bottom: -20px;
+    background-color: #7BC289;
+}
