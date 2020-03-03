@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mountains.entities.Event;
+import com.skilldistillery.mountains.entities.Mountain;
 import com.skilldistillery.mountains.entities.User;
 import com.skilldistillery.mountains.repositories.EventRepository;
+import com.skilldistillery.mountains.repositories.MountainRepository;
 
 @Service
 public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventRepository repo;
+	
+	@Autowired
+	private MountainRepository mRepo;
 
 	@Override
 	public Event getEventById(int id) {
@@ -44,6 +49,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event createEvent(Event event) {
+		mRepo.saveAndFlush(event.getMountain());
 		event = repo.saveAndFlush(event);
 		return event;
 	}
@@ -79,4 +85,33 @@ public class EventServiceImpl implements EventService {
 		else	return null;
 
 	}
+
+	@Override
+	public Boolean delete(int id) {
+		Optional<Event> eventOpt = repo.findById(id);
+		if (eventOpt.isPresent()) {	
+			Event event = eventOpt.get();
+			repo.delete(event);
+			mRepo.delete(event.getMountain());
+			return true;
+	}
+		return false;
+}
+
+	@Override
+	public Event complete(int id) {
+		Optional<Event> eventOpt = repo.findById(id);
+		Event event=new Event();
+		if(eventOpt.isPresent()) {
+			event=eventOpt.get();
+			event.setCompleted(true);
+			List<User> users = event.getUsers();
+			users.add(event.getHost());
+			Mountain mountain = event.getMountain();
+			mountain.setUsers(users);
+		}
+		return event;
+	}
+	
+
 }

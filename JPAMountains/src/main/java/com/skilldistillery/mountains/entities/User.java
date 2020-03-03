@@ -67,6 +67,9 @@ public class User {
 	 @JsonIgnore
 	@OneToMany(mappedBy = "message")
 	private List<Message> messages;
+	 
+	 	
+		
 	
 	
 

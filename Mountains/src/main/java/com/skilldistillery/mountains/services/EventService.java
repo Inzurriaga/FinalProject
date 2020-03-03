@@ -15,4 +15,6 @@ public interface EventService {
 	public List<Event> findByuserName(String username);
 	Event updateEvent(int id, Event event);
 	public Event unjoinEvent(int id, User user);
+	public Boolean delete(int id);
+	public Event complete(int id);
 }

@@ -29,4 +29,6 @@ public class MountainClassServiceImpl implements MountainClassService {
 		return repo.findAll();
 	}
 
+	
+
 }
