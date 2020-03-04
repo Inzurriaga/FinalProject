@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   password: string;
 
+  incorrect = false;
+
   constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,10 +23,12 @@ export class LoginComponent implements OnInit {
   login(){
     this.authSrv.login(this.username, this.password).subscribe(
       data => {
-        console.log(data);
         this.router.navigateByUrl("user");
       },
-      error=>console.log(error)
+      error=>{
+        console.log(error)
+        this.incorrect = true;
+      }
     );
   }
 

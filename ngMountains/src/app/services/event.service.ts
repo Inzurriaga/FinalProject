@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { MountainEvent } from 'src/app/models/mountain-event';
 import { User } from './../models/user';
 import { AuthService } from './auth.service';
@@ -16,7 +17,7 @@ export class EventService {
 
 
 
-private url= "http://localhost:8090/api/event";
+private url=  environment.baseUrl + "/api/event";
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 

@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,7 +10,7 @@ import { Observable, throwError } from 'rxjs';
 export class AuthService {
 
 
-  private baseUrl='http://localhost:8090/';
+  private baseUrl= environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class AuthService {
     };
 
     return this.http
-      .get(this.baseUrl + 'authenticate', httpOptions)
+      .get(this.baseUrl + '/authenticate', httpOptions)
       .pipe(
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   register(user) {
-    return this.http.post(this.baseUrl + 'register', user)
+    return this.http.post(this.baseUrl + '/register', user)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -47,7 +48,7 @@ export class AuthService {
   }
 
   availability(user) {
-    return this.http.post(this.baseUrl + 'availability', user).pipe(
+    return this.http.post(this.baseUrl + '/availability', user).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('AuthService.availability(): error registering user.');

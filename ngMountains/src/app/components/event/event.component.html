@@ -2,7 +2,7 @@
   <header>
     <div>
       <a [routerLink]="['/home']">
-        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+        <img src="assets/images/logo.png" alt="logo" class="logo"/>
       </a>
       <a mat-button [routerLink]="['/user']" >Home</a>
       <a mat-button [routerLink]="['/events']" >Events</a>
@@ -36,6 +36,7 @@
   <section class="event-info">
     <article class="event-description">
       <h2>Description</h2>
+      <h3>{{ mountainEvent.eventDate | date}}</h3>
       <p>
 
         {{ mountainEvent.description }}
@@ -60,7 +61,9 @@
       <div class="members">
         <h2>Members ({{ mountainEvent.users.length }})</h2>
         <div>
-          <img *ngFor="let user of mountainEvent.users" [src]="user.imageUrl">
+          <a *ngFor="let user of mountainEvent.users"  [routerLink]= "['/user', user.username]">
+            <img *ngFor="let user of mountainEvent.users" [src]="user.imageUrl">
+          </a>
         </div>
       </div>
     </article>

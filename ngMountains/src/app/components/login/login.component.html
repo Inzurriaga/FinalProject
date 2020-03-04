@@ -1,7 +1,7 @@
 <section id="sign-up">
   <header>
     <a [routerLink]="['/home']">
-      <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+      <img src="assets/images/logo.png" alt="logo" class="logo"/>
     </a>
   </header>
   <section class="main-section">
@@ -19,6 +19,9 @@
                   <mat-label>Password</mat-label>
                   <input type="password" name="password" matInput placeholder="Mount123" [(ngModel)]="password"/>
                 </mat-form-field>
+                <label *ngIf="incorrect">
+                  Incorrect <strong>Username</strong> or <strong>Password</strong>
+                </label>
               </div>
           </article>
           <button mat-button (click)="login()">login</button>

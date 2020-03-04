@@ -32,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HostEventComponent,
     AttendingComponent,
     ChatroomComponent,
-    MountainModelComponent
+    MountainModelComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

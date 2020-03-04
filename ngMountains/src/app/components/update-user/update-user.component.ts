@@ -19,7 +19,7 @@ export class UpdateUserComponent implements OnInit {
 
   states: State[];
 
-  key = "";
+  key = "AZi5SvxekTvSYJ6qKdNtAz";
 
   constructor(private stateSrv: StateService, private userSrv: UserService) { }
 

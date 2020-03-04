@@ -4,6 +4,7 @@
 
 header {
   display: flex;
+  z-index: 100;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -18,16 +19,20 @@ header {
 }
 
 .user-info {
+  position: relative;
   box-sizing: border-box;
   height: 400px;
   width: 100%;
   background-color: #DEF8F7;
   display: grid;
   grid-template-columns: 400px 2fr;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   grid-template-areas:
     "image text"
   ;
   .image-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +52,8 @@ header {
     }
   }
   .user-info-text {
+    position: relative;
+    z-index: 1;
     padding: 10px;
     height: 100%;
     display: grid;
@@ -84,6 +91,8 @@ header {
 }
 
 nav {
+  z-index: 100;
+  background-color: #ffffff;
   padding: 20px 0 20px 0;
   top: 0px;
   position: sticky;
@@ -98,4 +107,46 @@ nav {
 
 .user-mountains {
   padding: 0px 10% 0 10%;
+}
+
+
+.card {
+  position: relative;
+  height: 300px;
+  width: 80%;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  .bg-image {
+    box-shadow: inset 2px 2px 200px #000000;
+    z-index: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .content {
+    z-index: 1;
+    position: relative;
+  }
+  .text {
+    color: #ffffff;
+    font-size: 4em;
+    line-height: normal;
+  }
+  .text2 {
+    color: #ffffff;
+    font-size: 3em;
+    line-height: normal;
+  }
+}
+svg {
+  z-index: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }

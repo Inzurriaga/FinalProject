@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { EventService } from 'src/app/services/event.service';
@@ -10,7 +11,7 @@ import { MountainEvent } from 'src/app/models/mountain-event';
   styleUrls: ['./attending.component.scss']
 })
 export class AttendingComponent implements OnInit {
-  key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
+  key = environment.mapbox;
 
   events;
 

@@ -2,7 +2,7 @@
   <main>
       <header>
         <a [routerLink]="['/home']">
-          <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+          <img src="assets/images/logo.png" alt="logo" class="logo"/>
         </a>
         <div class="sign-out">
           <button mat-button (click)="openEditUserModal()">Setting</button>
@@ -23,6 +23,22 @@
               <p>{{ user.description }}</p>
             </div>
           </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1333.3333 317.33334">
+              <path
+                id="path1011"
+                d="m -1.6882078,190.76748 119.8627578,-37.14057 48.95802,25.32312 55.71086,-59.08727 91.16323,-11.81746 118.17454,-81.033975 86.0986,136.744835 62.46369,-37.14057 82.72219,81.03397 101.29247,-109.733506 57.39906,40.516986 151.93871,-82.722182 82.72218,50.646232 123.2392,43.89341 153.6269,28.69953 -0.3509,138.38331 H 0 Z"
+                style="fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+              <path
+                id="path1013"
+                d="m -5.0646235,231.28447 75.9693525,-21.9467 -32.075949,23.63491 141.80946,-25.32312 140.12125,50.64624 -109.73351,-52.33445 57.39906,-54.02265 11.81746,16.88208 42.2052,-27.01132 5.06462,16.88208 64.1519,-48.95803 -1.68821,21.9467 62.46369,-74.281144 65.8401,106.357094 70.90473,35.45236 18.03058,-46.73011 56.25057,55.17115 37.14057,50.64624 -30.38774,11.81745 133.36842,-28.69953 43.8934,-67.52831 55.71086,-25.32312 -15.19387,27.01132 122.63038,-97.445429 46.1904,28.228909 123.2392,43.89341 153.6269,28.69953 -0.3509,138.38331 H 0 Z"
+                style="fill:#41d17a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              <path
+                id="path1015"
+                d="m 764.75815,97.916054 57.39906,40.516986 -47.26982,37.14057 z"
+                style="fill:#41d17a;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+          </svg>
       </section>
       <nav>
         <a mat-button [routerLink]="['/events']" >Events</a>
@@ -31,15 +47,17 @@
         <a mat-button [routerLink]="['/host']"  >Hosting</a>
       </nav>
       <section class="user-mountains">
-        <mat-grid-list cols="2">
+        <mat-grid-list cols="2" rowHeight="500px">
 
           <mat-grid-tile *ngFor= "let mountain of user.mountains">
               <!-- cards -->
-              <mat-card class="mountain-events">
-                <mat-card-header>
-                  <mat-card-title>{{mountain.name}}</mat-card-title>
+              <mat-card class="mountain-events" class="card">
+                <div class="bg-image" [style]="'background-image: url(' + createUrl(mountain) + ');'"></div>
+                <mat-card-header class="content">
+                  <mat-card-title class="text">{{mountain.name}}</mat-card-title>
+                  <mat-card-title class="text2">Lat: {{mountain.latitude}}</mat-card-title>
+                  <mat-card-title class="text2">Long: {{mountain.longitude}}</mat-card-title>
                 </mat-card-header>
-                <img mat-card-image [src]="createUrl(mountain)" alt="Photo of mountain">
               </mat-card>
           </mat-grid-tile>
         </mat-grid-list>

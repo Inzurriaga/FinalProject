@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MountainService {
-  private url= "http://localhost:8090/api/mountain"
+  private url= environment + "/api/mountain"
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 

@@ -1,8 +1,10 @@
-<section id="home">
+<section id="home" (mousemove)="mouseEvent($event)">
   <header>
+    <div>
       <a [routerLink]="['/home']">
-        <img src="../../../assets/logo.png" alt="logo" class="logo"/>
+        <img src="assets/images/logo.png" alt="logo" class="logo"/>
       </a>
+    </div>
     <div class="sign-in">
       <a [routerLink]="['/login']">Login</a>
       <a [routerLink]="['/signup']">Sign Up</a>
@@ -10,13 +12,12 @@
   </header>
   <main>
     <section class="welcome">
-
-    </section>
-    <section>
-
+      <div>
+        <h1>Adventure is Calling</h1>
+        <p>join groups to climb or hike the tallest peaks</p>
+      </div>
+      <img class="image-one" src="assets/images/transparentmountainlayer1.png" [style]="layerOne" />
+      <img class="image-two" src="assets/images/transparentmountainlayer2.png" [style]="LayerTwo"/>
     </section>
   </main>
-  <footer>
-
-  </footer>
 </section>
