@@ -286,17 +286,6 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (1, 'gabe@localhost.com', 'badguy', 'gabe', 1, 'hello', 'hello', 'standard', 1, '2000-01-02 10:00:00.000000');
-INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (2, 'sonic@sonic.com', 'im a fast boy', 'https://vignette.wikia.nocookie.net/sonic/images/2/2d/TSR_Sonic.png/revision/latest/top-crop/width/360/height/360?cb=20191020043348', 1, 'sonic', '$2a$10$3RlwbJNyQtN3ysz3IKmBOOzOGEYHFBuqf5t.nPm3.K54jXMPpPmP6', 'standard', 1, '2000-01-02 10:00:00.000000');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `mountain_class`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -305,73 +294,6 @@ INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (1, 'A',
 INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (2, 'B', 'Up to 12 miles round trip or 2500’ elevation gain (or both).  Moderate to strenuous physical activity.  Some prior experience is beneficial.');
 INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (3, 'C', 'Up to 15 miles round trip or 3500’ elevation gain (or both).  Very strenuous physical activity.   Prior experience and training is beneficial.');
 INSERT INTO `mountain_class` (`id`, `class_type`, `description`) VALUES (4, 'D', 'Over 15 miles round trip or 3500’ elevation gain (or both).  Very strenuous physical activity often including exposure or requiring the use of technical skills and equipment.  Knowledge based on prior experience and training is highly beneficial.');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `mountain`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (1, 'pikes peak', -105.9472356, 39.113014, 14115, 1, 1);
-INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (2, 'Byers peak', -105.9472368, 39.8644308, 12804, 1, 1);
-INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (3, 'Stanley Mountain', -105.8227868, 39.7858202, 13300, 1, 1);
-INSERT INTO `mountain` (`id`, `name`, `longitude`, `latitude`, `height`, `state_id`, `mountain_class_id`) VALUES (4, 'Parry Peaks', -105.8380427, 39.8380427, 13391, 1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `event`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (1, 'going on a climb', '2020-01-02 00:00:01.000000', 0, 1, 1);
-INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (2, 'Intermediate hike, 7.7 miles', '2020-04-05 10:08:00.000000', 0, 1, 2);
-INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (3, 'Winter hiking event', '2020-03-04 08:00:00.000000', 0, 1, 3);
-INSERT INTO `event` (`id`, `description`, `event_date`, `completed`, `host_id`, `mountain_id`) VALUES (4, 'Hiking with dogs', '2020-03-01 09:00:00.000000', 0, 1, 4);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `chat_room`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `chat_room` (`id`, `event_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `message`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (1, 1, 2, 'hey dude wheres the mountain @??');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (2, 1, 1, 'I thought you knew where it was...?');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (3, 1, 2, 'far out!');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (4, 1, 1, 'amethyst fluff');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (5, 1, 2, 'lots of things to be said');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (6, 1, 1, 'wherever you go, there you are');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (7, 1, 2, 'cannibus scuba team is here');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (8, 1, 1, 'isnt it too cold to scuba dive?');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (9, 1, 2, 'not for gabe,  hes wearing shorts to the ice dive');
-INSERT INTO `message` (`id`, `chat_room_id`, `user_id`, `message`) VALUES (10, 1, 1, 'lalalala');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user_event`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mountaindb`;
-INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (1, 2);
-INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (2, 2);
-INSERT INTO `user_event` (`event_id`, `user_id`) VALUES (3, 2);
 
 COMMIT;
 
