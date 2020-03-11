@@ -3,7 +3,7 @@ import { User } from './../../models/user';
 import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mountain } from 'src/app/models/mountain';
 
 @Component({
@@ -35,7 +35,6 @@ export class UserProfileComponent implements OnInit {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.userSrv.show(userName).subscribe(
       data => {
-        console.log(data)
         this.user = data
       },
       err => console.log(err)

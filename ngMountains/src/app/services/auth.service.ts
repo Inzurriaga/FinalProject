@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(username, password) {
+  login(username, password): any {
     const credentials = this.generateBasicAuthCredentials(username, password);
     const httpOptions = {
       headers: new HttpHeaders({

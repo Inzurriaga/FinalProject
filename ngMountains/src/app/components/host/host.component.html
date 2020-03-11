@@ -1,0 +1,40 @@
+<section>
+  <header>
+    <div>
+      <a [routerLink]="['/admin']">
+        <img src="assets/images/logo.png" alt="logo" class="logo"/>
+      </a>
+    </div>
+    <div class="sign-out">
+      <button mat-button (click)="logOut()">Logout</button>
+    </div>
+  </header>
+  <section>
+    <mat-tab-group>
+      <mat-tab label="Users" class="label">
+        <section class="user">
+          <article *ngFor="let user of users" [ngClass]="user.enabled ? 'active': 'disable' ">
+            <a [routerLink]= "['/user', user.username]">
+              <img [src]="user.imageUrl">
+            </a>
+              <p>{{ user.username }}</p>
+              <button mat-button *ngIf="user.enabled" (click)="disableUser(user.id)">disable</button>
+              <button mat-button *ngIf="!user.enabled" (click)="enableUser(user.id)">enable</button>
+          </article>
+        </section>
+      </mat-tab>
+      <mat-tab label="Events" class="label">
+        <section class="event">
+          <article *ngFor="let event of events">
+            <a [routerLink]= "['/events', event.id]">
+            <p>{{ event.mountain.name }}</p>
+            </a>
+            <img [src]="event.host.imageUrl">
+            <p>{{ event.host.username }}</p>
+            <p>{{ event.users.length }}</p>
+          </article>
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+</section>

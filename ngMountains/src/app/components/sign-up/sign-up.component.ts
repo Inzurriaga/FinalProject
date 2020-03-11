@@ -29,14 +29,9 @@ export class SignUpComponent implements OnInit {
     this.getStates();
   }
 
-  image = (e) => {
-    console.log(e)
-  }
-
   getStates = () => {
     this.stateSrv.index().subscribe(
       data => {
-        console.log(data)
         this.states = data;
       },
       err => console.log(err)
@@ -78,7 +73,6 @@ export class SignUpComponent implements OnInit {
     console.log(this.user)
     this.authSrv.register(this.user).subscribe(
       data => {
-        console.log(data);
         this.login();
       },
       err => console.log(err)
@@ -88,7 +82,6 @@ export class SignUpComponent implements OnInit {
   login = () => {
     this.authSrv.login(this.user.username, this.user.password).subscribe(
       data => {
-        console.log(data);
         this.router.navigateByUrl("user");
       },
       error=>console.log(error)

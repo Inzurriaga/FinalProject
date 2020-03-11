@@ -23,5 +23,17 @@ body {
   overflow: hidden !important;
 }
 
+.mat-tab-label-content {
+  font-size: 2em;
+}
+
+.mat-tab-labels {
+  height: 75px;
+}
+
+.mat-tab-label {
+  height: 100% !important;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -33,6 +33,8 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { UserComponent } from './components/user/user.component';
+import { HostComponent } from './components/host/host.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { UserComponent } from './components/user/user.component';
     AttendingComponent,
     ChatroomComponent,
     MountainModelComponent,
-    UserComponent
+    UserComponent,
+    HostComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { UserComponent } from './components/user/user.component';
     MatNativeDateModule,
     MatCardModule,
     MatGridListModule,
+    MatTabsModule,
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q'
     }

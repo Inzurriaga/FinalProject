@@ -26,7 +26,6 @@ export class UserComponent implements OnInit {
   getUserDetails = (userName: string) => {
     this.userSrv.show(userName).subscribe(
       data => {
-        console.log(data)
         this.user = data
       },
       err => console.log(err)

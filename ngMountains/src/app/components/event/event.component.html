@@ -62,7 +62,7 @@
         <h2>Members ({{ mountainEvent.users.length }})</h2>
         <div>
           <a *ngFor="let user of mountainEvent.users"  [routerLink]= "['/user', user.username]">
-            <img *ngFor="let user of mountainEvent.users" [src]="user.imageUrl">
+            <img [src]="user.imageUrl">
           </a>
         </div>
       </div>

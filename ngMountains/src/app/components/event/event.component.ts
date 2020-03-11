@@ -36,7 +36,6 @@ export class EventComponent implements OnInit {
   getEventDetails(id) {
     this.eventSrv.show(id).subscribe(
       data => {
-        console.log(data)
         this.mountainEvent = data
         this.MountainEventLoaded = true;
       },
@@ -50,7 +49,6 @@ export class EventComponent implements OnInit {
       data => {
         this.eventSrv.addUser(this.mountainEvent.id, data).subscribe(
           data => {
-            console.log(data)
             this.getEventDetails(this.eventId)
           },
           err => console.log(err)
@@ -66,7 +64,6 @@ export class EventComponent implements OnInit {
       data => {
         this.eventSrv.deleteUser(this.mountainEvent.id, data).subscribe(
           data => {
-            console.log(data)
             this.getEventDetails(this.eventId)
           },
           err => console.log(err)
@@ -77,10 +74,8 @@ export class EventComponent implements OnInit {
   }
 
   deleteEvent() {
-    console.log("delte me")
     this.eventSrv.deleteEvent(this.eventId).subscribe(
       data => {
-        console.log(data)
         this.router.navigateByUrl("user");
       },
       err => console.log(err)

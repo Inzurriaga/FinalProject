@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
 			managedUser.setDescription(user.getDescription());
 			managedUser.setState(user.getState());
 			managedUser.setImageUrl(user.getImageUrl());
+			managedUser.setEnabled(user.isEnabled());
 			repo.saveAndFlush(managedUser);
 			return managedUser;
 		}

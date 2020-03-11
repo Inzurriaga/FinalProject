@@ -53,7 +53,6 @@ export class ChatroomComponent implements OnInit, OnDestroy {
   retrieveRoomMessages = () => {
       this.chatroomSrv.chatroom(this.eventId).subscribe(
         data => {
-          console.log(data)
           this.room = data;
           this.messages = data.messages.sort((a, b) => {return a.id - b.id});
           this.scrollToBottom();
@@ -69,7 +68,6 @@ export class ChatroomComponent implements OnInit, OnDestroy {
     this.stompClient = Stomp.over(socket);
     this.stompClient.debug = ""
     this.stompClient.connect({}, (frame)=> {
-      console.log("connected: " + frame);
       this.stompClient.subscribe('/server/message', (message)=> {
         this.addMessage(message);
       });

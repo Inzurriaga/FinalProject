@@ -13,6 +13,17 @@ export class UserService {
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 
+  index = () => {
+    let credentials = this.authSrv.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<User[]>(this.url, httpOptions).pipe();
+  }
+
   show = (userName) => {
     let credentials = this.authSrv.getCredentials();
     const httpOptions = {

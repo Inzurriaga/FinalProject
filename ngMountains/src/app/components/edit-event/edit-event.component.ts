@@ -24,11 +24,9 @@ export class EditEventComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit =() => {
-    console.log(this.mountainEvent)
     this.eventSrv.updateEvent(this.mountainEvent.id, this.mountainEvent).subscribe(
       data => {
         this.closeEditEventModal()
-        console.log(data)
       },
       err =>console.log(err)
     )

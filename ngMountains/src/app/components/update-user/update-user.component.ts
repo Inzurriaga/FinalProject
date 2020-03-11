@@ -48,5 +48,4 @@ export class UpdateUserComponent implements OnInit {
       err => console.log(err)
     )
   }
-
 }

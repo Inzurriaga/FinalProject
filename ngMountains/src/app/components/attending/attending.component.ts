@@ -25,7 +25,6 @@ export class AttendingComponent implements OnInit {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.eventSrv.searchByUser(userName).subscribe(
       data=> {
-        console.log(data)
         this.events = data
       },
       err=>{
@@ -35,8 +34,6 @@ export class AttendingComponent implements OnInit {
 
     )
   }
-
-
 
   mountUrl(event: MountainEvent) {
     let long = (Math.floor((event.mountain.longitude+180)/360*Math.pow(2,10)));

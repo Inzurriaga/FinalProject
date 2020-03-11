@@ -26,7 +26,6 @@ export class HostEventComponent implements OnInit {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.eventSrv.searchByHost(userName).subscribe(
       data=> {
-        console.log(data)
         this.events = data
       },
       err=>{
