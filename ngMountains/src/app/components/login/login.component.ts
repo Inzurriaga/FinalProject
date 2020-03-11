@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   password: string;
 
+  incorrect = false;
+
   constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,10 +23,16 @@ export class LoginComponent implements OnInit {
   login(){
     this.authSrv.login(this.username, this.password).subscribe(
       data => {
-        console.log(data);
-        this.router.navigateByUrl("user");
+        if(data.principal.authorities[0].authority === "standard") {
+          this.router.navigateByUrl("user");
+        } else {
+          this.router.navigateByUrl("admin");
+        }
       },
-      error=>console.log(error)
+      error=>{
+        console.log(error)
+        this.incorrect = true;
+      }
     );
   }
 

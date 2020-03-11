@@ -286,6 +286,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mountaindb`;
+INSERT INTO `user` (`id`, `email`, `description`, `image_url`, `state_id`, `username`, `password`, `role`, `enabled`, `create_date`) VALUES (1, 'sonic@sonic.com', 'im a fast boy', 'https://vignette.wikia.nocookie.net/sonic/images/2/2d/TSR_Sonic.png/revision/latest/top-crop/width/360/height/360?cb=20191020043348', 1, 'sonic', '$2a$10$3RlwbJNyQtN3ysz3IKmBOOzOGEYHFBuqf5t.nPm3.K54jXMPpPmP6', 'admin', 1, '2000-01-02 10:00:00.000000');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `mountain_class`
 -- -----------------------------------------------------
 START TRANSACTION;

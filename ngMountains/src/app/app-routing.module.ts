@@ -1,3 +1,5 @@
+import { HostComponent } from './components/host/host.component';
+import { UserComponent } from './components/user/user.component';
 import { HostEventComponent } from './components/host-event/host-event.component';
 import { EventComponent } from './components/event/event.component';
 import { EventsComponent } from './components/events/events.component';
@@ -21,11 +23,13 @@ const routes: Routes = [
   { path: 'createEvent',component: CreateEventComponent},
   { path: 'events/:id', component: EventComponent},
   { path: 'attending', component: AttendingComponent},
-  { path: 'host', component: HostEventComponent}
+  { path: 'host', component: HostEventComponent},
+  { path: 'user/:username', component: UserComponent},
+  { path: 'admin', component: HostComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

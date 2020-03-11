@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Mountain } from 'src/app/models/mountain';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import * as THREE from 'three';
@@ -23,7 +24,7 @@ export class MountainModelComponent implements OnInit, AfterViewInit {
   RGBctx = null;
   SatImage = null;
   orbitControls = null;
-  key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
+  key = environment.mapbox;
   buffer = null;
 
 

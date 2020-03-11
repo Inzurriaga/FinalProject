@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { UserService } from './../../services/user.service';
 import { Message } from './../../models/message';
 import { Chatroom } from './../../models/chatroom';
@@ -17,6 +18,8 @@ export class ChatroomComponent implements OnInit, OnDestroy {
   @ViewChild('scroll') private myScrollContainer: ElementRef;
 
   stompClient;
+
+  url = environment.baseUrl;
 
   room: Chatroom;
 
@@ -50,7 +53,6 @@ export class ChatroomComponent implements OnInit, OnDestroy {
   retrieveRoomMessages = () => {
       this.chatroomSrv.chatroom(this.eventId).subscribe(
         data => {
-          console.log(data)
           this.room = data;
           this.messages = data.messages.sort((a, b) => {return a.id - b.id});
           this.scrollToBottom();
@@ -62,11 +64,10 @@ export class ChatroomComponent implements OnInit, OnDestroy {
   }
 
   connect() {
-    let socket = new SockJS('http://localhost:8090/chatroom-websocket');
+    let socket = new SockJS(this.url + "/chatroom-websocket");
     this.stompClient = Stomp.over(socket);
     this.stompClient.debug = ""
     this.stompClient.connect({}, (frame)=> {
-      console.log("connected: " + frame);
       this.stompClient.subscribe('/server/message', (message)=> {
         this.addMessage(message);
       });

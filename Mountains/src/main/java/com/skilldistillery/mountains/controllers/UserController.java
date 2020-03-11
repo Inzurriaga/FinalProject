@@ -1,5 +1,7 @@
 package com.skilldistillery.mountains.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,12 @@ public class UserController {
 	@Autowired
 	private UserService srv;
 	
-	@GetMapping(path="user/{username}")
+	@GetMapping("user")
+	public List<User> getUserList() {
+		return srv.getUserList();
+	}
+	
+	@GetMapping("user/{username}")
 	public User getUser(@PathVariable String username, HttpServletResponse rsp) {
 		User user = srv.getUserByUsername(username);
 		if (user == null) {

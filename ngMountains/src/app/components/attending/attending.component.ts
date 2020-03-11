@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { EventService } from 'src/app/services/event.service';
@@ -10,7 +11,7 @@ import { MountainEvent } from 'src/app/models/mountain-event';
   styleUrls: ['./attending.component.scss']
 })
 export class AttendingComponent implements OnInit {
-  key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
+  key = environment.mapbox;
 
   events;
 
@@ -24,7 +25,6 @@ export class AttendingComponent implements OnInit {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.eventSrv.searchByUser(userName).subscribe(
       data=> {
-        console.log(data)
         this.events = data
       },
       err=>{
@@ -34,8 +34,6 @@ export class AttendingComponent implements OnInit {
 
     )
   }
-
-
 
   mountUrl(event: MountainEvent) {
     let long = (Math.floor((event.mountain.longitude+180)/360*Math.pow(2,10)));

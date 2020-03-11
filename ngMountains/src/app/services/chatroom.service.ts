@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Chatroom } from './../models/chatroom';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class ChatroomService {
 
-  private url= "http://localhost:8090/api/chatroom";
+  private url= environment.baseUrl + "/api/chatroom";
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 

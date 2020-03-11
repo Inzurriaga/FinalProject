@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { State } from './../models/state';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -7,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class StateService {
-  private url= "http://localhost:8090/api/state";
+  private url= environment.baseUrl + "/api/state";
 
   constructor(private http: HttpClient, private authSrv: AuthService) { }
 

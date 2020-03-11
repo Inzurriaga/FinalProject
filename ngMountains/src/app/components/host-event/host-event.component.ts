@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MountainEvent } from 'src/app/models/mountain-event';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./host-event.component.scss']
 })
 export class HostEventComponent implements OnInit {
-  key = "pk.eyJ1IjoiaW56dXJyaWFnYSIsImEiOiJjazB5YmZsdm0wNW1tM2NwMGZ0Z2o5Z3c1In0.5sl6uFI9kbbTD3KqXJYU5Q";
+  key = environment.mapbox;
 
   events;
 
@@ -25,7 +26,6 @@ export class HostEventComponent implements OnInit {
     let userName = atob(this.authSrv.getCredentials()).split(":")[0];
     this.eventSrv.searchByHost(userName).subscribe(
       data=> {
-        console.log(data)
         this.events = data
       },
       err=>{
